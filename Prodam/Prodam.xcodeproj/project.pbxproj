@@ -78,7 +78,6 @@
 				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
 				F6E226381AF55D3B00125CA4 /* MainWindowController.swift */,
 				F6E2261F1AF3FF4900125CA4 /* Images.xcassets */,
-				F6E226211AF3FF4900125CA4 /* MainMenu.xib */,
 				F6E2261B1AF3FF4900125CA4 /* Supporting Files */,
 			);
 			path = Prodam;
@@ -87,6 +86,7 @@
 		F6E2261B1AF3FF4900125CA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6E226211AF3FF4900125CA4 /* MainMenu.xib */,
 				F6E2261C1AF3FF4900125CA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
