@@ -11,6 +11,7 @@
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
 		F6E2262F1AF3FF4900125CA4 /* ProdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */; };
+		F6E226391AF55D3B00125CA4 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E226381AF55D3B00125CA4 /* MainWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		F6E226281AF3FF4900125CA4 /* ProdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2262D1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdamTests.swift; sourceTree = "<group>"; };
+		F6E226381AF55D3B00125CA4 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
+				F6E226381AF55D3B00125CA4 /* MainWindowController.swift */,
 				F6E2261F1AF3FF4900125CA4 /* Images.xcassets */,
 				F6E226211AF3FF4900125CA4 /* MainMenu.xib */,
 				F6E2261B1AF3FF4900125CA4 /* Supporting Files */,
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E226391AF55D3B00125CA4 /* MainWindowController.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +400,7 @@
 				F6E226341AF3FF4900125CA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6E226351AF3FF4900125CA4 /* Build configuration list for PBXNativeTarget "ProdamTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +409,7 @@
 				F6E226371AF3FF4900125CA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
