@@ -22,6 +22,7 @@ class PopoverManager: NSObject, ViewClicked {
         self.popoverView.addSubview(imageView)
 
         self.popoverController.loadWindow()
+        self.popoverController.popoverManager = self
 
         self.statusItem.view = self.popoverView
     }
@@ -33,9 +34,11 @@ class PopoverManager: NSObject, ViewClicked {
             self.popoverIsActive = true
             self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
             NSApp.activateIgnoringOtherApps(true)
+            self.popoverController.window?.makeKeyWindow()
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.popover.close()
+            self.popoverController.window?.resignKeyWindow()
         }
     }
 }
