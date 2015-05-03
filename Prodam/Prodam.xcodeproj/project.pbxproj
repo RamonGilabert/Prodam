@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F6D10D821AF6107900EA9BB2 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D811AF6107900EA9BB2 /* PopoverController.swift */; };
+		F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */; };
+		F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D851AF6129800EA9BB2 /* PopoverController.swift */; };
 		F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */; };
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
@@ -25,7 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F6D10D811AF6107900EA9BB2 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
+		F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverManager.swift; sourceTree = "<group>"; };
+		F6D10D851AF6129800EA9BB2 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		F6E226181AF3FF4900125CA4 /* Prodam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prodam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2261C1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
-				F6D10D811AF6107900EA9BB2 /* PopoverController.swift */,
+				F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */,
+				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
 				F6E2261F1AF3FF4900125CA4 /* Images.xcassets */,
 				F6E2261B1AF3FF4900125CA4 /* Supporting Files */,
 			);
@@ -208,7 +211,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6D10D821AF6107900EA9BB2 /* PopoverController.swift in Sources */,
+				F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */,
+				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
