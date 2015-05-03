@@ -8,8 +8,5 @@ class PopoverController: NSViewController {
         self.view = NSView()
         self.view.frame = NSMakeRect(0, 0, 200, 200)
         self.popover.contentViewController = self
-        let backgroundColor = NSColor.redColor()
-        backgroundColor.set()
-        NSBezierPath.fillRect(self.view.frame)
     }
 }
