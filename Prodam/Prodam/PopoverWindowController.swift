@@ -7,7 +7,7 @@ class PopoverWindowController: NSWindowController {
 
     override func loadWindow() {
         self.popoverController.loadView()
-        self.window = NSWindow_Popover(contentRect: NSMakeRect(0, 0, 0, 0), styleMask: 1, backing: NSBackingStoreType.Buffered, defer: false)
+        self.window = NSWindow(contentRect: NSMakeRect(0, 0, 0, 0), styleMask: 1, backing: NSBackingStoreType.Buffered, defer: false)
         self.popover = self.popoverController.popover
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowNeedsToClose", name: NSWindowDidResignMainNotification, object: nil)
