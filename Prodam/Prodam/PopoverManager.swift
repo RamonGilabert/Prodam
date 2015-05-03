@@ -31,7 +31,7 @@ class PopoverManager: NSObject, ViewClicked {
     func buttonClicked() {
         if self.popoverIsActive == false {
             self.popoverIsActive = true
-            self.popoverController.popover.showRelativeToRect(self.popoverView.frame, ofView: self.popoverView, preferredEdge: NSMaxYEdge)
+            self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.popover.performClose(self)
