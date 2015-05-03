@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */; };
 		F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */; };
 		F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D851AF6129800EA9BB2 /* PopoverController.swift */; };
 		F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D891AF6236800EA9BB2 /* PopoverView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Popover.swift"; sourceTree = "<group>"; };
 		F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverManager.swift; sourceTree = "<group>"; };
 		F6D10D851AF6129800EA9BB2 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		F6D10D891AF6236800EA9BB2 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */,
 				F6D10D891AF6236800EA9BB2 /* PopoverView.swift */,
 				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
+				F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */,
 				F680B3D31AF6853600841DE3 /* Window controllers */,
 				F680B3D21AF6852B00841DE3 /* Resources */,
 				F6E2261B1AF3FF4900125CA4 /* Supporting Files */,
@@ -235,6 +238,7 @@
 			files = (
 				F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */,
 				F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */,
+				F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */,
 				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
 				F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,

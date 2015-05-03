@@ -34,10 +34,12 @@ class PopoverManager: NSObject, ViewClicked {
             self.popoverIsActive = true
             self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
             NSApp.activateIgnoringOtherApps(true)
+            self.popoverController.window?.makeMainWindow()
             self.popoverController.window?.makeKeyWindow()
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.popover.close()
+            self.popoverController.window?.resignMainWindow()
             self.popoverController.window?.resignKeyWindow()
         }
     }
