@@ -21,8 +21,8 @@ class PopoverManager: NSObject, ViewClicked {
         imageView.image = iconMenu
         self.popoverView.addSubview(imageView)
 
-        self.popoverController = PopoverController()
-        println(self.popoverController.view)
+        self.popoverController.loadView()
+
         self.statusItem.view = self.popoverView
     }
 
@@ -31,7 +31,7 @@ class PopoverManager: NSObject, ViewClicked {
     func buttonClicked() {
         if self.popoverIsActive == false {
             self.popoverIsActive = true
-            self.popoverController.popover.showRelativeToRect(self.popoverView.frame, ofView: self.popoverView, preferredEdge: NSMinYEdge)
+            self.popoverController.popover.showRelativeToRect(self.popoverView.frame, ofView: self.popoverView, preferredEdge: NSMaxYEdge)
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.popover.performClose(self)
