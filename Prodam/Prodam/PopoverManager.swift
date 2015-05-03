@@ -24,7 +24,8 @@ class PopoverManager: NSObject {
     func onStatusItemClicked() {
         if self.popoverIsActive == false {
             self.popoverIsActive == true
-            self.popoverController.popover.showRelativeToRect(NSMakeRect(0, 0, 30, 30), ofView: self.popoverController.view, preferredEdge: NSMinYEdge)
+            let view = NSView(frame: NSMakeRect(0, 0, 200, 200))
+            self.popoverController.popover.showRelativeToRect(NSMakeRect(0, 0, 30, 30), ofView: view, preferredEdge: NSMinYEdge)
         } else if self.popoverIsActive == true {
             self.popoverIsActive == false
         }
