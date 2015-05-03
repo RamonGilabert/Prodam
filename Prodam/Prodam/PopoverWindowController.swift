@@ -9,7 +9,6 @@ class PopoverWindowController: NSWindowController {
         self.popover.contentViewController = PopoverController()
         self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowNeedsToClose", name: NSWindowDidResignKeyNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowNeedsToClose", name: NSWindowDidResignMainNotification, object: nil)
     }
 
