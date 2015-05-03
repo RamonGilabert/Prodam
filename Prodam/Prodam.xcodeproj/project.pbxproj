@@ -78,6 +78,14 @@
 			name = "Window controllers";
 			sourceTree = "<group>";
 		};
+		F680B3D71AF6896800841DE3 /* Overrides */ = {
+			isa = PBXGroup;
+			children = (
+				F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */,
+			);
+			name = Overrides;
+			sourceTree = "<group>";
+		};
 		F6E2260F1AF3FF4900125CA4 = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +111,8 @@
 				F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */,
 				F6D10D891AF6236800EA9BB2 /* PopoverView.swift */,
 				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
-				F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */,
 				F680B3D31AF6853600841DE3 /* Window controllers */,
+				F680B3D71AF6896800841DE3 /* Overrides */,
 				F680B3D21AF6852B00841DE3 /* Resources */,
 				F6E2261B1AF3FF4900125CA4 /* Supporting Files */,
 			);
