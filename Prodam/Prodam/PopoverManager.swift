@@ -3,7 +3,7 @@ import Cocoa
 class PopoverManager: NSObject, ViewClicked {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
-    var popoverController = PopoverController()
+    var popoverController = PopoverWindowController()
     let popoverView = PopoverView()
     var popoverIsActive = false
 
@@ -21,7 +21,7 @@ class PopoverManager: NSObject, ViewClicked {
         imageView.image = iconMenu
         self.popoverView.addSubview(imageView)
 
-        self.popoverController.loadView()
+        self.popoverController.loadWindow()
 
         self.statusItem.view = self.popoverView
     }
@@ -32,6 +32,9 @@ class PopoverManager: NSObject, ViewClicked {
         if self.popoverIsActive == false {
             self.popoverIsActive = true
             self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
+            self.popoverController.window?.makeKeyAndOrderFront(self)
+            self.popoverController.window?.makeMainWindow()
+            self.popoverController.window?.makeKeyWindow()
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.popover.performClose(self)

@@ -6,8 +6,8 @@ class PopoverController: NSViewController {
 
     override func loadView() {
         self.view = NSView()
-        self.view.frame = NSMakeRect(0, 0, 275, 200)
+        self.view.frame = NSMakeRect(0, 0, 275, 400)
         self.popover.contentViewController = self
-        self.popover.appearance = NSAppearance(named: "NSAppearanceNameVibrantLight")
+        self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
     }
 }
