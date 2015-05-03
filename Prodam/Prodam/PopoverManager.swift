@@ -4,6 +4,7 @@ class PopoverManager: NSObject {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let popoverController = PopoverController()
+    let popoverView = NSView()
     var popoverIsActive = false
 
     // MARK: View lifecycle
@@ -14,7 +15,12 @@ class PopoverManager: NSObject {
         let iconMenu = NSImage(named: "menu-logo")
         iconMenu?.setTemplate(true)
 
-        self.statusItem.image = iconMenu
+        let view = NSView(frame: NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness))
+        let imageView = NSImageView(frame: NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness))
+        imageView.image = iconMenu
+        view.addSubview(imageView)
+
+        self.statusItem.view = view
         self.statusItem.target = self
         self.statusItem.action = "onStatusItemClicked"
     }
