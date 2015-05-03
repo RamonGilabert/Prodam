@@ -1,6 +1,6 @@
 import Cocoa
 
-class PopoverManager: NSObject {
+class PopoverManager: NSObject, ViewClicked {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let popoverController = PopoverController()
@@ -15,7 +15,8 @@ class PopoverManager: NSObject {
         let iconMenu = NSImage(named: "menu-logo")
         iconMenu?.setTemplate(true)
 
-        self.popoverView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness + 5, NSStatusBar.systemStatusBar().thickness)
+        self.popoverView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness + 3, NSStatusBar.systemStatusBar().thickness)
+        self.popoverView.delegate = self
         let imageView = NSImageView(frame: NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness))
         imageView.image = iconMenu
         self.popoverView.addSubview(imageView)
@@ -24,4 +25,8 @@ class PopoverManager: NSObject {
     }
 
     // MARK: Icon clicked handlers
+
+    func buttonClicked() {
+        println("Hey")
+    }
 }
