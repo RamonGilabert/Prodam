@@ -23,20 +23,38 @@ class PopoverManager: NSObject, ViewClicked {
 
         self.popoverController.loadWindow()
 
-        self.statusItem.view = self.popoverView
+        self.statusItem.image = iconMenu
+        self.statusItem.target = self
+        self.statusItem.action = "onStatusItemClicked"
     }
 
     // MARK: Icon clicked handlers
+
+    func onStatusItemClicked() {
+        if self.popoverIsActive == false {
+            self.popoverIsActive = true
+            self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
+            self.popoverController.window?.makeMainWindow()
+            println(self.popoverController.window?.mainWindow)
+        } else if self.popoverIsActive == true {
+            self.popoverIsActive = false
+            self.popoverController.popover.close()
+            self.popoverController.window?.resignMainWindow()
+            println(self.popoverController.window?.mainWindow)
+        }
+    }
 
     func buttonClicked() {
         if self.popoverIsActive == false {
             self.popoverIsActive = true
             self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
-            self.popoverController.showWindow(self)
-            self.popoverController.window?.makeKeyAndOrderFront(self)
+            self.popoverController.window?.makeMainWindow()
+            println(self.popoverController.window?.mainWindow)
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
-            self.popoverController.popover.performClose(self)
+            self.popoverController.popover.close()
+            self.popoverController.window?.resignMainWindow()
+            println(self.popoverController.window?.mainWindow)
         }
     }
 }
