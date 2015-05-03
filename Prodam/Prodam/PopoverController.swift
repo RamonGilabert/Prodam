@@ -16,8 +16,4 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         button.title = "Sup"
         self.view.addSubview(button)
     }
-
-    func popoverDidShow(notification: NSNotification) {
-
-    }
 }
