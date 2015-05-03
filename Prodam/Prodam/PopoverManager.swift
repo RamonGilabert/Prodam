@@ -27,6 +27,12 @@ class PopoverManager: NSObject, ViewClicked {
     // MARK: Icon clicked handlers
 
     func buttonClicked() {
-        println("Hey")
+        if self.popoverIsActive == false {
+            self.popoverIsActive = true
+            self.popoverController.popover.showRelativeToRect(self.popoverView.frame, ofView: self.popoverView, preferredEdge: NSMinYEdge)
+        } else if self.popoverIsActive == true {
+            self.popoverIsActive = false
+            self.popoverController.popover.performClose(self)
+        }
     }
 }
