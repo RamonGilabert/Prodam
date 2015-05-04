@@ -37,18 +37,29 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.taskButton.image = NSImage(named: "todo-button")
         self.taskButton.bordered = false
 
-        self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20)
+        self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 31, 20, 20)
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
 
         self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 29, Constant.Window.Width - 100, 20)
         self.taskTextField.bordered = false
         self.taskTextField.bezeled = false
+        self.taskTextField.selectable = false
         self.taskTextField.backgroundColor = NSColor.clearColor()
-
+        self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
         self.taskTextField.placeholderString = "Enter your new task..."
         self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 18)
+
+        self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 29, Constant.Window.Width - 80, Constant.Window.Height - Constant.Window.Height/4 - 35)
+        self.timerTextField.bordered = false
+        self.timerTextField.bezeled = false
+        self.timerTextField.selectable = false
+        self.timerTextField.backgroundColor = NSColor.clearColor()
+        self.timerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        self.timerTextField.alignment = NSTextAlignment.CenterTextAlignment
+        self.timerTextField.stringValue = "15:00"
+        self.timerTextField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
     }
 
     // MARK: Helper methods
