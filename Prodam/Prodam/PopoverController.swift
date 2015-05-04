@@ -94,6 +94,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.minutesLabel.font = NSFont(name: "AvenirNext-DemiBold", size: 20)
         self.minutesLabel.sizeToFit()
         self.minutesLabel.frame = NSMakeRect(self.editableTimerTextField.frame.origin.x + self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.origin.y + 10, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
+
+        // TODO: Assign first responder here
     }
 
     // MARK: Action handlers
@@ -103,6 +105,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.minutesLabel.alphaValue = 0.0
         self.timerTextField.alphaValue = 1.0
         self.timerTextField.stringValue = self.editableTimerTextField.stringValue
+
+        // TODO: Perform animations of the textFields.
+        // TODO: Perform animation of the buttons, turning into two buttons.
+        // TODO: Resign all first responders.
     }
 
     // MARK: NSTextView delegate methods
