@@ -8,8 +8,8 @@ class PopoverController: NSViewController, NSPopoverDelegate {
     let pauseTaskButton = NSButton()
     let taskButton = NSButton()
     let settingsButton = NSButton()
-    let taskTextField = NSTextView()
-    let timerTextField = NSTextView()
+    let taskTextField = NSTextField()
+    let timerTextField = NSTextField()
 
     override func loadView() {
         self.view = NSView()
@@ -44,24 +44,36 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.settingsButton.bordered = false
 
         self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 29, Constant.Window.Width - 100, 20)
+        self.taskTextField.bezeled = false
+        self.taskTextField.bordered = false
+        self.taskTextField.editable = false
+        self.taskTextField.selectable = true
         self.taskTextField.backgroundColor = NSColor.clearColor()
         self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.65, alpha:1)
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.taskTextField.string = "Enter your new task..."
+        self.taskTextField.stringValue = "Enter your new task..."
         self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 18)
+        self.taskTextField.focusRingType = NSFocusRingType.None
 
-        self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 6.5, Constant.Window.Width - 80, Constant.Window.Height - Constant.Window.Height/4 - 35)
+        self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0)
+        self.timerTextField.bezeled = false
+        self.timerTextField.bordered = false
+        self.timerTextField.editable = false
+        self.timerTextField.selectable = true
         self.timerTextField.backgroundColor = NSColor.clearColor()
         self.timerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.timerTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.timerTextField.string = "15:00"
+        self.timerTextField.stringValue = "15:00"
         self.timerTextField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
+        self.timerTextField.sizeToFit()
+        self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 22.5, self.timerTextField.frame.width, self.timerTextField.frame.height)
+        self.timerTextField.focusRingType = NSFocusRingType.None
     }
 
     // MARK: Action handlers
 
     func onStartWorkingButtonPressed() {
-        self.timerTextField.selectable = false
+        self.timerTextField.resignFirstResponder()
     }
 
     // MARK: Helper methods
@@ -72,7 +84,7 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.view.addSubview(self.pauseTaskButton)
         self.view.addSubview(self.taskButton)
         self.view.addSubview(self.settingsButton)
-        self.view.addSubview(self.taskTextField)
         self.view.addSubview(self.timerTextField)
+        self.view.addSubview(self.taskTextField)
     }
 }
