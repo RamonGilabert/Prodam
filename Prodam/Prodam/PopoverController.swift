@@ -65,12 +65,14 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 10, self.timerTextField.frame.width, self.timerTextField.frame.height)
         self.timerTextField.focusRingType = NSFocusRingType.None
         self.timerTextField.maxSize = CGSize(width: self.timerTextField.frame.width, height: self.timerTextField.frame.height)
+        self.timerTextField.delegate = self
+        self.timerTextField.becomeFirstResponder()
     }
 
     // MARK: Action handlers
 
     func onStartWorkingButtonPressed() {
-
+        self.addTaskButton.becomeFirstResponder()
     }
 
     // MARK: NSTextView delegate methods
@@ -87,12 +89,12 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     // MARK: Helper methods
 
     func addAllSubviewProperties() {
-        self.view.addSubview(self.addTaskButton)
-        self.view.addSubview(self.doneTaskButton)
-        self.view.addSubview(self.pauseTaskButton)
         self.view.addSubview(self.taskButton)
         self.view.addSubview(self.settingsButton)
         self.view.addSubview(self.timerTextField)
         self.view.addSubview(self.taskTextField)
+        self.view.addSubview(self.addTaskButton)
+        self.view.addSubview(self.doneTaskButton)
+        self.view.addSubview(self.pauseTaskButton)
     }
 }
