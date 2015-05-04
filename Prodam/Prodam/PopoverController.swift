@@ -165,9 +165,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.view.addSubview(self.doneTaskButton)
         self.view.addSubview(self.pauseTaskButton)
         self.view.addSubview(self.addTaskButton)
-        self.view.addSubview(self.editableTimerTextField)
-        self.view.addSubview(self.minutesLabel)
         self.view.addSubview(self.timerTextField)
         self.view.addSubview(self.taskTextField)
+        self.view.addSubview(self.editableTimerTextField)
+        self.view.addSubview(self.minutesLabel)
     }
 }
