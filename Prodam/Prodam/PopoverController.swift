@@ -21,7 +21,7 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         self.popover.delegate = self
 
-        self.addTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton, Constant.Window.Width - (2 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
+        self.addTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width - (2 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
         self.addTaskButton.image = NSImage(named: "background-start-button")
         self.addTaskButton.bordered = false
         self.addTaskButton.layer?.masksToBounds = true
@@ -34,7 +34,7 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         mutableStringAddTaskButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, mutableStringAddTaskButton.length))
         self.addTaskButton.attributedTitle = mutableStringAddTaskButton
 
-        self.taskButton.frame
+        //self.taskButton.frame
     }
 
     // MARK: Helper methods
