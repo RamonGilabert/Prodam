@@ -68,12 +68,39 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.timerTextField.sizeToFit()
         self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 22.5, self.timerTextField.frame.width, self.timerTextField.frame.height)
         self.timerTextField.alphaValue = 0.0
+
+        self.editableTimerTextField.frame = NSMakeRect(0, 0, 0, 0)
+        self.editableTimerTextField.bezeled = false
+        self.editableTimerTextField.bordered = false
+        self.editableTimerTextField.backgroundColor = NSColor.clearColor()
+        self.editableTimerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        self.editableTimerTextField.alignment = NSTextAlignment.CenterTextAlignment
+        self.editableTimerTextField.stringValue = "15"
+        self.editableTimerTextField.font = NSFont(name: "HelveticaNeue-Bold", size: 65)
+        self.editableTimerTextField.sizeToFit()
+        self.editableTimerTextField.frame = NSMakeRect((Constant.Window.Width - self.editableTimerTextField.frame.width)/2 - 20, (Constant.Window.Height - self.editableTimerTextField.frame.height)/2 + 20, self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.height)
+        self.editableTimerTextField.becomeFirstResponder()
+
+        self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
+        self.editableTimerTextField.bezeled = false
+        self.editableTimerTextField.bordered = false
+        self.editableTimerTextField.backgroundColor = NSColor.clearColor()
+        self.editableTimerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        self.editableTimerTextField.alignment = NSTextAlignment.CenterTextAlignment
+        self.editableTimerTextField.stringValue = "15"
+        self.editableTimerTextField.font = NSFont(name: "HelveticaNeue-Bold", size: 65)
+        self.editableTimerTextField.sizeToFit()
+        self.editableTimerTextField.frame = NSMakeRect((Constant.Window.Width - self.editableTimerTextField.frame.width)/2 - 20, (Constant.Window.Height - self.editableTimerTextField.frame.height)/2 + 20, self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.height)
+        self.editableTimerTextField.becomeFirstResponder()
+
     }
 
     // MARK: Action handlers
 
     func onStartWorkingButtonPressed() {
-
+        self.editableTimerTextField.alphaValue = 0.0
+        self.minutesLabel.alphaValue = 0.0
+        self.timerTextField.alphaValue = 1.0
     }
 
     // MARK: NSTextView delegate methods
