@@ -7,7 +7,8 @@ struct Constant {
     }
 
     struct MainWindowLayout {
-        static let MinimumPaddingButton = 19 as CGFloat
+        static let MinimumPaddingButton = 9 as CGFloat
+        static let HeightOfButton = Constant.Window.Height / 4
     }
 }
 
