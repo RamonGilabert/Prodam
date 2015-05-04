@@ -72,7 +72,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
 
-        self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 31, Constant.Window.Width - 100, 22)
+        self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 30, Constant.Window.Width - 100, 22)
         self.taskTextField.bezeled = false
         self.taskTextField.bordered = false
         self.taskTextField.backgroundColor = NSColor.clearColor()
@@ -93,7 +93,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.timerTextField.stringValue = "15:00"
         self.timerTextField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
         self.timerTextField.sizeToFit()
-        self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 22.5, self.timerTextField.frame.width, self.timerTextField.frame.height)
+        self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 25, self.timerTextField.frame.width, self.timerTextField.frame.height)
         self.timerTextField.alphaValue = 0.0
 
         self.editableTimerTextField.frame = NSMakeRect(0, 0, 0, 0)
@@ -129,12 +129,17 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
 
     func onStartWorkingButtonPressed() {
         if self.addTaskButton.alphaValue > 0.0 {
-            self.editableTimerTextField.alphaValue = 0.0
-            self.editableTimerTextField.editable = false
-            self.editableTimerTextField.selectable = false
             self.minutesLabel.alphaValue = 0.0
             self.timerTextField.alphaValue = 1.0
+            // FIXME: This needs to be fixed
+            self.editableTimerTextField.removeFromSuperview()
+            self.taskTextField.editable = false
+            self.taskTextField.selectable = false
             self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
+
+            if self.taskTextField.stringValue == "" {
+                self.taskTextField.stringValue = "Working hard"
+            }
 
             self.addTaskButton.alphaValue = 0.0
             self.doneTaskButton.alphaValue = 1.0
