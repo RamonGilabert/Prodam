@@ -10,6 +10,9 @@ class PopoverView: NSView, ViewClicked {
 
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
+        let backgroundColor = NSColor.clearColor()
+        backgroundColor.set()
+        NSBezierPath.fillRect(dirtyRect)
     }
 
     override func rightMouseDown(theEvent: NSEvent) {
