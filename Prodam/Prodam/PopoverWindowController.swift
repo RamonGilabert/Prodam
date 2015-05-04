@@ -19,6 +19,7 @@ class PopoverWindowController: NSWindowController {
 
     func windowNeedsToClose() {
         self.popoverManager!.popoverIsActive = false
+        self.window?.makeFirstResponder(nil)
         self.popover.close()
     }
 }
