@@ -32,6 +32,8 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
         mutableStringAddTaskButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, mutableStringAddTaskButton.length))
         self.addTaskButton.attributedTitle = mutableStringAddTaskButton
+        self.addTaskButton.target = self
+        self.addTaskButton.action = "onStartWorkingButtonPressed"
 
         self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
         self.taskButton.image = NSImage(named: "todo-button")
@@ -53,8 +55,13 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.timerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.timerTextField.alignment = NSTextAlignment.CenterTextAlignment
         self.timerTextField.string = "15:00"
-        self.timerTextField.selectable = false
         self.timerTextField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
+    }
+
+    // MARK: Action handlers
+
+    func onStartWorkingButtonPressed() {
+        self.timerTextField.selectable = false
     }
 
     // MARK: Helper methods
