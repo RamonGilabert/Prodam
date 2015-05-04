@@ -41,11 +41,14 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
 
-        self.taskTextField.frame = NSMakeRect(0, 0, 0, 0)
+        self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 29, Constant.Window.Width - 100, 20)
         self.taskTextField.bordered = false
+        self.taskTextField.bezeled = false
+        self.taskTextField.backgroundColor = NSColor.clearColor()
+
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
         self.taskTextField.placeholderString = "Enter your new task..."
-        self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 19)
+        self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 18)
     }
 
     // MARK: Helper methods
