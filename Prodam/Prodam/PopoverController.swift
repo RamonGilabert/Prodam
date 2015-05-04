@@ -46,6 +46,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 31, Constant.Window.Width - 100, 22)
         self.taskTextField.bezeled = false
         self.taskTextField.bordered = false
+        self.taskTextField.editable = false
+        self.taskTextField.selectable = false
         self.taskTextField.backgroundColor = NSColor.clearColor()
         self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
@@ -72,7 +74,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     // MARK: Action handlers
 
     func onStartWorkingButtonPressed() {
-        self.addTaskButton.becomeFirstResponder()
+
     }
 
     // MARK: NSTextView delegate methods
