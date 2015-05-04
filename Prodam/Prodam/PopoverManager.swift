@@ -42,6 +42,7 @@ class PopoverManager: NSObject, ViewClicked {
             self.popoverController.popover.close()
             self.popoverController.window?.resignMainWindow()
             self.popoverController.window?.resignKeyWindow()
+            self.popoverController.window?.makeFirstResponder(nil)
         }
     }
 }

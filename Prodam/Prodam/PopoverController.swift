@@ -63,6 +63,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.pauseTaskButton.attributedTitle = mutableStringPauseButton
         self.pauseTaskButton.alphaValue = 0.0
 
+        // TODO: Change button to say hey, this is done!
         self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
         self.taskButton.image = NSImage(named: "todo-button")
         self.taskButton.bordered = false
@@ -127,14 +128,18 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     // MARK: Action handlers
 
     func onStartWorkingButtonPressed() {
-        self.editableTimerTextField.alphaValue = 0.0
-        self.minutesLabel.alphaValue = 0.0
-        self.timerTextField.alphaValue = 1.0
-        self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
+        if self.addTaskButton.alphaValue > 0.0 {
+            self.editableTimerTextField.alphaValue = 0.0
+            self.editableTimerTextField.editable = false
+            self.editableTimerTextField.selectable = false
+            self.minutesLabel.alphaValue = 0.0
+            self.timerTextField.alphaValue = 1.0
+            self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
 
-        self.addTaskButton.alphaValue = 0.0
-        self.doneTaskButton.alphaValue = 1.0
-        self.pauseTaskButton.alphaValue = 1.0
+            self.addTaskButton.alphaValue = 0.0
+            self.doneTaskButton.alphaValue = 1.0
+            self.pauseTaskButton.alphaValue = 1.0
+        }
 
         // TODO: Perform animations of the textFields.
         // TODO: Perform animation of the buttons, turning into two buttons.
@@ -157,12 +162,12 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     func addAllSubviewProperties() {
         self.view.addSubview(self.taskButton)
         self.view.addSubview(self.settingsButton)
-        self.view.addSubview(self.timerTextField)
-        self.view.addSubview(self.taskTextField)
         self.view.addSubview(self.doneTaskButton)
         self.view.addSubview(self.pauseTaskButton)
         self.view.addSubview(self.addTaskButton)
         self.view.addSubview(self.editableTimerTextField)
         self.view.addSubview(self.minutesLabel)
+        self.view.addSubview(self.timerTextField)
+        self.view.addSubview(self.taskTextField)
     }
 }
