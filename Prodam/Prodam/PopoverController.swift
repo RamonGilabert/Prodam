@@ -9,7 +9,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     let taskButton = NSButton()
     let settingsButton = NSButton()
     let taskTextField = NSTextField()
-    let timerTextField = NSTextView()
+    let timerTextField = NSTextField()
+    let editableTimerTextField = NSTextField()
+    let minutesLabel = NSTextField()
 
     override func loadView() {
         self.view = NSView()
@@ -46,8 +48,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 31, Constant.Window.Width - 100, 22)
         self.taskTextField.bezeled = false
         self.taskTextField.bordered = false
-        self.taskTextField.editable = false
-        self.taskTextField.selectable = false
         self.taskTextField.backgroundColor = NSColor.clearColor()
         self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
@@ -56,19 +56,18 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.taskTextField.focusRingType = NSFocusRingType.None
 
         self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0)
-        self.timerTextField.editable = true
-        self.timerTextField.selectable = true
+        self.timerTextField.bezeled = false
+        self.timerTextField.bordered = false
+        self.timerTextField.editable = false
+        self.timerTextField.selectable = false
         self.timerTextField.backgroundColor = NSColor.clearColor()
         self.timerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.timerTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.timerTextField.string = "15:00"
+        self.timerTextField.stringValue = "15:00"
         self.timerTextField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
         self.timerTextField.sizeToFit()
-        self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 10, self.timerTextField.frame.width, self.timerTextField.frame.height)
-        self.timerTextField.focusRingType = NSFocusRingType.None
-        self.timerTextField.maxSize = CGSize(width: self.timerTextField.frame.width, height: self.timerTextField.frame.height)
-        self.timerTextField.delegate = self
-        self.timerTextField.becomeFirstResponder()
+        self.timerTextField.frame = NSMakeRect((Constant.Window.Width - self.timerTextField.frame.width)/2, (Constant.Window.Height - self.timerTextField.frame.height)/2 + 22.5, self.timerTextField.frame.width, self.timerTextField.frame.height)
+        self.timerTextField.alphaValue = 0.0
     }
 
     // MARK: Action handlers
@@ -98,5 +97,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.view.addSubview(self.addTaskButton)
         self.view.addSubview(self.doneTaskButton)
         self.view.addSubview(self.pauseTaskButton)
+        self.view.addSubview(self.editableTimerTextField)
+        self.view.addSubview(self.minutesLabel)
     }
 }
