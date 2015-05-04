@@ -8,8 +8,8 @@ class PopoverController: NSViewController, NSPopoverDelegate {
     let pauseTaskButton = NSButton()
     let taskButton = NSButton()
     let settingsButton = NSButton()
-    let taskTextField = NSTextField()
-    let timerTextField = NSTextField()
+    let taskTextField = NSTextView()
+    let timerTextField = NSTextView()
 
     override func loadView() {
         self.view = NSView()
@@ -42,23 +42,18 @@ class PopoverController: NSViewController, NSPopoverDelegate {
         self.settingsButton.bordered = false
 
         self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 29, Constant.Window.Width - 100, 20)
-        self.taskTextField.bordered = false
-        self.taskTextField.bezeled = false
-        self.taskTextField.selectable = false
         self.taskTextField.backgroundColor = NSColor.clearColor()
-        self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.65, alpha:1)
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.taskTextField.placeholderString = "Enter your new task..."
+        self.taskTextField.string = "Enter your new task..."
         self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 18)
 
-        self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 29, Constant.Window.Width - 80, Constant.Window.Height - Constant.Window.Height/4 - 35)
-        self.timerTextField.bordered = false
-        self.timerTextField.bezeled = false
-        self.timerTextField.selectable = false
+        self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 6.5, Constant.Window.Width - 80, Constant.Window.Height - Constant.Window.Height/4 - 35)
         self.timerTextField.backgroundColor = NSColor.clearColor()
         self.timerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.timerTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.timerTextField.stringValue = "15:00"
+        self.timerTextField.string = "15:00"
+        self.timerTextField.selectable = false
         self.timerTextField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
     }
 
