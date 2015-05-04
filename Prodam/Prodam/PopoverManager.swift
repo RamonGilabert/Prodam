@@ -36,6 +36,7 @@ class PopoverManager: NSObject, ViewClicked {
             NSApp.activateIgnoringOtherApps(true)
             self.popoverController.window?.makeMainWindow()
             self.popoverController.window?.makeKeyWindow()
+            self.popoverController.window?.makeFirstResponder(self.popoverController.popoverController.editableTimerTextField)
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.popover.close()
