@@ -74,25 +74,26 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.editableTimerTextField.bordered = false
         self.editableTimerTextField.backgroundColor = NSColor.clearColor()
         self.editableTimerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        self.editableTimerTextField.alignment = NSTextAlignment.CenterTextAlignment
+        self.editableTimerTextField.alignment = NSTextAlignment.RightTextAlignment
         self.editableTimerTextField.stringValue = "15"
-        self.editableTimerTextField.font = NSFont(name: "HelveticaNeue-Bold", size: 65)
+        self.editableTimerTextField.font = NSFont(name: "HelveticaNeue-Bold", size: 70)
         self.editableTimerTextField.sizeToFit()
-        self.editableTimerTextField.frame = NSMakeRect((Constant.Window.Width - self.editableTimerTextField.frame.width)/2 - 20, (Constant.Window.Height - self.editableTimerTextField.frame.height)/2 + 20, self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.height)
+        self.editableTimerTextField.frame = NSMakeRect((Constant.Window.Width - self.editableTimerTextField.frame.width)/2 - 50, (Constant.Window.Height - self.editableTimerTextField.frame.height)/2 + 20, self.editableTimerTextField.frame.width + 50, self.editableTimerTextField.frame.height)
         self.editableTimerTextField.becomeFirstResponder()
+        self.editableTimerTextField.focusRingType = NSFocusRingType.None
 
         self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
-        self.editableTimerTextField.bezeled = false
-        self.editableTimerTextField.bordered = false
-        self.editableTimerTextField.backgroundColor = NSColor.clearColor()
-        self.editableTimerTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        self.editableTimerTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.editableTimerTextField.stringValue = "15"
-        self.editableTimerTextField.font = NSFont(name: "HelveticaNeue-Bold", size: 65)
-        self.editableTimerTextField.sizeToFit()
-        self.editableTimerTextField.frame = NSMakeRect((Constant.Window.Width - self.editableTimerTextField.frame.width)/2 - 20, (Constant.Window.Height - self.editableTimerTextField.frame.height)/2 + 20, self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.height)
-        self.editableTimerTextField.becomeFirstResponder()
-
+        self.minutesLabel.bezeled = false
+        self.minutesLabel.bordered = false
+        self.minutesLabel.editable = false
+        self.minutesLabel.selectable = false
+        self.minutesLabel.backgroundColor = NSColor.clearColor()
+        self.minutesLabel.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        self.minutesLabel.alignment = NSTextAlignment.CenterTextAlignment
+        self.minutesLabel.stringValue = "min"
+        self.minutesLabel.font = NSFont(name: "AvenirNext-DemiBold", size: 20)
+        self.minutesLabel.sizeToFit()
+        self.minutesLabel.frame = NSMakeRect(self.editableTimerTextField.frame.origin.x + self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.origin.y + 10, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
     }
 
     // MARK: Action handlers
@@ -101,6 +102,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.editableTimerTextField.alphaValue = 0.0
         self.minutesLabel.alphaValue = 0.0
         self.timerTextField.alphaValue = 1.0
+        self.timerTextField.stringValue = self.editableTimerTextField.stringValue
     }
 
     // MARK: NSTextView delegate methods
