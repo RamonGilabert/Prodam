@@ -27,26 +27,15 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         self.popover.delegate = self
 
-        self.doneTaskButton = self.viewModel.layoutDoneButtonMainView(self)
-        self.pauseTaskButton = self.viewModel.layoutPauseButtonMainView(self)
-        self.addTaskButton = self.viewModel.layoutFunctionalButtonsMainView(self)
-        self.taskTextField = self.viewModel.layoutTaskTextFieldMainView(self, viewController: self)
-        self.timerTextField = self.viewModel.layoutTimerTextFieldMainView(self)
-        self.editableTimerTextField = self.viewModel.layoutEditableTextFieldMainView(self)
-        self.minutesLabel = self.viewModel.layoutMinutesTextFieldMainView(self, editableTextField: self.editableTimerTextField)
-        self.taskButton = self.viewModel.layoutButtonTasksMainView(self)
-        self.settingsButton = self.viewModel.layoutButtonSettingsMainView(self)
+        handleLayout()
     }
 
     // MARK: Action handlers
 
     func onStartButtonPressed() {
-        self.minutesLabel.alphaValue = 0.0
-        self.timerTextField.alphaValue = 1.0
+        startingOrStoppingMethods(1.0)
         self.taskTextField.removeFromSuperview()
         self.editableTimerTextField.removeFromSuperview()
-        self.taskTextField.editable = false
-        self.taskTextField.selectable = false
         self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
 
         if self.taskTextField.stringValue == "" {
@@ -55,8 +44,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
         self.view.addSubview(self.taskTextField)
         self.addTaskButton.removeFromSuperview()
-        self.doneTaskButton.alphaValue = 1.0
-        self.pauseTaskButton.alphaValue = 1.0
 
         // TODO: Perform animations of the textFields.
         // TODO: Perform animation of the buttons, turning into two buttons.
@@ -64,16 +51,11 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onStopButtonPressed() {
-        self.minutesLabel.alphaValue = 1.0
-        self.timerTextField.alphaValue = 0.0
+        startingOrStoppingMethods(0.0)
         self.view.addSubview(self.editableTimerTextField)
-        self.taskTextField.editable = true
-        self.taskTextField.selectable = true
         self.delegate?.makeResponder(self.editableTimerTextField)
         self.taskTextField.stringValue = ""
         self.view.addSubview(self.addTaskButton)
-        self.doneTaskButton.alphaValue = 0.0
-        self.pauseTaskButton.alphaValue = 0.0
         // TODO: Delete the timer
     }
 
@@ -94,6 +76,27 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     // MARK: Helper methods
+
+    func handleLayout() {
+        self.doneTaskButton = self.viewModel.layoutDoneButtonMainView(self)
+        self.pauseTaskButton = self.viewModel.layoutPauseButtonMainView(self)
+        self.addTaskButton = self.viewModel.layoutFunctionalButtonsMainView(self)
+        self.taskTextField = self.viewModel.layoutTaskTextFieldMainView(self, viewController: self)
+        self.timerTextField = self.viewModel.layoutTimerTextFieldMainView(self)
+        self.editableTimerTextField = self.viewModel.layoutEditableTextFieldMainView(self)
+        self.minutesLabel = self.viewModel.layoutMinutesTextFieldMainView(self, editableTextField: self.editableTimerTextField)
+        self.taskButton = self.viewModel.layoutButtonTasksMainView(self)
+        self.settingsButton = self.viewModel.layoutButtonSettingsMainView(self)
+    }
+
+    func startingOrStoppingMethods(value: CGFloat) {
+        self.minutesLabel.alphaValue = 1.0 - value
+        self.timerTextField.alphaValue = value
+        self.taskTextField.editable = Bool(value)
+        self.taskTextField.selectable = Bool(value)
+        self.doneTaskButton.alphaValue = value
+        self.pauseTaskButton.alphaValue = value
+    }
 
     func makeResponder(textField: NSTextField) { }
 }

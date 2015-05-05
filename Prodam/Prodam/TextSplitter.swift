@@ -1,6 +1,7 @@
 import Cocoa
 
 class TextSplitter: NSObject {
+    
     class func checkNewStringForTextField(stringValue: String) -> NSAttributedString {
         let arrayOfWords = split(stringValue, maxSplit: 1, allowEmptySlices: true, isSeparator: {$0 == " "})
         let firstString = arrayOfWords[0]
