@@ -181,23 +181,37 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     override func controlTextDidChange(obj: NSNotification) {
         let arrayOfWords = split(self.taskTextField.stringValue, maxSplit: 1, allowEmptySlices: true, isSeparator: {$0 == " "})
         let firstString = arrayOfWords[0]
-        let secondString = arrayOfWords[1]
-        let concatenatedString = "\(firstString) \(secondString)"
+        let finalMutableString = NSMutableAttributedString()
+        var secondString = ""
+        var concatenatedString = ""
+        var mutableStringFirstPart = NSMutableAttributedString()
+        var mutableStringSecondPart = NSMutableAttributedString()
+        var mutableStringThirdPart = NSMutableAttributedString()
 
-        let mutableStringFirstPart = NSMutableAttributedString(string: firstString)
-        mutableStringFirstPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue", size: 18)!, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+        if arrayOfWords.count > 1 {
+            secondString = arrayOfWords[1]
+            concatenatedString = "\(firstString) \(secondString)"
 
-        let mutableStringSecondPart = NSMutableAttributedString(string: secondString)
-        mutableStringSecondPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Medium", size: 18)!, range: NSMakeRange(firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding), concatenatedString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+            mutableStringFirstPart = NSMutableAttributedString(string: "\(firstString) ")
+            mutableStringFirstPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Light", size: 18)!, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) + 1))
+            mutableStringFirstPart.addAttribute(NSForegroundColorAttributeName, value: NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1), range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) + 1))
 
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
-        mutableStringFirstPart.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-        mutableStringSecondPart.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding), concatenatedString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+            mutableStringSecondPart = NSMutableAttributedString(string: secondString)
+            mutableStringSecondPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Medium", size: 18)!, range: NSMakeRange(0, secondString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+            mutableStringSecondPart.addAttribute(NSForegroundColorAttributeName, value: NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1), range: NSMakeRange(0, secondString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+        } else {
+            concatenatedString = firstString
 
-        let mutableStringFinal = "\(mutableStringFirstPart) \(mutableStringSecondPart)"
+            mutableStringFirstPart = NSMutableAttributedString(string: firstString)
+            mutableStringFirstPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Light", size: 18)!, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+            mutableStringFirstPart.addAttribute(NSForegroundColorAttributeName, value: NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1), range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+        }
 
-        println(mutableStringFinal)
+        finalMutableString.appendAttributedString(mutableStringFirstPart)
+        finalMutableString.appendAttributedString(mutableStringThirdPart)
+        finalMutableString.appendAttributedString(mutableStringSecondPart)
+
+        self.taskTextField.attributedStringValue = finalMutableString
     }
 
     // MARK: Helper methods
