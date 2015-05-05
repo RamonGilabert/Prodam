@@ -39,12 +39,8 @@ class ViewModel: NSObject {
     }
 
     func layoutTaskTextFieldMainView(fieldDelegate: NSTextFieldDelegate, viewController: NSViewController) -> NSTextField {
-        let textField = NSTextField(frame: NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24))
-        textField.bezeled = false
-        textField.bordered = false
-        textField.backgroundColor = NSColor.clearColor()
-        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        textField.alignment = NSTextAlignment.CenterTextAlignment
+        let textField = addBasicTextField(viewController, text: "")
+        textField.frame = NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24)
         textField.placeholderString = "Enter your new task..."
         textField.font = NSFont(name: "HelveticaNeue-Light", size: 18)
         textField.focusRingType = NSFocusRingType.None
@@ -57,59 +53,36 @@ class ViewModel: NSObject {
     }
 
     func layoutTimerTextFieldMainView(viewController: NSViewController) -> NSTextField {
-        let textField = NSTextField(frame: NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0))
-        textField.bezeled = false
-        textField.bordered = false
+        let textField = addBasicTextField(viewController, text: "15:00")
         textField.editable = false
         textField.selectable = false
-        textField.backgroundColor = NSColor.clearColor()
-        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        textField.alignment = NSTextAlignment.CenterTextAlignment
-        textField.stringValue = "15:00"
         textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
         textField.sizeToFit()
         textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width, textField.frame.height)
         textField.alphaValue = 0.0
 
-        viewController.view.addSubview(textField)
-
         return textField
     }
 
     func layoutEditableTextFieldMainView(viewController: NSViewController) -> NSTextField {
-        let textField = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
-        textField.bezeled = false
-        textField.bordered = false
-        textField.backgroundColor = NSColor.clearColor()
-        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        let textField = addBasicTextField(viewController, text: "15")
         textField.alignment = NSTextAlignment.RightTextAlignment
-        textField.stringValue = "15"
         textField.font = NSFont(name: "HelveticaNeue-Bold", size: 70)
         textField.sizeToFit()
         textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 50, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 50, textField.frame.height)
         textField.becomeFirstResponder()
         textField.focusRingType = NSFocusRingType.None
-        
-        viewController.view.addSubview(textField)
 
         return textField
     }
 
     func layoutMinutesTextFieldMainView(viewController: NSViewController, editableTextField: NSTextField) -> NSTextField {
-        let textField = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
-        textField.bezeled = false
-        textField.bordered = false
+        let textField = addBasicTextField(viewController, text: "min")
         textField.editable = false
         textField.selectable = false
-        textField.backgroundColor = NSColor.clearColor()
-        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        textField.alignment = NSTextAlignment.CenterTextAlignment
-        textField.stringValue = "min"
         textField.font = NSFont(name: "AvenirNext-DemiBold", size: 20)
         textField.sizeToFit()
         textField.frame = NSMakeRect(editableTextField.frame.origin.x + editableTextField.frame.width, editableTextField.frame.origin.y + 10, textField.frame.width, textField.frame.height)
-
-        viewController.view.addSubview(textField)
 
         return textField
     }
@@ -132,6 +105,20 @@ class ViewModel: NSObject {
         viewController.view.addSubview(button)
 
         return button
+    }
+
+    func addBasicTextField(viewController: NSViewController, text: String) -> NSTextField {
+        let textField = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
+        textField.bezeled = false
+        textField.bordered = false
+        textField.backgroundColor = NSColor.clearColor()
+        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.stringValue = text
+
+        viewController.view.addSubview(textField)
+
+        return textField
     }
 
     func attributedStringForButtons(stringValue: String) -> NSAttributedString {
