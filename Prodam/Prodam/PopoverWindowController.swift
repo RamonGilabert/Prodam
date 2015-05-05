@@ -18,8 +18,9 @@ class PopoverWindowController: NSWindowController, Resignator {
 
     // MARK: Delegate methods
 
-    func resignResponder() {
+    func makeResponder(textField: NSTextField) {
         self.window?.makeFirstResponder(nil)
+        self.window?.makeFirstResponder(textField)
     }
 
     // MARK: Notification handlers

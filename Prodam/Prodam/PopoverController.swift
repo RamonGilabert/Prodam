@@ -1,7 +1,7 @@
 import Cocoa
 
 protocol Resignator {
-    func resignResponder()
+    func makeResponder(textField: NSTextField)
 }
 
 class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate, Resignator {
@@ -139,6 +139,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     func onStartWorkingButtonPressed() {
         self.minutesLabel.alphaValue = 0.0
         self.timerTextField.alphaValue = 1.0
+        self.taskTextField.removeFromSuperview()
         self.editableTimerTextField.removeFromSuperview()
         self.taskTextField.editable = false
         self.taskTextField.selectable = false
@@ -148,6 +149,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
             self.taskTextField.stringValue = "Working hard"
         }
 
+        self.view.addSubview(self.taskTextField)
         self.addTaskButton.removeFromSuperview()
         self.doneTaskButton.alphaValue = 1.0
         self.pauseTaskButton.alphaValue = 1.0
@@ -163,7 +165,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.view.addSubview(self.editableTimerTextField)
         self.taskTextField.editable = true
         self.taskTextField.selectable = true
-
+        self.delegate?.resignResponder(self.editableTimerTextField)
         if self.taskTextField.stringValue == "Working hard" {
             self.taskTextField.stringValue = ""
         }
@@ -202,5 +204,5 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.view.addSubview(self.minutesLabel)
     }
 
-    func resignResponder() { }
+    func makeResponder(textField: NSTextField) { }
 }
