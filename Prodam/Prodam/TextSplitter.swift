@@ -13,13 +13,13 @@ class TextSplitter: NSObject {
         if arrayOfWords.count > 1 {
             secondString = arrayOfWords[1]
 
-            mutableStringFirstPart = handleFirstPartOfSentence(1, firstString: firstString)
+            mutableStringFirstPart = handleFirstPartOfSentence(firstString + " ")
 
             mutableStringSecondPart = NSMutableAttributedString(string: secondString)
             mutableStringSecondPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Medium", size: 18)!, range: NSMakeRange(0, secondString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
             mutableStringSecondPart.addAttribute(NSForegroundColorAttributeName, value: NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1), range: NSMakeRange(0, secondString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
         } else {
-            mutableStringFirstPart = handleFirstPartOfSentence(1, firstString: firstString)
+            mutableStringFirstPart = handleFirstPartOfSentence(firstString)
         }
 
         finalMutableString.appendAttributedString(mutableStringFirstPart)
@@ -34,10 +34,10 @@ class TextSplitter: NSObject {
 
     // MARK: Helper methods
 
-    class func handleFirstPartOfSentence(value: Int, firstString: String) -> NSMutableAttributedString {
+    class func handleFirstPartOfSentence(firstString: String) -> NSMutableAttributedString {
         let mutableString = NSMutableAttributedString(string: firstString)
         mutableString.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Light", size: 18)!, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-        mutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1), range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) + value))
+        mutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1), range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
 
         return mutableString
     }
