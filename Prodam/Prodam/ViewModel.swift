@@ -38,7 +38,7 @@ class ViewModel: NSObject {
         return button
     }
 
-    func layoutTaskTextFieldMainView(fieldDelegate: NSTextFieldDelegate) -> NSTextField {
+    func layoutTaskTextFieldMainView(fieldDelegate: NSTextFieldDelegate, viewController: NSViewController) -> NSTextField {
         let textField = NSTextField(frame: NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24))
         textField.bezeled = false
         textField.bordered = false
@@ -51,10 +51,12 @@ class ViewModel: NSObject {
         textField.allowsEditingTextAttributes = true
         textField.delegate = fieldDelegate
 
+        viewController.view.addSubview(textField)
+
         return textField
     }
 
-    func layoutTimerTextFieldMainView() -> NSTextField {
+    func layoutTimerTextFieldMainView(viewController: NSViewController) -> NSTextField {
         let textField = NSTextField(frame: NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0))
         textField.bezeled = false
         textField.bordered = false
@@ -69,23 +71,26 @@ class ViewModel: NSObject {
         textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width, textField.frame.height)
         textField.alphaValue = 0.0
 
+        viewController.view.addSubview(textField)
+
         return textField
     }
 
-    func layoutTimerTextFieldMainView() -> NSTextField {
-        let textField = NSTextField(frame: NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0))
+    func layoutEditableTextFieldMainView(viewController: NSViewController) -> NSTextField {
+        let textField = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
         textField.bezeled = false
         textField.bordered = false
-        textField.editable = false
-        textField.selectable = false
         textField.backgroundColor = NSColor.clearColor()
         textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        textField.alignment = NSTextAlignment.CenterTextAlignment
-        textField.stringValue = "15:00"
-        textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
+        textField.alignment = NSTextAlignment.RightTextAlignment
+        textField.stringValue = "15"
+        textField.font = NSFont(name: "HelveticaNeue-Bold", size: 70)
         textField.sizeToFit()
-        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width, textField.frame.height)
-        textField.alphaValue = 0.0
+        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 50, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 50, textField.frame.height)
+        textField.becomeFirstResponder()
+        textField.focusRingType = NSFocusRingType.None
+        
+        viewController.view.addSubview(textField)
 
         return textField
     }
@@ -95,7 +100,7 @@ class ViewModel: NSObject {
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
         let button = NSButton()
 
-        button.frame = NSMakeRect(xPosition, Constant.MainWindowLayout.MinimumPaddingButton/1.5, width, Constant.MainWindowLayout.HeightOfButton)
+        button.frame = NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton)
         button.image = NSImage(named: "background-\(text)-button")
         button.bordered = false
         button.setButtonType(NSButtonType.MomentaryChangeButton)
