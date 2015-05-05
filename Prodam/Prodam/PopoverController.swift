@@ -7,15 +7,15 @@ protocol Resignator {
 class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate, Resignator {
 
     let popover = NSPopover()
-    let addTaskButton = NSButton()
-    let doneTaskButton = NSButton()
-    let pauseTaskButton = NSButton()
-    let taskButton = NSButton()
-    let settingsButton = NSButton()
-    let taskTextField = NSTextField()
-    let timerTextField = NSTextField()
-    let editableTimerTextField = NSTextField()
-    let minutesLabel = NSTextField()
+    var addTaskButton = NSButton()
+    var doneTaskButton = NSButton()
+    var pauseTaskButton = NSButton()
+    var taskButton = NSButton()
+    var settingsButton = NSButton()
+    var taskTextField = NSTextField()
+    var timerTextField = NSTextField()
+    var editableTimerTextField = NSTextField()
+    var minutesLabel = NSTextField()
     var delegate: Resignator?
 
     override func loadView() {
@@ -81,7 +81,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
 
-        self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 30, Constant.Window.Width - 100, 22)
+        self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24)
         self.taskTextField.bezeled = false
         self.taskTextField.bordered = false
         self.taskTextField.backgroundColor = NSColor.clearColor()
@@ -148,7 +148,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
 
         if self.taskTextField.stringValue == "" {
-            self.taskTextField.stringValue = "Working hard"
+            self.taskTextField.attributedStringValue = checkNewStringForTextField("Working hard")
         }
 
         self.view.addSubview(self.taskTextField)
@@ -180,7 +180,25 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     override func controlTextDidChange(obj: NSNotification) {
-        let arrayOfWords = split(self.taskTextField.stringValue, maxSplit: 1, allowEmptySlices: true, isSeparator: {$0 == " "})
+        self.taskTextField.attributedStringValue = checkNewStringForTextField(self.taskTextField.stringValue)
+    }
+
+    // MARK: Helper methods
+
+    func addAllSubviewProperties() {
+        self.view.addSubview(self.taskButton)
+        self.view.addSubview(self.settingsButton)
+        self.view.addSubview(self.doneTaskButton)
+        self.view.addSubview(self.pauseTaskButton)
+        self.view.addSubview(self.addTaskButton)
+        self.view.addSubview(self.timerTextField)
+        self.view.addSubview(self.taskTextField)
+        self.view.addSubview(self.editableTimerTextField)
+        self.view.addSubview(self.minutesLabel)
+    }
+
+    func checkNewStringForTextField(stringValue: String) -> NSAttributedString {
+        let arrayOfWords = split(stringValue, maxSplit: 1, allowEmptySlices: true, isSeparator: {$0 == " "})
         let firstString = arrayOfWords[0]
         let finalMutableString = NSMutableAttributedString()
         var secondString = ""
@@ -214,21 +232,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
         finalMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, finalMutableString.length))
 
-        self.taskTextField.attributedStringValue = finalMutableString
-    }
-
-    // MARK: Helper methods
-
-    func addAllSubviewProperties() {
-        self.view.addSubview(self.taskButton)
-        self.view.addSubview(self.settingsButton)
-        self.view.addSubview(self.doneTaskButton)
-        self.view.addSubview(self.pauseTaskButton)
-        self.view.addSubview(self.addTaskButton)
-        self.view.addSubview(self.timerTextField)
-        self.view.addSubview(self.taskTextField)
-        self.view.addSubview(self.editableTimerTextField)
-        self.view.addSubview(self.minutesLabel)
+        return finalMutableString
     }
 
     func makeResponder(textField: NSTextField) { }
