@@ -1,6 +1,10 @@
 import Cocoa
 
-class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate {
+protocol Resignator {
+    func resignResponder()
+}
+
+class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate, Resignator {
 
     let popover = NSPopover()
     let addTaskButton = NSButton()
@@ -12,6 +16,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     let timerTextField = NSTextField()
     let editableTimerTextField = NSTextField()
     let minutesLabel = NSTextField()
+    var delegate: Resignator?
 
     override func loadView() {
         self.view = NSView()
@@ -49,6 +54,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         mutableStringDoneButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyleDoneButton, range: NSMakeRange(0, mutableStringDoneButton.length))
         self.doneTaskButton.attributedTitle = mutableStringDoneButton
         self.doneTaskButton.alphaValue = 0.0
+        self.doneTaskButton.target = self
+        self.doneTaskButton.action = "onDoneButtonPressed"
 
         self.pauseTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
         self.pauseTaskButton.image = NSImage(named: "background-pause-button")
@@ -62,6 +69,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         mutableStringPauseButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStylePauseButton, range: NSMakeRange(0, mutableStringPauseButton.length))
         self.pauseTaskButton.attributedTitle = mutableStringPauseButton
         self.pauseTaskButton.alphaValue = 0.0
+        self.pauseTaskButton.target = self
+        self.pauseTaskButton.action = "onPauseButtonPressed"
 
         // TODO: Change button to say hey, this is done!
         self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
@@ -128,27 +137,44 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
     // MARK: Action handlers
 
     func onStartWorkingButtonPressed() {
-        if self.addTaskButton.alphaValue > 0.0 {
-            self.minutesLabel.alphaValue = 0.0
-            self.timerTextField.alphaValue = 1.0
-            // FIXME: This needs to be fixed
-            self.editableTimerTextField.removeFromSuperview()
-            self.taskTextField.editable = false
-            self.taskTextField.selectable = false
-            self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
+        self.minutesLabel.alphaValue = 0.0
+        self.timerTextField.alphaValue = 1.0
+        self.editableTimerTextField.removeFromSuperview()
+        self.taskTextField.editable = false
+        self.taskTextField.selectable = false
+        self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
 
-            if self.taskTextField.stringValue == "" {
-                self.taskTextField.stringValue = "Working hard"
-            }
-
-            self.addTaskButton.alphaValue = 0.0
-            self.doneTaskButton.alphaValue = 1.0
-            self.pauseTaskButton.alphaValue = 1.0
+        if self.taskTextField.stringValue == "" {
+            self.taskTextField.stringValue = "Working hard"
         }
+
+        self.addTaskButton.removeFromSuperview()
+        self.doneTaskButton.alphaValue = 1.0
+        self.pauseTaskButton.alphaValue = 1.0
 
         // TODO: Perform animations of the textFields.
         // TODO: Perform animation of the buttons, turning into two buttons.
         // TODO: Resign all first responders.
+    }
+
+    func onDoneButtonPressed() {
+        self.minutesLabel.alphaValue = 1.0
+        self.timerTextField.alphaValue = 0.0
+        self.view.addSubview(self.editableTimerTextField)
+        self.taskTextField.editable = true
+        self.taskTextField.selectable = true
+
+        if self.taskTextField.stringValue == "Working hard" {
+            self.taskTextField.stringValue = ""
+        }
+
+        self.view.addSubview(self.addTaskButton)
+        self.doneTaskButton.alphaValue = 0.0
+        self.pauseTaskButton.alphaValue = 0.0
+    }
+
+    func onPauseButtonPressed() {
+        // TODO: Pause the timer
     }
 
     // MARK: NSTextView delegate methods
@@ -175,4 +201,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.view.addSubview(self.editableTimerTextField)
         self.view.addSubview(self.minutesLabel)
     }
+
+    func resignResponder() { }
 }
