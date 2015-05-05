@@ -7,6 +7,7 @@ protocol Resignator {
 class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate, Resignator {
 
     let popover = NSPopover()
+    let viewModel = ViewModel()
     var addTaskButton = NSButton()
     var doneTaskButton = NSButton()
     var pauseTaskButton = NSButton()
@@ -28,19 +29,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         self.popover.delegate = self
 
-        self.addTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width - (2 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
-        self.addTaskButton.image = NSImage(named: "background-start-button")
-        self.addTaskButton.bordered = false
-        self.addTaskButton.setButtonType(NSButtonType.MomentaryChangeButton)
-        let mutableStringAddTaskButton = NSMutableAttributedString(string: "START WORKING")
-        mutableStringAddTaskButton.addAttribute(NSForegroundColorAttributeName, value: NSColor.whiteColor(), range: NSMakeRange(0, mutableStringAddTaskButton.length))
-        mutableStringAddTaskButton.addAttribute(NSFontAttributeName, value: NSFont(name: "AvenirNext-DemiBold", size: 20)!, range: NSMakeRange(0, mutableStringAddTaskButton.length))
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
-        mutableStringAddTaskButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, mutableStringAddTaskButton.length))
-        self.addTaskButton.attributedTitle = mutableStringAddTaskButton
-        self.addTaskButton.target = self
-        self.addTaskButton.action = "onStartWorkingButtonPressed"
+        self.addTaskButton = self.viewModel.layoutFunctionalButtonsMainView(self)
 
         self.doneTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
         self.doneTaskButton.image = NSImage(named: "background-done-button")
@@ -190,7 +179,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.view.addSubview(self.settingsButton)
         self.view.addSubview(self.doneTaskButton)
         self.view.addSubview(self.pauseTaskButton)
-        self.view.addSubview(self.addTaskButton)
         self.view.addSubview(self.timerTextField)
         self.view.addSubview(self.taskTextField)
         self.view.addSubview(self.editableTimerTextField)
