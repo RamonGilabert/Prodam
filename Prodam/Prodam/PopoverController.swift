@@ -99,7 +99,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     // MARK: Action handlers
 
-    func onStartWorkingButtonPressed() {
+    func onStartButtonPressed() {
         self.minutesLabel.alphaValue = 0.0
         self.timerTextField.alphaValue = 1.0
         self.taskTextField.removeFromSuperview()

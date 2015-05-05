@@ -6,9 +6,12 @@ struct Constant {
         static let Height = 200 as CGFloat
     }
 
-    struct MainWindowLayout {
+    struct WindowLayout {
         static let MinimumPaddingButton = 6 as CGFloat
         static let HeightOfButton = Constant.Window.Height / 3.5
+        static let WidthDonePauseButtons = Constant.Window.Width/2 - (1.5 * Constant.WindowLayout.MinimumPaddingButton)
+        static let WidthMainButton = Constant.Window.Width - (2 * Constant.WindowLayout.MinimumPaddingButton)
+        static let HalfScreenPadding = Constant.WindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2
     }
 }
 
@@ -17,28 +20,20 @@ class ViewModel: NSObject {
     // MARK: Main View Controller: Layout
 
     func layoutFunctionalButtonsMainView(viewController: NSViewController) -> NSButton {
-        let button = NSButton()
-        button.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width - (2 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
-        button.image = NSImage(named: "background-start-button")
-        button.bordered = false
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        let button = addButtonMainView(Constant.WindowLayout.MinimumPaddingButton, width: Constant.WindowLayout.WidthMainButton, alpha: 1.0, text: "start", viewController: viewController)
         button.attributedTitle = attributedStringForButtons("START WORKING")
-        button.target = viewController
-        button.action = "onStartWorkingButtonPressed"
-
-        viewController.view.addSubview(button)
 
         return button
     }
 
     func layoutDoneButtonMainView(viewController: NSViewController) -> NSButton {
-        let button = addButtonMainView(Constant.MainWindowLayout.MinimumPaddingButton, width: Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), alpha: 0.0, text: "stop", viewController: viewController)
+        let button = addButtonMainView(Constant.WindowLayout.MinimumPaddingButton, width: Constant.WindowLayout.WidthDonePauseButtons, alpha: 0.0, text: "stop", viewController: viewController)
 
         return button
     }
 
     func layoutPauseButtonMainView(viewController: NSViewController) -> NSButton {
-        let button = addButtonMainView(Constant.MainWindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2, width: Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), alpha: 0.0, text: "pause", viewController: viewController)
+        let button = addButtonMainView(Constant.WindowLayout.HalfScreenPadding, width: Constant.WindowLayout.WidthDonePauseButtons, alpha: 0.0, text: "pause", viewController: viewController)
 
         return button
     }
