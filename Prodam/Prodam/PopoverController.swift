@@ -88,8 +88,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
         self.taskTextField.placeholderString = "Enter your new task..."
-        self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 18)
+        self.taskTextField.font = NSFont(name: "HelveticaNeue-Light", size: 18)
         self.taskTextField.focusRingType = NSFocusRingType.None
+        self.taskTextField.allowsEditingTextAttributes = true
         self.taskTextField.delegate = self
 
         self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0)
@@ -186,7 +187,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         var concatenatedString = ""
         var mutableStringFirstPart = NSMutableAttributedString()
         var mutableStringSecondPart = NSMutableAttributedString()
-        var mutableStringThirdPart = NSMutableAttributedString()
 
         if arrayOfWords.count > 1 {
             secondString = arrayOfWords[1]
@@ -208,8 +208,11 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         }
 
         finalMutableString.appendAttributedString(mutableStringFirstPart)
-        finalMutableString.appendAttributedString(mutableStringThirdPart)
         finalMutableString.appendAttributedString(mutableStringSecondPart)
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
+        finalMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, finalMutableString.length))
 
         self.taskTextField.attributedStringValue = finalMutableString
     }
