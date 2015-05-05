@@ -50,7 +50,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
 
         if self.taskTextField.stringValue == "" {
-            self.taskTextField.attributedStringValue = checkNewStringForTextField("Working hard")
+            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
         }
 
         self.view.addSubview(self.taskTextField)
@@ -90,7 +90,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     override func controlTextDidChange(obj: NSNotification) {
-        self.taskTextField.attributedStringValue = checkNewStringForTextField(self.taskTextField.stringValue)
+        self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.taskTextField.stringValue)
     }
 
     // MARK: Helper methods
