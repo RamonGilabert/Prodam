@@ -95,6 +95,25 @@ class ViewModel: NSObject {
         return textField
     }
 
+    func layoutMinutesTextFieldMainView(viewController: NSViewController, editableTextField: NSTextField) -> NSTextField {
+        let textField = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
+        textField.bezeled = false
+        textField.bordered = false
+        textField.editable = false
+        textField.selectable = false
+        textField.backgroundColor = NSColor.clearColor()
+        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.stringValue = "min"
+        textField.font = NSFont(name: "AvenirNext-DemiBold", size: 20)
+        textField.sizeToFit()
+        textField.frame = NSMakeRect(editableTextField.frame.origin.x + editableTextField.frame.width, editableTextField.frame.origin.y + 10, textField.frame.width, textField.frame.height)
+
+        viewController.view.addSubview(textField)
+
+        return textField
+    }
+
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {

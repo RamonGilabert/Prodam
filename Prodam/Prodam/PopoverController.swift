@@ -35,6 +35,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField = self.viewModel.layoutTaskTextFieldMainView(self, viewController: self)
         self.timerTextField = self.viewModel.layoutTimerTextFieldMainView(self)
         self.editableTimerTextField = self.viewModel.layoutEditableTextFieldMainView(self)
+        self.minutesLabel = self.viewModel.layoutMinutesTextFieldMainView(self, editableTextField: self.editableTimerTextField)
         
         // TODO: Change button to say hey, this is done!
         self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
@@ -44,21 +45,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20)
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
-
-        self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
-        self.minutesLabel.bezeled = false
-        self.minutesLabel.bordered = false
-        self.minutesLabel.editable = false
-        self.minutesLabel.selectable = false
-        self.minutesLabel.backgroundColor = NSColor.clearColor()
-        self.minutesLabel.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        self.minutesLabel.alignment = NSTextAlignment.CenterTextAlignment
-        self.minutesLabel.stringValue = "min"
-        self.minutesLabel.font = NSFont(name: "AvenirNext-DemiBold", size: 20)
-        self.minutesLabel.sizeToFit()
-        self.minutesLabel.frame = NSMakeRect(self.editableTimerTextField.frame.origin.x + self.editableTimerTextField.frame.width, self.editableTimerTextField.frame.origin.y + 10, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
-
-        // TODO: Assign first responder here
     }
 
     // MARK: Action handlers
