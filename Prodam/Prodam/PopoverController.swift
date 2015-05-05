@@ -22,8 +22,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     override func loadView() {
         self.view = NSView()
         self.view.frame = NSMakeRect(0, 0, Constant.Window.Width, Constant.Window.Height)
-
-        addAllSubviewProperties()
         
         self.popover.contentViewController = self
         self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
@@ -36,15 +34,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.timerTextField = self.viewModel.layoutTimerTextFieldMainView(self)
         self.editableTimerTextField = self.viewModel.layoutEditableTextFieldMainView(self)
         self.minutesLabel = self.viewModel.layoutMinutesTextFieldMainView(self, editableTextField: self.editableTimerTextField)
-        
-        // TODO: Change button to say hey, this is done!
-        self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
-        self.taskButton.image = NSImage(named: "todo-button")
-        self.taskButton.bordered = false
-
-        self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20)
-        self.settingsButton.image = NSImage(named: "settings-button")
-        self.settingsButton.bordered = false
+        self.taskButton = self.viewModel.layoutButtonTasksMainView(self)
+        self.settingsButton = self.viewModel.layoutButtonSettingsMainView(self)
     }
 
     // MARK: Action handlers
@@ -90,17 +81,19 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         // TODO: Pause the timer
     }
 
+    func onTasksButtonPressed() {
+
+    }
+
+    func onSettingsButtonPressed() {
+        
+    }
+
     override func controlTextDidChange(obj: NSNotification) {
         self.taskTextField.attributedStringValue = checkNewStringForTextField(self.taskTextField.stringValue)
     }
 
     // MARK: Helper methods
-
-    func addAllSubviewProperties() {
-        self.view.addSubview(self.taskButton)
-        self.view.addSubview(self.settingsButton)
-        self.view.addSubview(self.minutesLabel)
-    }
 
     func checkNewStringForTextField(stringValue: String) -> NSAttributedString {
         let arrayOfWords = split(stringValue, maxSplit: 1, allowEmptySlices: true, isSeparator: {$0 == " "})

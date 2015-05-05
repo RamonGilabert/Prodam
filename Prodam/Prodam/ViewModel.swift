@@ -87,6 +87,31 @@ class ViewModel: NSObject {
         return textField
     }
 
+    func layoutButtonTasksMainView(viewController: NSViewController) -> NSButton {
+        // TODO: Change button to say hey, this is done!
+        let button = NSButton(frame: NSMakeRect(14, Constant.Window.Height - 26, 21, 13))
+        button.image = NSImage(named: "todo-button")
+        button.bordered = false
+        button.target = viewController
+        button.action = "onTasksButtonPressed"
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
+    func layoutButtonSettingsMainView(viewController: NSViewController) -> NSButton {
+        let button = NSButton(frame: NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20))
+        button.image = NSImage(named: "settings-button")
+        button.bordered = false
+        button.target = viewController
+        button.action = "onSettingsButtonPressed"
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
