@@ -122,7 +122,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         // TODO: Resign all first responders.
     }
 
-    func onDoneButtonPressed() {
+    func onStopButtonPressed() {
         self.minutesLabel.alphaValue = 1.0
         self.timerTextField.alphaValue = 0.0
         self.view.addSubview(self.editableTimerTextField)

@@ -32,39 +32,36 @@ class ViewModel: NSObject {
     }
 
     func layoutDoneButtonMainView(viewController: NSViewController) -> NSButton {
-        let button = NSButton()
-        button.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
-        button.image = NSImage(named: "background-done-button")
-        button.bordered = false
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.attributedTitle = attributedStringForButtons("STOP")
-        button.target = viewController
-        button.action = "onDoneButtonPressed"
-        button.alphaValue = 0.0
-
-        viewController.view.addSubview(button)
+        let button = addButtonMainView(Constant.MainWindowLayout.MinimumPaddingButton, width: Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), alpha: 0.0, text: "stop", viewController: viewController)
 
         return button
     }
 
     func layoutPauseButtonMainView(viewController: NSViewController) -> NSButton {
-        let button = NSButton()
-
-        button.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
-        button.image = NSImage(named: "background-pause-button")
-        button.bordered = false
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.attributedTitle = attributedStringForButtons("PAUSE")
-        button.target = viewController
-        button.action = "onPauseButtonPressed"
-        button.alphaValue = 0.0
-
-        viewController.view.addSubview(button)
+        let button = addButtonMainView(Constant.MainWindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2, width: Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), alpha: 0.0, text: "pause", viewController: viewController)
 
         return button
     }
 
     // MARK: Main View Controller: Helper methods
+
+    func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
+        let button = NSButton()
+
+        button.frame = NSMakeRect(xPosition, Constant.MainWindowLayout.MinimumPaddingButton/1.5, width, Constant.MainWindowLayout.HeightOfButton)
+        button.image = NSImage(named: "background-\(text)-button")
+        button.bordered = false
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.attributedTitle = attributedStringForButtons(text.uppercaseString)
+        button.alphaValue = alpha
+        let selectorString = "on\(text.capitalizedString)ButtonPressed"
+        button.action = NSSelectorFromString(selectorString)
+        button.target = viewController
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
 
     func attributedStringForButtons(stringValue: String) -> NSAttributedString {
         let mutableString = NSMutableAttributedString(string: stringValue)
