@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */; };
 		F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D91AF755B400841DE3 /* ViewModel.swift */; };
+		F6CE7B4E1AF946DB004EB930 /* TextSliptter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE7B4D1AF946DB004EB930 /* TextSliptter.swift */; };
 		F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */; };
 		F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D851AF6129800EA9BB2 /* PopoverController.swift */; };
 		F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D891AF6236800EA9BB2 /* PopoverView.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Popover.swift"; sourceTree = "<group>"; };
 		F680B3D91AF755B400841DE3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		F6CE7B4D1AF946DB004EB930 /* TextSliptter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSliptter.swift; sourceTree = "<group>"; };
 		F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverManager.swift; sourceTree = "<group>"; };
 		F6D10D851AF6129800EA9BB2 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		F6D10D891AF6236800EA9BB2 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 			name = "Custom views";
 			sourceTree = "<group>";
 		};
+		F6CE7B4F1AF946DE004EB930 /* Helper classes */ = {
+			isa = PBXGroup;
+			children = (
+				F6CE7B4D1AF946DB004EB930 /* TextSliptter.swift */,
+			);
+			name = "Helper classes";
+			sourceTree = "<group>";
+		};
 		F6E2260F1AF3FF4900125CA4 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
 				F680B3D81AF755A500841DE3 /* Managers */,
 				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
+				F6CE7B4F1AF946DE004EB930 /* Helper classes */,
 				F680B3D31AF6853600841DE3 /* Window controllers */,
 				F680B3DB1AF7560100841DE3 /* Custom views */,
 				F680B3D71AF6896800841DE3 /* Overrides */,
@@ -264,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */,
+				F6CE7B4E1AF946DB004EB930 /* TextSliptter.swift in Sources */,
 				F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */,
 				F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */,
 				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
