@@ -23,9 +23,6 @@ class PopoverWindowController: NSWindowController, Resignator {
         self.window?.makeFirstResponder(textField)
     }
 
-    func resignAllResponders() {
-    }
-
     // MARK: Notification handlers
 
     func windowNeedsToClose() {

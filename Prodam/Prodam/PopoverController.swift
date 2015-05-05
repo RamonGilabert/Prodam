@@ -2,7 +2,6 @@ import Cocoa
 
 protocol Resignator {
     func makeResponder(textField: NSTextField)
-    func resignAllResponders()
 }
 
 class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate, Resignator {
