@@ -24,7 +24,6 @@ class PopoverWindowController: NSWindowController, Resignator {
     }
 
     func resignAllResponders() {
-        self.window?.makeFirstResponder(nil)
     }
 
     // MARK: Notification handlers

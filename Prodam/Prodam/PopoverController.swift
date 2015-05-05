@@ -75,6 +75,12 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.taskTextField.stringValue)
     }
 
+    // MARK: Mouse events
+
+    override func mouseDown(theEvent: NSEvent) {
+        self.view.window?.makeFirstResponder(nil)
+    }
+
     // MARK: Helper methods
 
     func handleLayout() {
