@@ -38,6 +38,58 @@ class ViewModel: NSObject {
         return button
     }
 
+    func layoutTaskTextFieldMainView(fieldDelegate: NSTextFieldDelegate) -> NSTextField {
+        let textField = NSTextField(frame: NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24))
+        textField.bezeled = false
+        textField.bordered = false
+        textField.backgroundColor = NSColor.clearColor()
+        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.placeholderString = "Enter your new task..."
+        textField.font = NSFont(name: "HelveticaNeue-Light", size: 18)
+        textField.focusRingType = NSFocusRingType.None
+        textField.allowsEditingTextAttributes = true
+        textField.delegate = fieldDelegate
+
+        return textField
+    }
+
+    func layoutTimerTextFieldMainView() -> NSTextField {
+        let textField = NSTextField(frame: NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0))
+        textField.bezeled = false
+        textField.bordered = false
+        textField.editable = false
+        textField.selectable = false
+        textField.backgroundColor = NSColor.clearColor()
+        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.stringValue = "15:00"
+        textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
+        textField.sizeToFit()
+        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width, textField.frame.height)
+        textField.alphaValue = 0.0
+
+        return textField
+    }
+
+    func layoutTimerTextFieldMainView() -> NSTextField {
+        let textField = NSTextField(frame: NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0))
+        textField.bezeled = false
+        textField.bordered = false
+        textField.editable = false
+        textField.selectable = false
+        textField.backgroundColor = NSColor.clearColor()
+        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.stringValue = "15:00"
+        textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
+        textField.sizeToFit()
+        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width, textField.frame.height)
+        textField.alphaValue = 0.0
+
+        return textField
+    }
+
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {

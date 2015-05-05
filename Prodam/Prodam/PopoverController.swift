@@ -32,7 +32,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.doneTaskButton = self.viewModel.layoutDoneButtonMainView(self)
         self.pauseTaskButton = self.viewModel.layoutPauseButtonMainView(self)
         self.addTaskButton = self.viewModel.layoutFunctionalButtonsMainView(self)
-
+        self.taskTextField = self.viewModel.layoutTaskTextFieldMainView(self)
+        self.timerTextField = self.viewModel.layoutTimerTextFieldMainView()
+        
         // TODO: Change button to say hey, this is done!
         self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
         self.taskButton.image = NSImage(named: "todo-button")
@@ -41,18 +43,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20)
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
-
-        self.taskTextField.frame = NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24)
-        self.taskTextField.bezeled = false
-        self.taskTextField.bordered = false
-        self.taskTextField.backgroundColor = NSColor.clearColor()
-        self.taskTextField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
-        self.taskTextField.alignment = NSTextAlignment.CenterTextAlignment
-        self.taskTextField.placeholderString = "Enter your new task..."
-        self.taskTextField.font = NSFont(name: "HelveticaNeue-Light", size: 18)
-        self.taskTextField.focusRingType = NSFocusRingType.None
-        self.taskTextField.allowsEditingTextAttributes = true
-        self.taskTextField.delegate = self
 
         self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0)
         self.timerTextField.bezeled = false
@@ -149,8 +139,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     func addAllSubviewProperties() {
         self.view.addSubview(self.taskButton)
         self.view.addSubview(self.settingsButton)
-        self.view.addSubview(self.doneTaskButton)
-        self.view.addSubview(self.pauseTaskButton)
         self.view.addSubview(self.timerTextField)
         self.view.addSubview(self.taskTextField)
         self.view.addSubview(self.editableTimerTextField)
