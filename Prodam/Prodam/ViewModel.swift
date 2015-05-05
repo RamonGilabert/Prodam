@@ -18,7 +18,6 @@ class ViewModel: NSObject {
 
     func layoutFunctionalButtonsMainView(viewController: NSViewController) -> NSButton {
         let button = NSButton()
-
         button.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width - (2 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
         button.image = NSImage(named: "background-start-button")
         button.bordered = false
@@ -26,6 +25,39 @@ class ViewModel: NSObject {
         button.attributedTitle = attributedStringForButtons("START WORKING")
         button.target = viewController
         button.action = "onStartWorkingButtonPressed"
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
+    func layoutDoneButtonMainView(viewController: NSViewController) -> NSButton {
+        let button = NSButton()
+        button.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
+        button.image = NSImage(named: "background-done-button")
+        button.bordered = false
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.attributedTitle = attributedStringForButtons("STOP")
+        button.target = viewController
+        button.action = "onDoneButtonPressed"
+        button.alphaValue = 0.0
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
+    func layoutPauseButtonMainView(viewController: NSViewController) -> NSButton {
+        let button = NSButton()
+
+        button.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
+        button.image = NSImage(named: "background-pause-button")
+        button.bordered = false
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.attributedTitle = attributedStringForButtons("PAUSE")
+        button.target = viewController
+        button.action = "onPauseButtonPressed"
+        button.alphaValue = 0.0
 
         viewController.view.addSubview(button)
 

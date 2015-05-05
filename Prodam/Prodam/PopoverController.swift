@@ -29,37 +29,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         self.popover.delegate = self
 
+        self.doneTaskButton = self.viewModel.layoutDoneButtonMainView(self)
+        self.pauseTaskButton = self.viewModel.layoutPauseButtonMainView(self)
         self.addTaskButton = self.viewModel.layoutFunctionalButtonsMainView(self)
-
-        self.doneTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
-        self.doneTaskButton.image = NSImage(named: "background-done-button")
-        self.doneTaskButton.bordered = false
-        self.doneTaskButton.setButtonType(NSButtonType.MomentaryChangeButton)
-        let mutableStringDoneButton = NSMutableAttributedString(string: "STOP")
-        mutableStringDoneButton.addAttribute(NSForegroundColorAttributeName, value: NSColor.whiteColor(), range: NSMakeRange(0, mutableStringDoneButton.length))
-        mutableStringDoneButton.addAttribute(NSFontAttributeName, value: NSFont(name: "AvenirNext-DemiBold", size: 20)!, range: NSMakeRange(0, mutableStringDoneButton.length))
-        let paragraphStyleDoneButton = NSMutableParagraphStyle()
-        paragraphStyleDoneButton.alignment = NSTextAlignment.CenterTextAlignment
-        mutableStringDoneButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyleDoneButton, range: NSMakeRange(0, mutableStringDoneButton.length))
-        self.doneTaskButton.attributedTitle = mutableStringDoneButton
-        self.doneTaskButton.alphaValue = 0.0
-        self.doneTaskButton.target = self
-        self.doneTaskButton.action = "onDoneButtonPressed"
-
-        self.pauseTaskButton.frame = NSMakeRect(Constant.MainWindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2, Constant.MainWindowLayout.MinimumPaddingButton/1.5, Constant.Window.Width/2 - (1.5 * Constant.MainWindowLayout.MinimumPaddingButton), Constant.MainWindowLayout.HeightOfButton)
-        self.pauseTaskButton.image = NSImage(named: "background-pause-button")
-        self.pauseTaskButton.bordered = false
-        self.pauseTaskButton.setButtonType(NSButtonType.MomentaryChangeButton)
-        let mutableStringPauseButton = NSMutableAttributedString(string: "PAUSE")
-        mutableStringPauseButton.addAttribute(NSForegroundColorAttributeName, value: NSColor.whiteColor(), range: NSMakeRange(0, mutableStringPauseButton.length))
-        mutableStringPauseButton.addAttribute(NSFontAttributeName, value: NSFont(name: "AvenirNext-DemiBold", size: 20)!, range: NSMakeRange(0, mutableStringPauseButton.length))
-        let paragraphStylePauseButton = NSMutableParagraphStyle()
-        paragraphStylePauseButton.alignment = NSTextAlignment.CenterTextAlignment
-        mutableStringPauseButton.addAttribute(NSParagraphStyleAttributeName, value: paragraphStylePauseButton, range: NSMakeRange(0, mutableStringPauseButton.length))
-        self.pauseTaskButton.attributedTitle = mutableStringPauseButton
-        self.pauseTaskButton.alphaValue = 0.0
-        self.pauseTaskButton.target = self
-        self.pauseTaskButton.action = "onPauseButtonPressed"
 
         // TODO: Change button to say hey, this is done!
         self.taskButton.frame = NSMakeRect(14, Constant.Window.Height - 26, 21, 13)
