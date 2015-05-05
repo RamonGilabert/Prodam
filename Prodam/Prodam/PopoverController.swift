@@ -4,7 +4,7 @@ protocol Resignator {
     func makeResponder(textField: NSTextField)
 }
 
-class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate, Resignator {
+class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate, Resignator {
 
     let popover = NSPopover()
     let addTaskButton = NSButton()
@@ -77,7 +77,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.taskButton.image = NSImage(named: "todo-button")
         self.taskButton.bordered = false
 
-        self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 31, 20, 20)
+        self.settingsButton.frame = NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20)
         self.settingsButton.image = NSImage(named: "settings-button")
         self.settingsButton.bordered = false
 
@@ -90,6 +90,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.taskTextField.placeholderString = "Enter your new task..."
         self.taskTextField.font = NSFont(name: "HelveticaNeue", size: 18)
         self.taskTextField.focusRingType = NSFocusRingType.None
+        self.taskTextField.delegate = self
 
         self.timerTextField.frame = NSMakeRect(40, Constant.Window.Height/4 + 30, Constant.Window.Width - 80, 0)
         self.timerTextField.bezeled = false
@@ -165,29 +166,38 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextViewDelegate
         self.view.addSubview(self.editableTimerTextField)
         self.taskTextField.editable = true
         self.taskTextField.selectable = true
-        self.delegate?.resignResponder(self.editableTimerTextField)
-        if self.taskTextField.stringValue == "Working hard" {
-            self.taskTextField.stringValue = ""
-        }
-
+        self.delegate?.makeResponder(self.editableTimerTextField)
+        self.taskTextField.stringValue = ""
         self.view.addSubview(self.addTaskButton)
         self.doneTaskButton.alphaValue = 0.0
         self.pauseTaskButton.alphaValue = 0.0
+        // TODO: Delete the timer
     }
 
     func onPauseButtonPressed() {
         // TODO: Pause the timer
     }
 
-    // MARK: NSTextView delegate methods
+    override func controlTextDidChange(obj: NSNotification) {
+        let arrayOfWords = split(self.taskTextField.stringValue, maxSplit: 1, allowEmptySlices: true, isSeparator: {$0 == " "})
+        let firstString = arrayOfWords[0]
+        let secondString = arrayOfWords[1]
+        let concatenatedString = "\(firstString) \(secondString)"
 
-    func textView(textView: NSTextView, shouldChangeTextInRanges affectedRanges: [AnyObject], replacementStrings: [AnyObject]?) -> Bool {
-        let stringChanged = replacementStrings?.first as! String
-        if stringChanged == "\n" {
-            return false
-        }
+        let mutableStringFirstPart = NSMutableAttributedString(string: firstString)
+        mutableStringFirstPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue", size: 18)!, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
 
-        return true
+        let mutableStringSecondPart = NSMutableAttributedString(string: secondString)
+        mutableStringSecondPart.addAttribute(NSFontAttributeName, value: NSFont(name: "HelveticaNeue-Medium", size: 18)!, range: NSMakeRange(firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding), concatenatedString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
+        mutableStringFirstPart.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+        mutableStringSecondPart.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(firstString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding), concatenatedString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+
+        let mutableStringFinal = "\(mutableStringFirstPart) \(mutableStringSecondPart)"
+
+        println(mutableStringFinal)
     }
 
     // MARK: Helper methods
