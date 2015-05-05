@@ -2,6 +2,7 @@ import Cocoa
 
 protocol Resignator {
     func makeResponder(textField: NSTextField)
+    func resignAllResponders()
 }
 
 class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate, Resignator {
@@ -42,11 +43,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
         }
 
+        self.taskTextField.resignFirstResponder()
         self.view.addSubview(self.taskTextField)
         self.addTaskButton.removeFromSuperview()
 
-        // TODO: Perform animations of the textFields.
-        // TODO: Perform animation of the buttons, turning into two buttons.
         // TODO: Resign all first responders.
     }
 
@@ -92,11 +92,12 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     func startingOrStoppingMethods(value: CGFloat) {
         self.minutesLabel.alphaValue = 1.0 - value
         self.timerTextField.alphaValue = value
-        self.taskTextField.editable = Bool(value)
-        self.taskTextField.selectable = Bool(value)
+        self.taskTextField.editable = Bool(1.0 - value)
+        self.taskTextField.selectable = Bool(1.0 - value)
         self.doneTaskButton.alphaValue = value
         self.pauseTaskButton.alphaValue = value
     }
 
     func makeResponder(textField: NSTextField) { }
+    func resignAllResponders() { }
 }
