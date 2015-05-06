@@ -18,7 +18,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var editableTimerTextField = NSTextField()
     var minutesLabel = NSTextField()
     var delegate: Resignator?
-    var timerReal = NSTimer()
     var timerUpdateLabel = NSTimer()
     var militarNumberTimer = Int()
 
@@ -60,7 +59,15 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             }
         } else if numberInEditableString < 1 {
             let numberOfSeconds = numberInEditableString! * 60
-            self.timerTextField.stringValue = "00:\(Int(numberOfSeconds))"
+            var stringOfSeconds = ""
+
+            if numberOfSeconds < 10 {
+                stringOfSeconds = "0\(Int(numberOfSeconds))"
+            } else {
+                stringOfSeconds = "\(Int(numberOfSeconds))"
+            }
+
+            self.timerTextField.stringValue = "00:\(stringOfSeconds)"
         } else {
             self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
         }
@@ -79,7 +86,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         let secondsTimeInterval = (numberOfMinutes!.doubleValue * 60) as NSTimeInterval
         self.militarNumberTimer = numberOfMinutes!.integerValue * 100
 
-        self.timerReal = NSTimer.scheduledTimerWithTimeInterval(secondsTimeInterval, target: self, selector: "onRealTimerFired", userInfo: nil, repeats: false)
         self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
     }
 
@@ -90,12 +96,19 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.stringValue = ""
         self.view.addSubview(self.addTaskButton)
 
-        self.timerReal.invalidate()
         self.timerUpdateLabel.invalidate()
     }
 
     func onPauseButtonPressed() {
-        // TODO: Pause the timer
+        if self.pauseTaskButton.attributedTitle == "PAUSE" || self.pauseTaskButton.title == "PAUSE" {
+            self.timerUpdateLabel.invalidate()
+            //self.pauseTaskButton.attributedTitle = "GO"
+            self.pauseTaskButton.image = NSImage(named: "background-pause-button")
+        } else {
+            //self.pauseTaskButton.title = "PAUSE"
+            self.pauseTaskButton.image = NSImage(named: "background-pause-button")
+            self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+        }
     }
 
     func onTasksButtonPressed() {
@@ -113,7 +126,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     // MARK: Timer methods
 
     func onRealTimerFired() {
-        self.timerReal.invalidate()
         self.timerUpdateLabel.invalidate()
     }
 
@@ -134,6 +146,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.timerTextField.stringValue = "59:59"
         } else {
             self.timerTextField.stringValue = dateFormatted
+        }
+
+        if self.timerTextField.stringValue == "00:00" {
+            onRealTimerFired()
         }
     }
 
