@@ -40,17 +40,19 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.removeFromSuperview()
         self.editableTimerTextField.removeFromSuperview()
 
-        let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.integerValue
+        let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.floatValue
 
         if numberInEditableString > 60 {
             let numberOfHours = numberInEditableString!/60
             let numberOfMinutes = numberInEditableString! - (numberOfHours * 60)
-            self.timerTextField.stringValue = "\(numberOfHours):\(numberOfMinutes)0:00"
+            self.timerTextField.stringValue = "\(Int(numberOfHours)):\(Int(numberOfMinutes)):00"
+        } else if numberInEditableString < 1 {
+            let numberOfSeconds = numberInEditableString! * 60
+            self.timerTextField.stringValue = "00:\(Int(numberOfSeconds))"
         } else {
             self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
         }
 
-        println(self.timerTextField.stringValue)
 
         if self.taskTextField.stringValue == "" {
             self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
@@ -104,8 +106,15 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onLabelShouldChange() {
+        let numberInEditableString = NSNumberFormatter().numberFromString(self.timerTextField.stringValue)?.floatValue
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "hh:mm:ss"
+
+        if numberInEditableString > 60 {
+            dateFormatter.dateFormat = "hh:mm:ss"
+        } else {
+            dateFormatter.dateFormat = "mm:ss"
+        }
+
         let dateInTextField = dateFormatter.dateFromString(self.timerTextField.stringValue)
         let realDateNow = dateInTextField!.dateByAddingTimeInterval(-1)
         let dateFormatted = dateFormatter.stringFromDate(realDateNow)
