@@ -43,9 +43,14 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.floatValue
 
         if numberInEditableString > 60 {
-            let numberOfHours = numberInEditableString!/60
-            let numberOfMinutes = numberInEditableString! - (numberOfHours * 60)
-            self.timerTextField.stringValue = "\(Int(numberOfHours)):\(Int(numberOfMinutes)):00"
+            let numberOfHours = Int(numberInEditableString!/60)
+            let numberOfMinutes = Int(numberInEditableString!) - (numberOfHours * 60)
+
+            if numberOfMinutes < 10 {
+                self.timerTextField.stringValue = "\(Int(numberOfHours)):0\(Int(numberOfMinutes)):00"
+            } else {
+                self.timerTextField.stringValue = "\(Int(numberOfHours)):\(Int(numberOfMinutes)):00"
+            }
         } else if numberInEditableString < 1 {
             let numberOfSeconds = numberInEditableString! * 60
             self.timerTextField.stringValue = "00:\(Int(numberOfSeconds))"
@@ -106,10 +111,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onLabelShouldChange() {
-        let numberInEditableString = NSNumberFormatter().numberFromString(self.timerTextField.stringValue)?.floatValue
         let dateFormatter = NSDateFormatter()
 
-        if numberInEditableString > 60 {
+        if self.timerTextField.stringValue.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 6 {
             dateFormatter.dateFormat = "hh:mm:ss"
         } else {
             dateFormatter.dateFormat = "mm:ss"
