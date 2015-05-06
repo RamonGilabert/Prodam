@@ -22,6 +22,7 @@
 		F6E2262F1AF3FF4900125CA4 /* ProdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */; };
 		F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B51AFA8F670096566B /* BreakWindowController.swift */; };
 		F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B71AFA93BD0096566B /* BreakWindow.swift */; };
+		F6F78A311AFA9BF70055FC5D /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F78A301AFA9BF70055FC5D /* RoundedCornerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdamTests.swift; sourceTree = "<group>"; };
 		F6F537B51AFA8F670096566B /* BreakWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindowController.swift; sourceTree = "<group>"; };
 		F6F537B71AFA93BD0096566B /* BreakWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindow.swift; sourceTree = "<group>"; };
+		F6F78A301AFA9BF70055FC5D /* RoundedCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		F680B3D71AF6896800841DE3 /* Overrides */ = {
 			isa = PBXGroup;
 			children = (
+				F6F78A301AFA9BF70055FC5D /* RoundedCornerView.swift */,
 				F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */,
 			);
 			name = Overrides;
@@ -299,6 +302,7 @@
 				F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */,
 				F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */,
 				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
+				F6F78A311AFA9BF70055FC5D /* RoundedCornerView.swift in Sources */,
 				F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */,
 				F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */,
 				F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */,
