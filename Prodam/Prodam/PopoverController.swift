@@ -97,26 +97,15 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onLabelShouldChange() {
-        let dateFormatter = NSDateFormatter()
-
-        if self.timerTextField.stringValue.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 6 {
-            dateFormatter.dateFormat = "hh:mm:ss"
-        } else {
-            dateFormatter.dateFormat = "mm:ss"
-        }
-
-        let dateInTextField = dateFormatter.dateFromString(self.timerTextField.stringValue)
-        let realDateNow = dateInTextField!.dateByAddingTimeInterval(-1)
-        let dateFormatted = dateFormatter.stringFromDate(realDateNow)
 
         if self.timerTextField.stringValue == "1:00:00" || self.timerTextField.stringValue == "01:00:00" {
             self.timerTextField.stringValue = "59:59"
         } else {
-            self.timerTextField.stringValue = dateFormatted
-        }
+            self.timerTextField.stringValue = DateFormatting.getStringFormattedWithDate(self.timerTextField)
 
-        if self.timerTextField.stringValue == "00:00" {
-            onRealTimerFired()
+            if self.timerTextField.stringValue == "00:00" {
+                onRealTimerFired()
+            }
         }
     }
 

@@ -36,4 +36,19 @@ class DateFormatting: NSObject {
             return "\(textField.stringValue):00"
         }
     }
+
+    class func getStringFormattedWithDate(textField: NSTextField) -> String {
+        let dateFormatter = NSDateFormatter()
+
+        if textField.stringValue.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 6 {
+            dateFormatter.dateFormat = "hh:mm:ss"
+        } else {
+            dateFormatter.dateFormat = "mm:ss"
+        }
+
+        let dateInTextField = dateFormatter.dateFromString(textField.stringValue)
+        let realDateNow = dateInTextField!.dateByAddingTimeInterval(-1)
+        
+        return dateFormatter.stringFromDate(realDateNow)
+    }
 }
