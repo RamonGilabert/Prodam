@@ -11,6 +11,7 @@
 		F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D91AF755B400841DE3 /* ViewModel.swift */; };
 		F6CE7B4E1AF946DB004EB930 /* TextSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */; };
 		F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED431AFA19F700868F19 /* TextAttributter.swift */; };
+		F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED451AFA1EA200868F19 /* DateFormatting.swift */; };
 		F6D10D841AF6125B00EA9BB2 /* PopoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */; };
 		F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D851AF6129800EA9BB2 /* PopoverController.swift */; };
 		F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D891AF6236800EA9BB2 /* PopoverView.swift */; };
@@ -36,6 +37,7 @@
 		F680B3D91AF755B400841DE3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSplitter.swift; sourceTree = "<group>"; };
 		F6CEED431AFA19F700868F19 /* TextAttributter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributter.swift; sourceTree = "<group>"; };
+		F6CEED451AFA1EA200868F19 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		F6D10D831AF6125B00EA9BB2 /* PopoverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverManager.swift; sourceTree = "<group>"; };
 		F6D10D851AF6129800EA9BB2 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		F6D10D891AF6236800EA9BB2 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		F6CE7B4F1AF946DE004EB930 /* Helper classes */ = {
 			isa = PBXGroup;
 			children = (
+				F6CEED451AFA1EA200868F19 /* DateFormatting.swift */,
 				F6CEED431AFA19F700868F19 /* TextAttributter.swift */,
 				F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */,
 			);
@@ -285,6 +288,7 @@
 				F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */,
 				F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
+				F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */,
 				F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
