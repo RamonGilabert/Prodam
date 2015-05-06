@@ -69,7 +69,7 @@ class ViewModel: NSObject {
         textField.alignment = NSTextAlignment.RightTextAlignment
         textField.font = NSFont(name: "HelveticaNeue-Bold", size: 70)
         textField.sizeToFit()
-        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 50, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 50, textField.frame.height)
+        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 100, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 100, textField.frame.height)
         textField.becomeFirstResponder()
         textField.focusRingType = NSFocusRingType.None
 
