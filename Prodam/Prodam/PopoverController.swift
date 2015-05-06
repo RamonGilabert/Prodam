@@ -41,37 +41,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
         let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.floatValue
 
-        if numberInEditableString > 60 {
-            let numberOfHours = Int(numberInEditableString!/60)
-            let numberOfMinutes = Int(numberInEditableString!) - (numberOfHours * 60)
-            var stringOfHours = ""
-
-            if numberOfHours < 10 {
-                stringOfHours = "0\(numberOfHours)"
-            } else {
-                stringOfHours = "\(numberOfHours)"
-            }
-
-            if numberOfMinutes < 10 {
-                self.timerTextField.stringValue = "\(stringOfHours):0\(Int(numberOfMinutes)):00"
-            } else {
-                self.timerTextField.stringValue = "\(stringOfHours):\(Int(numberOfMinutes)):00"
-            }
-        } else if numberInEditableString < 1 {
-            let numberOfSeconds = numberInEditableString! * 60
-            var stringOfSeconds = ""
-
-            if numberOfSeconds < 10 {
-                stringOfSeconds = "0\(Int(numberOfSeconds))"
-            } else {
-                stringOfSeconds = "\(Int(numberOfSeconds))"
-            }
-
-            self.timerTextField.stringValue = "00:\(stringOfSeconds)"
-        } else {
-            self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
-        }
-
+        self.timerTextField.stringValue = DateFormatting.getTextFromNumberOfMinutes(self.editableTimerTextField)
 
         if self.taskTextField.stringValue == "" {
             self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
@@ -127,6 +97,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onRealTimerFired() {
         self.timerUpdateLabel.invalidate()
+        // TODO: Show new window with break!
     }
 
     func onLabelShouldChange() {

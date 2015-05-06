@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "todo-button.png"
+      "filename" : "Done button.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "todo-button@2x.png"
+      "filename" : "Done button@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "todo-button@3x.png"
+      "filename" : "Done button@3x.png"
     }
   ],
   "info" : {

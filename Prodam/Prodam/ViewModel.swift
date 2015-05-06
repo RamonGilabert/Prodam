@@ -88,12 +88,12 @@ class ViewModel: NSObject {
     }
 
     func layoutButtonTasksMainView(viewController: NSViewController) -> NSButton {
-        // TODO: Change button to say hey, this is done!
         let button = NSButton(frame: NSMakeRect(14, Constant.Window.Height - 26, 21, 13))
-        button.image = NSImage(named: "todo-button")
+        button.image = NSImage(named: "done-button")
         button.bordered = false
         button.target = viewController
         button.action = "onTasksButtonPressed"
+        button.enabled = false
 
         viewController.view.addSubview(button)
 
