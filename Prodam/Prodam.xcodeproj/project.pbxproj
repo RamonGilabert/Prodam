@@ -21,6 +21,7 @@
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
 		F6E2262F1AF3FF4900125CA4 /* ProdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */; };
 		F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B51AFA8F670096566B /* BreakWindowController.swift */; };
+		F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B71AFA93BD0096566B /* BreakWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		F6E2262D1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdamTests.swift; sourceTree = "<group>"; };
 		F6F537B51AFA8F670096566B /* BreakWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindowController.swift; sourceTree = "<group>"; };
+		F6F537B71AFA93BD0096566B /* BreakWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		F680B3DB1AF7560100841DE3 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				F6F537B71AFA93BD0096566B /* BreakWindow.swift */,
 				F6D10D891AF6236800EA9BB2 /* PopoverView.swift */,
 			);
 			name = "Custom views";
@@ -300,6 +303,7 @@
 				F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */,
 				F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
+				F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */,
 				F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */,
 				F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */,
 			);
