@@ -18,6 +18,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var editableTimerTextField = NSTextField()
     var minutesLabel = NSTextField()
     var delegate: Resignator?
+    var timerReal = NSTimer()
+    var timerUpdateLabel = NSTimer()
+    var militarNumberTimer = Int()
 
     override func loadView() {
         self.view = NSView()
@@ -36,7 +39,18 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         startingOrStoppingMethods(1.0)
         self.taskTextField.removeFromSuperview()
         self.editableTimerTextField.removeFromSuperview()
-        self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
+
+        let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.integerValue
+
+        if numberInEditableString > 60 {
+            let numberOfHours = numberInEditableString!/60
+            let numberOfMinutes = numberInEditableString! - (numberOfHours * 60)
+            self.timerTextField.stringValue = "\(numberOfHours):\(numberOfMinutes)0:00"
+        } else {
+            self.timerTextField.stringValue = "\(self.editableTimerTextField.stringValue):00"
+        }
+
+        println(self.timerTextField.stringValue)
 
         if self.taskTextField.stringValue == "" {
             self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
@@ -46,7 +60,13 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.view.addSubview(self.taskTextField)
         self.addTaskButton.removeFromSuperview()
 
-        // TODO: Resign all first responders.
+        let numberFormatter = NSNumberFormatter()
+        let numberOfMinutes = numberFormatter.numberFromString(self.editableTimerTextField.stringValue)
+        let secondsTimeInterval = (numberOfMinutes!.doubleValue * 60) as NSTimeInterval
+        self.militarNumberTimer = numberOfMinutes!.integerValue * 100
+
+        self.timerReal = NSTimer.scheduledTimerWithTimeInterval(secondsTimeInterval, target: self, selector: "onRealTimerFired", userInfo: nil, repeats: false)
+        self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
     }
 
     func onStopButtonPressed() {
@@ -55,7 +75,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.delegate?.makeResponder(self.editableTimerTextField)
         self.taskTextField.stringValue = ""
         self.view.addSubview(self.addTaskButton)
-        // TODO: Delete the timer
+
+        self.timerReal.invalidate()
+        self.timerUpdateLabel.invalidate()
     }
 
     func onPauseButtonPressed() {
@@ -72,6 +94,22 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     override func controlTextDidChange(obj: NSNotification) {
         self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.taskTextField.stringValue)
+    }
+
+    // MARK: Timer methods
+
+    func onRealTimerFired() {
+        self.timerReal.invalidate()
+        self.timerUpdateLabel.invalidate()
+    }
+
+    func onLabelShouldChange() {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss"
+        let dateInTextField = dateFormatter.dateFromString(self.timerTextField.stringValue)
+        let realDateNow = dateInTextField!.dateByAddingTimeInterval(-1)
+        let dateFormatted = dateFormatter.stringFromDate(realDateNow)
+        self.timerTextField.stringValue = dateFormatted
     }
 
     // MARK: Mouse events
@@ -104,5 +142,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func makeResponder(textField: NSTextField) { }
+    
     func resignAllResponders() { }
 }
