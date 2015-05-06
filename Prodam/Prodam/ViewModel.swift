@@ -88,7 +88,7 @@ class ViewModel: NSObject {
     }
 
     func layoutButtonTasksMainView(viewController: NSViewController) -> NSButton {
-        let button = NSButton(frame: NSMakeRect(14, Constant.Window.Height - 26, 21, 13))
+        let button = NSButton(frame: NSMakeRect(14, Constant.Window.Height - 30, 20, 20))
         button.image = NSImage(named: "done-button")
         button.bordered = false
         button.target = viewController

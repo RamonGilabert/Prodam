@@ -38,6 +38,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         startingOrStoppingMethods(1.0)
         self.taskTextField.removeFromSuperview()
         self.editableTimerTextField.removeFromSuperview()
+        self.taskButton.enabled = true
 
         let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.floatValue
 
@@ -60,13 +61,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onStopButtonPressed() {
-        startingOrStoppingMethods(0.0)
-        self.view.addSubview(self.editableTimerTextField)
-        self.delegate?.makeResponder(self.editableTimerTextField)
-        self.taskTextField.stringValue = ""
-        self.view.addSubview(self.addTaskButton)
-
-        self.timerUpdateLabel.invalidate()
+        stopTimerAndLayoutViews()
     }
 
     func onPauseButtonPressed() {
@@ -82,7 +77,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onTasksButtonPressed() {
-
+        stopTimerAndLayoutViews()
+        // TODO: Delete from CoreData
     }
 
     func onSettingsButtonPressed() {
@@ -151,6 +147,17 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.selectable = Bool(1.0 - value)
         self.doneTaskButton.alphaValue = value
         self.pauseTaskButton.alphaValue = value
+    }
+
+    func stopTimerAndLayoutViews() {
+        startingOrStoppingMethods(0.0)
+        self.view.addSubview(self.editableTimerTextField)
+        self.delegate?.makeResponder(self.editableTimerTextField)
+        self.taskTextField.stringValue = ""
+        self.view.addSubview(self.addTaskButton)
+        self.taskButton.enabled = false
+
+        self.timerUpdateLabel.invalidate()
     }
 
     func makeResponder(textField: NSTextField) { }
