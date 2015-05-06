@@ -19,7 +19,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var minutesLabel = NSTextField()
     var delegate: Resignator?
     var timerUpdateLabel = NSTimer()
-    var militarNumberTimer = Int()
 
     override func loadView() {
         self.view = NSView()
@@ -40,8 +39,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.editableTimerTextField.removeFromSuperview()
         self.taskButton.enabled = true
 
-        let numberInEditableString = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue)?.floatValue
-
         self.timerTextField.stringValue = DateFormatting.getTextFromNumberOfMinutes(self.editableTimerTextField)
 
         if self.taskTextField.stringValue == "" {
@@ -51,11 +48,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.resignFirstResponder()
         self.view.addSubview(self.taskTextField)
         self.addTaskButton.removeFromSuperview()
-
-        let numberFormatter = NSNumberFormatter()
-        let numberOfMinutes = numberFormatter.numberFromString(self.editableTimerTextField.stringValue)
-        let secondsTimeInterval = (numberOfMinutes!.doubleValue * 60) as NSTimeInterval
-        self.militarNumberTimer = numberOfMinutes!.integerValue * 100
 
         self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
     }
@@ -82,7 +74,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onSettingsButtonPressed() {
-        
+        // TODO: Show preferences
     }
 
     override func controlTextDidChange(obj: NSNotification) {
