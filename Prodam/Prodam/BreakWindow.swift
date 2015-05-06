@@ -2,11 +2,39 @@ import Cocoa
 
 class BreakWindow: NSWindow {
 
+    override var canBecomeMainWindow: Bool {
+        get {
+            return true
+        }
+    }
+
+    override var canBecomeKeyWindow: Bool {
+        get {
+            return true
+        }
+    }
+
+    override var contentView: AnyObject {
+        set (_view) {
+            var view = _view as! NSView
+            view.wantsLayer = true
+            view.layer!.frame = view.frame
+            view.layer!.cornerRadius = 10
+            view.layer!.masksToBounds = true
+
+            super.contentView = view
+        }
+
+        get {
+            return super.contentView
+        }
+    }
+
     override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
         self.opaque = false
-        self.backgroundColor = NSColor.clearColor()
         self.movableByWindowBackground = true
+        self.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
     }
 
     required init?(coder: NSCoder) {
