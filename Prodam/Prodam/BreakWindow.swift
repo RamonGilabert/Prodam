@@ -16,7 +16,7 @@ class BreakWindow: NSWindow {
 
     override var contentView: AnyObject {
         set (_view) {
-            var view = _view as! NSView
+            let view = _view as! NSView
             view.wantsLayer = true
             view.layer!.frame = view.frame
             view.layer!.cornerRadius = 10
@@ -34,7 +34,8 @@ class BreakWindow: NSWindow {
         super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
         self.opaque = false
         self.movableByWindowBackground = true
-        self.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+        self.backgroundColor = NSColor.clearColor()
+        self.hasShadow = true
     }
 
     required init?(coder: NSCoder) {
