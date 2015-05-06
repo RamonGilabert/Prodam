@@ -20,6 +20,7 @@
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
 		F6E2262F1AF3FF4900125CA4 /* ProdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */; };
+		F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B51AFA8F670096566B /* BreakWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		F6E226281AF3FF4900125CA4 /* ProdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2262D1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdamTests.swift; sourceTree = "<group>"; };
+		F6F537B51AFA8F670096566B /* BreakWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		F680B3D31AF6853600841DE3 /* Window controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F6F537B51AFA8F670096566B /* BreakWindowController.swift */,
 				F6D10D8F1AF63A0F00EA9BB2 /* PopoverWindowController.swift */,
 			);
 			name = "Window controllers";
@@ -144,9 +147,9 @@
 			children = (
 				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
 				F680B3D81AF755A500841DE3 /* Managers */,
-				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
-				F6CE7B4F1AF946DE004EB930 /* Helper classes */,
+				F6F537B41AFA8F520096566B /* View controller */,
 				F680B3D31AF6853600841DE3 /* Window controllers */,
+				F6CE7B4F1AF946DE004EB930 /* Helper classes */,
 				F680B3DB1AF7560100841DE3 /* Custom views */,
 				F680B3D71AF6896800841DE3 /* Overrides */,
 				F680B3D21AF6852B00841DE3 /* Resources */,
@@ -179,6 +182,14 @@
 				F6E2262D1AF3FF4900125CA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6F537B41AFA8F520096566B /* View controller */ = {
+			isa = PBXGroup;
+			children = (
+				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
+			);
+			name = "View controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */,
 				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
 				F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */,
+				F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */,
 				F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
 				F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */,
