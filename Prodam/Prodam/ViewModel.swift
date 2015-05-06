@@ -56,7 +56,7 @@ class ViewModel: NSObject {
         let textField = addBasicTextField(viewController, text: "15:00")
         textField.editable = false
         textField.selectable = false
-        textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 85)
+        textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 80)
         textField.sizeToFit()
         textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width, textField.frame.height)
         textField.alphaValue = 0.0
