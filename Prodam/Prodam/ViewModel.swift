@@ -21,7 +21,7 @@ class ViewModel: NSObject {
 
     func layoutFunctionalButtonsMainView(viewController: NSViewController) -> NSButton {
         let button = addButtonMainView(Constant.WindowLayout.MinimumPaddingButton, width: Constant.WindowLayout.WidthMainButton, alpha: 1.0, text: "start", viewController: viewController)
-        button.attributedTitle = attributedStringForButtons("START WORKING")
+        button.attributedTitle = TextAttributter.attributedStringForButtons("START WORKING")
 
         return button
     }
@@ -121,7 +121,7 @@ class ViewModel: NSObject {
         button.image = NSImage(named: "background-\(text)-button")
         button.bordered = false
         button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.attributedTitle = attributedStringForButtons(text.uppercaseString)
+        button.attributedTitle = TextAttributter.attributedStringForButtons(text.uppercaseString)
         button.alphaValue = alpha
         let selectorString = "on\(text.capitalizedString)ButtonPressed"
         button.action = NSSelectorFromString(selectorString)
@@ -144,17 +144,5 @@ class ViewModel: NSObject {
         viewController.view.addSubview(textField)
 
         return textField
-    }
-
-    func attributedStringForButtons(stringValue: String) -> NSAttributedString {
-        let mutableString = NSMutableAttributedString(string: stringValue)
-        mutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.whiteColor(), range: NSMakeRange(0, mutableString.length))
-        mutableString.addAttribute(NSFontAttributeName, value: NSFont(name: "AvenirNext-DemiBold", size: 20)!, range: NSMakeRange(0, mutableString.length))
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.CenterTextAlignment
-        mutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, mutableString.length))
-
-        return mutableString
     }
 }
