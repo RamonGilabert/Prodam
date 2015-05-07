@@ -29,5 +29,40 @@ class BreakViewController: NSViewController {
         self.headerLabel.sizeToFit()
         self.headerLabel.frame = NSMakeRect((self.view.frame.width - self.headerLabel.frame.width)/2, self.view.frame.height - self.headerLabel.frame.height - 25, self.headerLabel.frame.width, self.headerLabel.frame.height)
         self.view.addSubview(self.headerLabel)
+
+        self.editableTextField.frame = NSMakeRect(0, 0, 0, 0)
+        self.editableTextField.bordered = false
+        self.editableTextField.bezeled = false
+        self.editableTextField.drawsBackground = false
+        self.editableTextField.stringValue = "5"
+        self.editableTextField.textColor = NSColor.whiteColor()
+        self.editableTextField.alphaValue = 0.6
+        self.editableTextField.font = NSFont(name: "OpenSans", size: 200)
+        self.editableTextField.focusRingType = NSFocusRingType.None
+        self.editableTextField.alignment = NSTextAlignment.RightTextAlignment
+        self.editableTextField.sizeToFit()
+        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width*3)/2, (self.view.frame.height - self.editableTextField.frame.height)/2 + 100, self.editableTextField.frame.width * 2, self.editableTextField.frame.height)
+        self.view.addSubview(self.editableTextField)
+
+        self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
+        self.minutesLabel.bordered = false
+        self.minutesLabel.bezeled = false
+        self.minutesLabel.editable = false
+        self.minutesLabel.selectable = false
+        self.minutesLabel.drawsBackground = false
+        self.minutesLabel.stringValue = "min"
+        self.minutesLabel.textColor = NSColor.whiteColor()
+        self.minutesLabel.alphaValue = 0.6
+        self.minutesLabel.font = NSFont(name: "OpenSans", size: 30)
+        self.minutesLabel.sizeToFit()
+        self.minutesLabel.frame = NSMakeRect(self.editableTextField.frame.origin.x + self.editableTextField.frame.width + 15, self.editableTextField.frame.origin.y + 55, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
+        self.view.addSubview(self.minutesLabel)
+
+        self.workAgainButton.frame = NSMakeRect(100, 100, 275, 60)
+        self.workAgainButton.bordered = false
+        self.workAgainButton.image = NSImage(named: "background-break-button")
+        self.workAgainButton.title = "WORK AGAIN"
+        self.view.addSubview(self.workAgainButton)
+
     }
 }
