@@ -58,11 +58,39 @@ class BreakViewController: NSViewController {
         self.minutesLabel.frame = NSMakeRect(self.editableTextField.frame.origin.x + self.editableTextField.frame.width + 15, self.editableTextField.frame.origin.y + 55, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
         self.view.addSubview(self.minutesLabel)
 
-        self.workAgainButton.frame = NSMakeRect(100, 100, 265, 55)
+        self.workAgainButton.frame = NSMakeRect((self.view.frame.width / 2) - 290, self.editableTextField.frame.origin.y - 100, 265, 55)
         self.workAgainButton.bordered = false
         self.workAgainButton.image = NSImage(named: "background-break-button")
-        self.workAgainButton.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "OpenSans-Semibold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        self.workAgainButton.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        self.workAgainButton.setButtonType(NSButtonType.MomentaryChangeButton)
+        self.workAgainButton.alphaValue = 0.8
+        self.workAgainButton.target = self
+        self.workAgainButton.action = "onWorkAgainButtonPressed"
         self.view.addSubview(self.workAgainButton)
+
+        self.startBreakButton.frame = NSMakeRect((self.view.frame.width / 2) + 25, self.editableTextField.frame.origin.y - 100, 265, 55)
+        self.startBreakButton.bordered = false
+        self.startBreakButton.image = NSImage(named: "background-break-button")
+        self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        self.startBreakButton.setButtonType(NSButtonType.MomentaryChangeButton)
+        self.startBreakButton.alphaValue = 0.8
+        self.startBreakButton.target = self
+        self.startBreakButton.action = "onStartBreakButtonPressed"
+        self.view.addSubview(self.startBreakButton)
+
+        self.closeWindowButton.frame = NSMakeRect(10, 10, 25, 25)
+        self.closeWindowButton.bordered = false
+        self.closeWindowButton.image = NSImage(named: "close-break-button")
+
+    }
+
+    // MARK: Action handlers
+
+    func onWorkAgainButtonPressed() {
+
+    }
+
+    func onStartBreakButtonPressed() {
 
     }
 }
