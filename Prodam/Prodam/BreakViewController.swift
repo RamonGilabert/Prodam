@@ -11,6 +11,8 @@ class BreakViewController: NSViewController {
     var workAgainButton = NSButton()
     var startBreakButton = NSButton()
     var closeWindowButton = NSButton()
+    var initialFrameMinutes = NSRect()
+    var breakTimer = NSTimer()
 
     override func loadView() {
         self.view = NSView()
@@ -37,11 +39,11 @@ class BreakViewController: NSViewController {
         self.editableTextField.stringValue = "5"
         self.editableTextField.textColor = NSColor.whiteColor()
         self.editableTextField.alphaValue = 0.6
-        self.editableTextField.font = NSFont(name: "OpenSans", size: 200)
+        self.editableTextField.font = NSFont(name: "OpenSans", size: 225)
         self.editableTextField.focusRingType = NSFocusRingType.None
         self.editableTextField.alignment = NSTextAlignment.RightTextAlignment
         self.editableTextField.sizeToFit()
-        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width*3)/2, (self.view.frame.height - self.editableTextField.frame.height)/2 + 100, self.editableTextField.frame.width * 2, self.editableTextField.frame.height)
+        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width*3)/2, (self.view.frame.height - self.editableTextField.frame.height)/2 + 75, self.editableTextField.frame.width * 2, self.editableTextField.frame.height)
         self.view.addSubview(self.editableTextField)
 
         self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
@@ -58,7 +60,7 @@ class BreakViewController: NSViewController {
         self.minutesLabel.frame = NSMakeRect(self.editableTextField.frame.origin.x + self.editableTextField.frame.width + 15, self.editableTextField.frame.origin.y + 55, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
         self.view.addSubview(self.minutesLabel)
 
-        self.workAgainButton.frame = NSMakeRect((self.view.frame.width / 2) - 290, self.editableTextField.frame.origin.y - 100, 265, 55)
+        self.workAgainButton.frame = NSMakeRect((self.view.frame.width / 2) - 290, self.editableTextField.frame.origin.y - 125, 265, 55)
         self.workAgainButton.bordered = false
         self.workAgainButton.image = NSImage(named: "background-break-button")
         self.workAgainButton.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
@@ -68,7 +70,7 @@ class BreakViewController: NSViewController {
         self.workAgainButton.action = "onWorkAgainButtonPressed"
         self.view.addSubview(self.workAgainButton)
 
-        self.startBreakButton.frame = NSMakeRect((self.view.frame.width / 2) + 25, self.editableTextField.frame.origin.y - 100, 265, 55)
+        self.startBreakButton.frame = NSMakeRect((self.view.frame.width / 2) + 25, self.editableTextField.frame.origin.y - 125, 265, 55)
         self.startBreakButton.bordered = false
         self.startBreakButton.image = NSImage(named: "background-break-button")
         self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
@@ -98,22 +100,79 @@ class BreakViewController: NSViewController {
         self.quoteLabel.alphaValue = 0.6
         self.quoteLabel.font = NSFont(name: "OpenSansLight-Italic", size: 18)
         self.quoteLabel.sizeToFit()
-        self.quoteLabel.frame = NSMakeRect((self.view.frame.width - self.quoteLabel.frame.width)/2, (self.workAgainButton.frame.origin.y - self.quoteLabel.frame.height)/2, self.quoteLabel.frame.width, self.quoteLabel.frame.height)
+        self.quoteLabel.frame = NSMakeRect((self.view.frame.width - self.quoteLabel.frame.width)/2, (self.workAgainButton.frame.origin.y - self.quoteLabel.frame.height)/2 + self.quoteLabel.frame.height/2, self.quoteLabel.frame.width, self.quoteLabel.frame.height)
         self.view.addSubview(self.quoteLabel)
 
+        self.authorLabel.frame = NSMakeRect(0, 0, 0, 0)
+        self.authorLabel.bordered = false
+        self.authorLabel.bezeled = false
+        self.authorLabel.editable = false
+        self.authorLabel.selectable = false
+        self.authorLabel.drawsBackground = false
+        self.authorLabel.stringValue = "Steve Jobs"
+        self.authorLabel.textColor = NSColor.whiteColor()
+        self.authorLabel.alphaValue = 0.6
+        self.authorLabel.font = NSFont(name: "OpenSansLight-Italic", size: 16)
+        self.authorLabel.sizeToFit()
+        self.authorLabel.frame = NSMakeRect(self.quoteLabel.frame.origin.x + self.quoteLabel.frame.width - self.authorLabel.frame.width, self.quoteLabel.frame.origin.y - self.authorLabel.frame.height, self.authorLabel.frame.width, self.authorLabel.frame.height)
+        self.view.addSubview(self.authorLabel)
+
+        self.initialFrameMinutes = self.editableTextField.frame
+
+        self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+    }
+
+    // MARK: Timer methods
+
+    func onLabelShouldChange() {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "mm:ss"
     }
 
     // MARK: Action handlers
 
     func onWorkAgainButtonPressed() {
-
+        self.view.window?.close()
     }
 
     func onStartBreakButtonPressed() {
+        self.minutesLabel.hidden = true
+        self.view.window?.makeFirstResponder(nil)
+        self.editableTextField.editable = false
+        self.editableTextField.selectable = false
 
+        let numberFormatter = NSNumberFormatter()
+        let numberMinutes = numberFormatter.numberFromString(self.editableTextField.stringValue)
+
+        if numberMinutes?.integerValue > 60 {
+            self.editableTextField.stringValue = "59:59"
+        } else if numberMinutes?.integerValue < 1 {
+            let numberSeconds = Int(numberMinutes!.integerValue * 60)
+
+            if numberSeconds < 10 {
+                self.editableTextField.stringValue = "00:0\(numberSeconds)"
+            } else {
+                self.editableTextField.stringValue = "00:\(numberSeconds)"
+            }
+        } else {
+            if numberMinutes?.integerValue < 10 {
+                self.editableTextField.stringValue = "0\(numberMinutes!.integerValue):00"
+            } else {
+                self.editableTextField.stringValue = "\(numberMinutes!.integerValue):00"
+            }
+        }
+
+        self.editableTextField.sizeToFit()
+        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
     }
 
     func onCloseButtonPressed() {
+        self.view.window?.close()
+    }
 
+    // MARK: Mouse events
+
+    override func mouseDown(theEvent: NSEvent) {
+        self.view.window?.makeFirstResponder(nil)
     }
 }
