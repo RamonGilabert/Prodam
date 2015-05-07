@@ -8,7 +8,7 @@ class RoundedCornerView: NSView {
         NSColor.blackColor().set()
         NSRectFill(dirtyRect)
         self.appearance = NSAppearance(named: NSAppearanceNameAqua)
-        
+
         let visualEffectView = NSVisualEffectView(frame: dirtyRect)
         visualEffectView.state = NSVisualEffectState.Active
         visualEffectView.material = NSVisualEffectMaterial.Dark

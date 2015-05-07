@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */; };
 		F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D91AF755B400841DE3 /* ViewModel.swift */; };
+		F6CD5A191AFB58EF00CB1F41 /* BreakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CD5A181AFB58EF00CB1F41 /* BreakViewController.swift */; };
 		F6CE7B4E1AF946DB004EB930 /* TextSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */; };
 		F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED431AFA19F700868F19 /* TextAttributter.swift */; };
 		F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED451AFA1EA200868F19 /* DateFormatting.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Popover.swift"; sourceTree = "<group>"; };
 		F680B3D91AF755B400841DE3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		F6CD5A181AFB58EF00CB1F41 /* BreakViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakViewController.swift; sourceTree = "<group>"; };
 		F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSplitter.swift; sourceTree = "<group>"; };
 		F6CEED431AFA19F700868F19 /* TextAttributter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributter.swift; sourceTree = "<group>"; };
 		F6CEED451AFA1EA200868F19 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		F6F537B41AFA8F520096566B /* View controller */ = {
 			isa = PBXGroup;
 			children = (
+				F6CD5A181AFB58EF00CB1F41 /* BreakViewController.swift */,
 				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
 			);
 			name = "View controller";
@@ -307,6 +310,7 @@
 				F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */,
 				F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
+				F6CD5A191AFB58EF00CB1F41 /* BreakViewController.swift in Sources */,
 				F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */,
 				F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */,
 				F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */,
