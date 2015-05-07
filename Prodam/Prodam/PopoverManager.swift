@@ -3,8 +3,9 @@ import Cocoa
 class PopoverManager: NSObject, ViewClicked {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
-    var popoverController = PopoverWindowController()
     let popoverView = PopoverView()
+    var popoverController = PopoverWindowController()
+    var breakController = BreakWindowController()
     var popoverIsActive = false
 
     // MARK: View lifecycle
@@ -35,14 +36,13 @@ class PopoverManager: NSObject, ViewClicked {
             self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
             NSApp.activateIgnoringOtherApps(true)
             self.popoverController.window?.makeMainWindow()
-            self.popoverController.window?.makeKeyWindow()
-            self.popoverController.window?.makeFirstResponder(self.popoverController.popoverController.editableTimerTextField)
+            self.popoverController.popoverController.view.window?.makeFirstResponder(self.popoverController.popoverController.editableTimerTextField)
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
-            self.popoverController.popover.close()
             self.popoverController.window?.resignMainWindow()
             self.popoverController.window?.resignKeyWindow()
             self.popoverController.window?.makeFirstResponder(nil)
+            self.popoverController.popover.close()
         }
     }
 }

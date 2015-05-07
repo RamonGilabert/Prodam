@@ -10,8 +10,6 @@ class BreakWindowController: NSWindowController {
         self.window?.center()
         self.window?.makeKeyAndOrderFront(true)
         self.window?.display()
-        self.window?.becomeKeyWindow()
-        self.window?.becomeMainWindow()
 
         (self.window?.contentView as! RoundedCornerView).visualEffectView.addSubview(self.breakViewController.view)
     }

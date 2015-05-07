@@ -89,7 +89,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onLabelShouldChange() {
-
         if self.timerTextField.stringValue == "1:00:00" || self.timerTextField.stringValue == "01:00:00" {
             self.timerTextField.stringValue = "59:59"
         } else {
