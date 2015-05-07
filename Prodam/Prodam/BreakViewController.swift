@@ -61,7 +61,7 @@ class BreakViewController: NSViewController {
         self.workAgainButton.frame = NSMakeRect(100, 100, 265, 55)
         self.workAgainButton.bordered = false
         self.workAgainButton.image = NSImage(named: "background-break-button")
-        self.workAgainButton.title = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "OpenSans-Semibold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        self.workAgainButton.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "OpenSans-Semibold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         self.view.addSubview(self.workAgainButton)
 
     }

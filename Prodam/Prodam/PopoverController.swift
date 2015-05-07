@@ -59,10 +59,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     func onPauseButtonPressed() {
         if self.pauseTaskButton.attributedTitle == "PAUSE" || self.pauseTaskButton.title == "PAUSE" {
             self.timerUpdateLabel.invalidate()
-            self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("GO", font: "AvenirNext-DemiBold")
+            self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("GO", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
             self.pauseTaskButton.image = NSImage(named: "background-go-button")
         } else {
-            self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold")
+            self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
             self.pauseTaskButton.image = NSImage(named: "background-pause-button")
             self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
         }

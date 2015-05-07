@@ -21,7 +21,7 @@ class ViewModel: NSObject {
 
     func layoutFunctionalButtonsMainView(viewController: NSViewController) -> NSButton {
         let button = addButtonMainView(Constant.WindowLayout.MinimumPaddingButton, width: Constant.WindowLayout.WidthMainButton, alpha: 1.0, text: "start", viewController: viewController)
-        button.attributedTitle = TextAttributter.attributedStringForButtons("START WORKING")
+        button.attributedTitle = TextAttributter.attributedStringForButtons("START WORKING", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
 
         return button
     }
@@ -121,7 +121,7 @@ class ViewModel: NSObject {
         button.image = NSImage(named: "background-\(text)-button")
         button.bordered = false
         button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.attributedTitle = TextAttributter.attributedStringForButtons(text.uppercaseString)
+        button.attributedTitle = TextAttributter.attributedStringForButtons(text.uppercaseString, font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
         button.alphaValue = alpha
         let selectorString = "on\(text.capitalizedString)ButtonPressed"
         button.action = NSSelectorFromString(selectorString)
