@@ -6,7 +6,7 @@ class BreakViewController: NSViewController {
     var minutesLabel = NSTextField()
     var editableTextField = NSTextField()
     var realTextField = NSTextField()
-    var sentenceLabel = NSTextField()
+    var quoteLabel = NSTextField()
     var authorLabel = NSTextField()
     var workAgainButton = NSButton()
     var startBreakButton = NSButton()
@@ -86,6 +86,20 @@ class BreakViewController: NSViewController {
         self.closeWindowButton.target = self
         self.closeWindowButton.action = "onCloseButtonPressed"
         self.view.addSubview(self.closeWindowButton)
+
+        self.quoteLabel.frame = NSMakeRect(0, 0, 0, 0)
+        self.quoteLabel.bordered = false
+        self.quoteLabel.bezeled = false
+        self.quoteLabel.editable = false
+        self.quoteLabel.selectable = false
+        self.quoteLabel.drawsBackground = false
+        self.quoteLabel.stringValue = "Stay hungry, stay foolish..."
+        self.quoteLabel.textColor = NSColor.whiteColor()
+        self.quoteLabel.alphaValue = 0.6
+        self.quoteLabel.font = NSFont(name: "OpenSansLight-Italic", size: 18)
+        self.quoteLabel.sizeToFit()
+        self.quoteLabel.frame = NSMakeRect((self.view.frame.width - self.quoteLabel.frame.width)/2, (self.workAgainButton.frame.origin.y - self.quoteLabel.frame.height)/2, self.quoteLabel.frame.width, self.quoteLabel.frame.height)
+        self.view.addSubview(self.quoteLabel)
 
     }
 
