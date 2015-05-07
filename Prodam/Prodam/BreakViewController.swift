@@ -120,11 +120,22 @@ class BreakViewController: NSViewController {
         self.initialFrameMinutes = self.editableTextField.frame
     }
 
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.view.window?.makeFirstResponder(self.editableTextField)
+    }
+
     // MARK: Timer methods
 
     func onLabelShouldChange() {
         if self.editableTextField.stringValue == "00:00" {
             self.breakTimer.invalidate()
+            self.editableTextField.editable = true
+            self.editableTextField.selectable = true
+            self.editableTextField.frame = self.initialFrameMinutes
+            self.editableTextField.stringValue = "1"
+            self.minutesLabel.hidden = false
+            self.view.window?.makeFirstResponder(self.editableTextField)
         } else {
             self.editableTextField.stringValue = DateFormatting.getStringFormattedWithDate(self.editableTextField)
         }
@@ -137,36 +148,44 @@ class BreakViewController: NSViewController {
     }
 
     func onStartBreakButtonPressed() {
-        self.minutesLabel.hidden = true
-        self.view.window?.makeFirstResponder(nil)
-        self.editableTextField.editable = false
-        self.editableTextField.selectable = false
+        if self.startBreakButton.attributedTitle == "START BREAK" || self.startBreakButton.title == "START BREAK" {
+            self.minutesLabel.hidden = true
+            self.view.window?.makeFirstResponder(nil)
+            self.editableTextField.editable = false
+            self.editableTextField.selectable = false
 
-        let numberFormatter = NSNumberFormatter()
-        let numberMinutes = numberFormatter.numberFromString(self.editableTextField.stringValue)
+            let numberFormatter = NSNumberFormatter()
 
-        if numberMinutes?.integerValue > 60 {
-            self.editableTextField.stringValue = "59:59"
-        } else if numberMinutes?.integerValue < 1 {
-            let numberSeconds = Int(numberMinutes!.floatValue * 60)
+            if let numberMinutes = numberFormatter.numberFromString(self.editableTextField.stringValue) {
+                if numberMinutes.integerValue > 60 {
+                    self.editableTextField.stringValue = "59:59"
+                } else if numberMinutes.integerValue < 1 {
+                    let numberSeconds = Int(numberMinutes.floatValue * 60)
 
-            if numberSeconds < 10 {
-                self.editableTextField.stringValue = "00:0\(numberSeconds)"
-            } else {
-                self.editableTextField.stringValue = "00:\(numberSeconds)"
+                    if numberSeconds < 10 {
+                        self.editableTextField.stringValue = "00:0\(numberSeconds)"
+                    } else {
+                        self.editableTextField.stringValue = "00:\(numberSeconds)"
+                    }
+                } else {
+                    if numberMinutes.integerValue < 10 {
+                        self.editableTextField.stringValue = "0\(numberMinutes.integerValue):00"
+                    } else {
+                        self.editableTextField.stringValue = "\(numberMinutes.integerValue):00"
+                    }
+                }
+
+                self.editableTextField.sizeToFit()
+                self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
             }
+
+            self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+
+            self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
         } else {
-            if numberMinutes?.integerValue < 10 {
-                self.editableTextField.stringValue = "0\(numberMinutes!.integerValue):00"
-            } else {
-                self.editableTextField.stringValue = "\(numberMinutes!.integerValue):00"
-            }
+            self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+            self.breakTimer.invalidate()
         }
-
-        self.editableTextField.sizeToFit()
-        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
-
-        self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
     }
 
     func onCloseButtonPressed() {
