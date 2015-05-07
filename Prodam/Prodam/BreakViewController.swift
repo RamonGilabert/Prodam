@@ -58,7 +58,7 @@ class BreakViewController: NSViewController {
         self.minutesLabel.frame = NSMakeRect(self.editableTextField.frame.origin.x + self.editableTextField.frame.width + 15, self.editableTextField.frame.origin.y + 55, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
         self.view.addSubview(self.minutesLabel)
 
-        self.workAgainButton.frame = NSMakeRect(100, 100, 275, 60)
+        self.workAgainButton.frame = NSMakeRect(100, 100, 265, 55)
         self.workAgainButton.bordered = false
         self.workAgainButton.image = NSImage(named: "background-break-button")
         self.workAgainButton.title = "WORK AGAIN"
