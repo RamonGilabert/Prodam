@@ -43,7 +43,7 @@ class BreakViewController: NSViewController {
         self.editableTextField.focusRingType = NSFocusRingType.None
         self.editableTextField.alignment = NSTextAlignment.RightTextAlignment
         self.editableTextField.sizeToFit()
-        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width*3)/2, (self.view.frame.height - self.editableTextField.frame.height)/2 + 75, self.editableTextField.frame.width * 2, self.editableTextField.frame.height)
+        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width*4.75)/2, (self.view.frame.height - self.editableTextField.frame.height)/2 + 75, self.editableTextField.frame.width * 3, self.editableTextField.frame.height)
         self.view.addSubview(self.editableTextField)
 
         self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
@@ -118,15 +118,16 @@ class BreakViewController: NSViewController {
         self.view.addSubview(self.authorLabel)
 
         self.initialFrameMinutes = self.editableTextField.frame
-
-        self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
     }
 
     // MARK: Timer methods
 
     func onLabelShouldChange() {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "mm:ss"
+        if self.editableTextField.stringValue == "00:00" {
+            self.breakTimer.invalidate()
+        } else {
+            self.editableTextField.stringValue = DateFormatting.getStringFormattedWithDate(self.editableTextField)
+        }
     }
 
     // MARK: Action handlers
@@ -147,7 +148,7 @@ class BreakViewController: NSViewController {
         if numberMinutes?.integerValue > 60 {
             self.editableTextField.stringValue = "59:59"
         } else if numberMinutes?.integerValue < 1 {
-            let numberSeconds = Int(numberMinutes!.integerValue * 60)
+            let numberSeconds = Int(numberMinutes!.floatValue * 60)
 
             if numberSeconds < 10 {
                 self.editableTextField.stringValue = "00:0\(numberSeconds)"
@@ -164,6 +165,8 @@ class BreakViewController: NSViewController {
 
         self.editableTextField.sizeToFit()
         self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
+
+        self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
     }
 
     func onCloseButtonPressed() {
