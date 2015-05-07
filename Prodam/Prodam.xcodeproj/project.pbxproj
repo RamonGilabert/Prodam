@@ -10,6 +10,9 @@
 		F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */; };
 		F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F680B3D91AF755B400841DE3 /* ViewModel.swift */; };
 		F6CD5A191AFB58EF00CB1F41 /* BreakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CD5A181AFB58EF00CB1F41 /* BreakViewController.swift */; };
+		F6CD5A1F1AFB634400CB1F41 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CD5A1B1AFB633800CB1F41 /* OpenSans-Semibold.ttf */; };
+		F6CD5A201AFB634600CB1F41 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CD5A1C1AFB633800CB1F41 /* OpenSans-Regular.ttf */; };
+		F6CD5A211AFB634900CB1F41 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CD5A1D1AFB633800CB1F41 /* OpenSans-LightItalic.ttf */; };
 		F6CE7B4E1AF946DB004EB930 /* TextSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */; };
 		F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED431AFA19F700868F19 /* TextAttributter.swift */; };
 		F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED451AFA1EA200868F19 /* DateFormatting.swift */; };
@@ -40,6 +43,9 @@
 		F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Popover.swift"; sourceTree = "<group>"; };
 		F680B3D91AF755B400841DE3 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F6CD5A181AFB58EF00CB1F41 /* BreakViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakViewController.swift; sourceTree = "<group>"; };
+		F6CD5A1B1AFB633800CB1F41 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		F6CD5A1C1AFB633800CB1F41 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		F6CD5A1D1AFB633800CB1F41 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSplitter.swift; sourceTree = "<group>"; };
 		F6CEED431AFA19F700868F19 /* TextAttributter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributter.swift; sourceTree = "<group>"; };
 		F6CEED451AFA1EA200868F19 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
@@ -81,7 +87,8 @@
 		F680B3D21AF6852B00841DE3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F6E2261F1AF3FF4900125CA4 /* Images.xcassets */,
+				F6CD5A1E1AFB633C00CB1F41 /* Fonts */,
+				F6CD5A1A1AFB633000CB1F41 /* Images */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -120,6 +127,24 @@
 				F6D10D891AF6236800EA9BB2 /* PopoverView.swift */,
 			);
 			name = "Custom views";
+			sourceTree = "<group>";
+		};
+		F6CD5A1A1AFB633000CB1F41 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F6E2261F1AF3FF4900125CA4 /* Images.xcassets */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		F6CD5A1E1AFB633C00CB1F41 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F6CD5A1B1AFB633800CB1F41 /* OpenSans-Semibold.ttf */,
+				F6CD5A1C1AFB633800CB1F41 /* OpenSans-Regular.ttf */,
+				F6CD5A1D1AFB633800CB1F41 /* OpenSans-LightItalic.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		F6CE7B4F1AF946DE004EB930 /* Helper classes */ = {
@@ -281,8 +306,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6CD5A1F1AFB634400CB1F41 /* OpenSans-Semibold.ttf in Resources */,
 				F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */,
+				F6CD5A201AFB634600CB1F41 /* OpenSans-Regular.ttf in Resources */,
 				F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */,
+				F6CD5A211AFB634900CB1F41 /* OpenSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
