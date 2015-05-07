@@ -2,16 +2,14 @@ import Cocoa
 
 class RoundedCornerView: NSView {
 
+    let visualEffectView = NSVisualEffectView()
+
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
 
-        NSColor.blackColor().set()
-        NSRectFill(dirtyRect)
-        self.appearance = NSAppearance(named: NSAppearanceNameAqua)
-
-        let visualEffectView = NSVisualEffectView(frame: dirtyRect)
-        visualEffectView.state = NSVisualEffectState.Active
-        visualEffectView.material = NSVisualEffectMaterial.Dark
-        self.addSubview(visualEffectView)
+        self.visualEffectView.frame = dirtyRect
+        self.visualEffectView.state = NSVisualEffectState.Active
+        self.visualEffectView.material = NSVisualEffectMaterial.Dark
+        self.addSubview(self.visualEffectView)
     }
 }

@@ -14,7 +14,7 @@ class BreakViewController: NSViewController {
 
     override func loadView() {
         self.view = NSView()
-        self.view.frame = NSMakeRect(0, 0, 800, 600)
+        self.view.frame = NSMakeRect(0, 0, 1200, 700)
 
         self.headerLabel.frame = NSMakeRect(0, 0, 0, 0)
         self.headerLabel.bordered = false
@@ -23,10 +23,11 @@ class BreakViewController: NSViewController {
         self.headerLabel.selectable = false
         self.headerLabel.drawsBackground = false
         self.headerLabel.stringValue = "TAKING A BREAK"
-        self.headerLabel.font = NSFont(name: "OpenSans-Semibold", size: 50)
+        self.headerLabel.textColor = NSColor.whiteColor()
+        self.headerLabel.alphaValue = 0.6
+        self.headerLabel.font = NSFont(name: "OpenSans-Semibold", size: 40)
         self.headerLabel.sizeToFit()
-        self.headerLabel.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        self.headerLabel.frame = NSMakeRect((self.view.frame.width - self.headerLabel.frame.width)/2, self.view.frame.height - self.headerLabel.frame.height - 25, self.headerLabel.frame.width, self.headerLabel.frame.height)
         self.view.addSubview(self.headerLabel)
-
     }
 }
