@@ -78,9 +78,14 @@ class BreakViewController: NSViewController {
         self.startBreakButton.action = "onStartBreakButtonPressed"
         self.view.addSubview(self.startBreakButton)
 
-        self.closeWindowButton.frame = NSMakeRect(10, 10, 25, 25)
+        self.closeWindowButton.frame = NSMakeRect(17, self.view.frame.height - 34, 17, 17)
         self.closeWindowButton.bordered = false
         self.closeWindowButton.image = NSImage(named: "close-break-button")
+        self.closeWindowButton.setButtonType(NSButtonType.MomentaryChangeButton)
+        self.startBreakButton.alphaValue = 0.8
+        self.closeWindowButton.target = self
+        self.closeWindowButton.action = "onCloseButtonPressed"
+        self.view.addSubview(self.closeWindowButton)
 
     }
 
@@ -91,6 +96,10 @@ class BreakViewController: NSViewController {
     }
 
     func onStartBreakButtonPressed() {
+
+    }
+
+    func onCloseButtonPressed() {
 
     }
 }
