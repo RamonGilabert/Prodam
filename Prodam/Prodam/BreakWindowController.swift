@@ -4,6 +4,8 @@ class BreakWindowController: NSWindowController {
 
     let breakViewController = BreakViewController()
 
+    // MARK: View lifecycle
+
     override func loadWindow() {
         self.window = BreakWindow(contentRect: self.breakViewController.view.frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
         self.window?.contentView = RoundedCornerView(frame: self.window!.frame)

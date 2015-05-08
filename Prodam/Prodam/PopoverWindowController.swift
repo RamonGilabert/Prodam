@@ -6,6 +6,8 @@ class PopoverWindowController: NSWindowController, Resignator {
     var popoverManager: PopoverManager?
     var popover = NSPopover()
 
+    // MARK: View lifecycle
+
     override func loadWindow() {
         self.window = NSWindow_Popover(contentRect: NSMakeRect(0, 0, 0, 0), styleMask: 1, backing: NSBackingStoreType.Buffered, defer: false)
         self.popoverController.loadView()

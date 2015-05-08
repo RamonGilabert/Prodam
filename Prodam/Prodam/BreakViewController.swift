@@ -15,6 +15,8 @@ class BreakViewController: NSViewController {
     var initialFrameMinutes = NSRect()
     var breakTimer = NSTimer()
 
+    // MARK: View lifecycle
+
     override func loadView() {
         self.view = NSView()
         self.view.frame = NSMakeRect(0, 0, 1200, 700)

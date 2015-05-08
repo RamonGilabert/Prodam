@@ -20,6 +20,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var delegate: Resignator?
     var timerUpdateLabel = NSTimer()
 
+    // MARK: View lifecycle
+
     override func loadView() {
         self.view = NSView()
         self.view.frame = NSMakeRect(0, 0, Constant.Window.Width, Constant.Window.Height)

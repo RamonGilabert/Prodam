@@ -2,6 +2,8 @@ import Cocoa
 
 class NSFont_Prodam: NSFont {
 
+    // MARK: Main window fonts
+
     class func textFieldNormalField() -> NSFont {
         return NSFont(name: "HelveticaNeue-Light", size: 18)!
     }
@@ -17,6 +19,8 @@ class NSFont_Prodam: NSFont {
     class func mainMinutesTextField() -> NSFont {
         return NSFont(name: "AvenirNext-DemiBold", size: 20)!
     }
+
+    // MARK: Break fonts
 
     class func breakHeaderTextField() -> NSFont {
         return NSFont(name: "OpenSans-Semibold", size: 50)!
