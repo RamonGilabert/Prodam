@@ -178,7 +178,7 @@ class ViewModel: NSObject {
         button.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         button.setButtonType(NSButtonType.MomentaryChangeButton)
         button.alphaValue = 0.8
-        button.target = self
+        button.target = viewController
         button.action = "onWorkAgainButtonPressed"
 
         viewController.view.addSubview(button)
@@ -193,12 +193,64 @@ class ViewModel: NSObject {
         button.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         button.setButtonType(NSButtonType.MomentaryChangeButton)
         button.alphaValue = 0.8
-        button.target = self
+        button.target = viewController
         button.action = "onStartBreakButtonPressed"
 
         viewController.view.addSubview(button)
 
         return button
+    }
+
+    func breakLayoutCloseButton(viewController: NSViewController) -> NSButton {
+        let button = NSButton(frame: NSMakeRect(17, viewController.view.frame.height - 34, 17, 17))
+        button.bordered = false
+        button.image = NSImage(named: "close-break-button")
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.alphaValue = 0.8
+        button.target = viewController
+        button.action = "onCloseButtonPressed"
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
+    func breakLayoutQuote(viewController: NSViewController, topButton: NSButton) -> NSTextField {
+        let label = NSTextField()
+        label.bordered = false
+        label.bezeled = false
+        label.editable = false
+        label.selectable = false
+        label.drawsBackground = false
+        label.stringValue = "Stay hungry, stay foolish..."
+        label.textColor = NSColor.whiteColor()
+        label.alphaValue = 0.6
+        label.font = NSFont(name: "OpenSansLight-Italic", size: 18)
+        label.sizeToFit()
+        label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, (topButton.frame.origin.y - label.frame.height)/2 + label.frame.height/2, label.frame.width, label.frame.height)
+
+        viewController.view.addSubview(label)
+
+        return label
+    }
+
+    func breakLayoutAuthorQuote(viewController: NSViewController, authorLabel: NSTextField) -> NSTextField {
+        let label = NSTextField()
+        label.bordered = false
+        label.bezeled = false
+        label.editable = false
+        label.selectable = false
+        label.drawsBackground = false
+        label.stringValue = "Steve Jobs"
+        label.textColor = NSColor.whiteColor()
+        label.alphaValue = 0.6
+        label.font = NSFont(name: "OpenSansLight-Italic", size: 16)
+        label.sizeToFit()
+        label.frame = NSMakeRect(authorLabel.frame.origin.x + authorLabel.frame.width - label.frame.width, authorLabel.frame.origin.y - label.frame.height, label.frame.width, label.frame.height)
+
+        viewController.view.addSubview(label)
+
+        return label
     }
 
     // MARK: Main View Controller: Helper methods

@@ -23,53 +23,10 @@ class BreakViewController: NSViewController {
         self.editableTextField = self.viewModel.breakLayoutEditableLabel(self)
         self.minutesLabel = self.viewModel.breakLayoutMinutesLabel(self, sideLabel: self.editableTextField)
         self.workAgainButton = self.viewModel.breakLayoutWorkAgainButton(self, sideLabel: self.editableTextField)
-
-        self.startBreakButton.frame = NSMakeRect((self.view.frame.width / 2) + 25, self.editableTextField.frame.origin.y - 125, 265, 55)
-        self.startBreakButton.bordered = false
-        self.startBreakButton.image = NSImage(named: "background-break-button")
-        self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
-        self.startBreakButton.setButtonType(NSButtonType.MomentaryChangeButton)
-        self.startBreakButton.alphaValue = 0.8
-        self.startBreakButton.target = self
-        self.startBreakButton.action = "onStartBreakButtonPressed"
-        self.view.addSubview(self.startBreakButton)
-
-        self.closeWindowButton.frame = NSMakeRect(17, self.view.frame.height - 34, 17, 17)
-        self.closeWindowButton.bordered = false
-        self.closeWindowButton.image = NSImage(named: "close-break-button")
-        self.closeWindowButton.setButtonType(NSButtonType.MomentaryChangeButton)
-        self.startBreakButton.alphaValue = 0.8
-        self.closeWindowButton.target = self
-        self.closeWindowButton.action = "onCloseButtonPressed"
-        self.view.addSubview(self.closeWindowButton)
-
-        self.quoteLabel.frame = NSMakeRect(0, 0, 0, 0)
-        self.quoteLabel.bordered = false
-        self.quoteLabel.bezeled = false
-        self.quoteLabel.editable = false
-        self.quoteLabel.selectable = false
-        self.quoteLabel.drawsBackground = false
-        self.quoteLabel.stringValue = "Stay hungry, stay foolish..."
-        self.quoteLabel.textColor = NSColor.whiteColor()
-        self.quoteLabel.alphaValue = 0.6
-        self.quoteLabel.font = NSFont(name: "OpenSansLight-Italic", size: 18)
-        self.quoteLabel.sizeToFit()
-        self.quoteLabel.frame = NSMakeRect((self.view.frame.width - self.quoteLabel.frame.width)/2, (self.workAgainButton.frame.origin.y - self.quoteLabel.frame.height)/2 + self.quoteLabel.frame.height/2, self.quoteLabel.frame.width, self.quoteLabel.frame.height)
-        self.view.addSubview(self.quoteLabel)
-
-        self.authorLabel.frame = NSMakeRect(0, 0, 0, 0)
-        self.authorLabel.bordered = false
-        self.authorLabel.bezeled = false
-        self.authorLabel.editable = false
-        self.authorLabel.selectable = false
-        self.authorLabel.drawsBackground = false
-        self.authorLabel.stringValue = "Steve Jobs"
-        self.authorLabel.textColor = NSColor.whiteColor()
-        self.authorLabel.alphaValue = 0.6
-        self.authorLabel.font = NSFont(name: "OpenSansLight-Italic", size: 16)
-        self.authorLabel.sizeToFit()
-        self.authorLabel.frame = NSMakeRect(self.quoteLabel.frame.origin.x + self.quoteLabel.frame.width - self.authorLabel.frame.width, self.quoteLabel.frame.origin.y - self.authorLabel.frame.height, self.authorLabel.frame.width, self.authorLabel.frame.height)
-        self.view.addSubview(self.authorLabel)
+        self.startBreakButton = self.viewModel.breakLayoutWorkAgainButton(self, sideLabel: self.editableTextField)
+        self.closeWindowButton = self.viewModel.breakLayoutCloseButton(self)
+        self.quoteLabel = self.viewModel.breakLayoutQuote(self, topButton: self.workAgainButton)
+        self.authorLabel = self.viewModel.breakLayoutAuthorQuote(self, authorLabel: self.quoteLabel)
 
         self.initialFrameMinutes = self.editableTextField.frame
     }
