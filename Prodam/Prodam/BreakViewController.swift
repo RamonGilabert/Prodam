@@ -64,6 +64,7 @@ class BreakViewController: NSViewController {
     }
 
     func onStartBreakButtonPressed() {
+        // TODO: Some refactor here
         if self.startBreakButton.attributedTitle == "START BREAK" || self.startBreakButton.title == "START BREAK" {
             self.minutesLabel.hidden = true
             self.view.window?.makeFirstResponder(nil)

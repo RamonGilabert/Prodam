@@ -12,13 +12,15 @@ struct Constant {
         static let WidthDonePauseButtons = Constant.Window.Width/2 - (1.5 * Constant.WindowLayout.MinimumPaddingButton)
         static let WidthMainButton = Constant.Window.Width - (2 * Constant.WindowLayout.MinimumPaddingButton)
         static let HalfScreenPadding = Constant.WindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2
+        static let SizeHelperButtons = 20 as CGFloat
     }
 
     struct BreakLayout {
         static let HeightMainButton = 55 as CGFloat
         static let WidthMainButton = 265 as CGFloat
+        static let TopEditableYPadding = 65 as CGFloat
         static let PaddingXButton = 25 as CGFloat
-        static let PaddingYButton = 125 as CGFloat
+        static let PaddingYButton = 115 as CGFloat
         static let SizeCloseButton = 17 as CGFloat
         static let AlphaValueTextFields = 0.6 as CGFloat
         static let AlphaValueButtons = 0.8 as CGFloat
@@ -100,7 +102,7 @@ class ViewModel: NSObject {
     }
 
     func layoutButtonTasksMainView(viewController: NSViewController) -> NSButton {
-        let button = NSButton(frame: NSMakeRect(14, Constant.Window.Height - 30, 20, 20))
+        let button = NSButton(frame: NSMakeRect(14, Constant.Window.Height - 30, Constant.WindowLayout.SizeHelperButtons, Constant.WindowLayout.SizeHelperButtons))
         button.image = NSImage(named: "done-button")
         button.bordered = false
         button.target = viewController
@@ -113,7 +115,7 @@ class ViewModel: NSObject {
     }
 
     func layoutButtonSettingsMainView(viewController: NSViewController) -> NSButton {
-        let button = NSButton(frame: NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, 20, 20))
+        let button = NSButton(frame: NSMakeRect(Constant.Window.Width - 34, Constant.Window.Height - 30, Constant.WindowLayout.SizeHelperButtons, Constant.WindowLayout.SizeHelperButtons))
         button.image = NSImage(named: "settings-button")
         button.bordered = false
         button.target = viewController
@@ -139,7 +141,7 @@ class ViewModel: NSObject {
         label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakTimerFont())
         label.alignment = NSTextAlignment.RightTextAlignment
         label.editable = true
-        label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width*4.75)/2, (viewController.view.frame.height - label.frame.height)/2 + 75, label.frame.width * 3, label.frame.height)
+        label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width*4.75)/2, (viewController.view.frame.height - label.frame.height)/2 + Constant.BreakLayout.TopEditableYPadding, label.frame.width * 3, label.frame.height)
 
         return label
     }
