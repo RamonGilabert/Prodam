@@ -13,4 +13,8 @@ class NSFont_Prodam: NSFont {
     class func mainTimerEditable() -> NSFont {
         return NSFont(name: "HelveticaNeue-Bold", size: 70)!
     }
+
+    class func mainMinutesTextField() -> NSFont {
+        return NSFont(name: "AvenirNext-DemiBold", size: 20)!
+    }
 }

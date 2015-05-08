@@ -92,7 +92,7 @@ class ViewModel: NSObject {
         let textField = addBasicTextField(viewController, text: "min")
         textField.editable = false
         textField.selectable = false
-        textField.font = NSFont(name: "AvenirNext-DemiBold", size: 20)
+        textField.font = NSFont_Prodam.mainMinutesTextField()
         textField.sizeToFit()
         textField.frame = NSMakeRect(editableTextField.frame.origin.x + editableTextField.frame.width, editableTextField.frame.origin.y + 10, textField.frame.width, textField.frame.height)
 
