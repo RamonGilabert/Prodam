@@ -115,11 +115,8 @@ class ViewModel: NSObject {
     // MARK: Break view layout
 
     func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
-        let label = addBasicTextField(viewController, text: "TAKING A BREAK")
-        label.textColor = NSColor.whiteColor()
-        label.alphaValue = 0.6
-        label.font = NSFont(name: "OpenSans-Semibold", size: 40)
-        label.sizeToFit()
+        var label = addBasicTextField(viewController, text: "TAKING A BREAK")
+        label = addBreakLabelConfiguration(label, size: 50, fontComplement: "-Semibold")
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, viewController.view.frame.height - label.frame.height - 25, label.frame.width, label.frame.height)
 
         return label
@@ -144,53 +141,34 @@ class ViewModel: NSObject {
     }
 
     func breakLayoutWorkAgainButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
-        let button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) - 290, sideLabel.frame.origin.y - 125, 265, 55))
-        button.bordered = false
+        var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) - 290, sideLabel.frame.origin.y - 125, 265, 55))
+        button = addButtonConfiguration(button, viewController: viewController, text: "WORK AGAIN")
         button.image = NSImage(named: "background-break-button")
-        button.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.alphaValue = 0.8
-        button.target = viewController
         button.action = "onWorkAgainButtonPressed"
-
-        viewController.view.addSubview(button)
 
         return button
     }
 
     func breakLayoutStartBreakButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
-        let button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) + 25, sideLabel.frame.origin.y - 125, 265, 55))
-        button.bordered = false
+        var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) + 25, sideLabel.frame.origin.y - 125, 265, 55))
+        button = addButtonConfiguration(button, viewController: viewController, text: "START BREAK")
         button.image = NSImage(named: "background-break-button")
-        button.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.alphaValue = 0.8
-        button.target = viewController
         button.action = "onStartBreakButtonPressed"
-
-        viewController.view.addSubview(button)
 
         return button
     }
 
     func breakLayoutCloseButton(viewController: NSViewController) -> NSButton {
-        let button = NSButton(frame: NSMakeRect(17, viewController.view.frame.height - 34, 17, 17))
-        button.bordered = false
+        var button = NSButton(frame: NSMakeRect(17, viewController.view.frame.height - 34, 17, 17))
+        button = addButtonConfiguration(button, viewController: viewController, text: "")
         button.image = NSImage(named: "close-break-button")
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.alphaValue = 0.8
-        button.target = viewController
         button.action = "onCloseButtonPressed"
-
-        viewController.view.addSubview(button)
 
         return button
     }
 
     func breakLayoutQuote(viewController: NSViewController, topButton: NSButton) -> NSTextField {
         var label = addBasicTextField(viewController, text: "Stay hungry, stay foolish...")
-        label.editable = false
-        label.selectable = false
         label = addBreakLabelConfiguration(label, size: 18, fontComplement: "-Italic")
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, (topButton.frame.origin.y - label.frame.height)/2 + label.frame.height/2, label.frame.width, label.frame.height)
 
@@ -208,15 +186,14 @@ class ViewModel: NSObject {
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
-        let button = NSButton(frame: NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton))
+        var button = NSButton(frame: NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton))
+        button = addButtonConfiguration(button)
         button.image = NSImage(named: "background-\(text)-button")
-        button.bordered = false
-        button.setButtonType(NSButtonType.MomentaryChangeButton)
         button.attributedTitle = TextAttributter.attributedStringForButtons(text.uppercaseString, font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
         button.alphaValue = alpha
         let selectorString = "on\(text.capitalizedString)ButtonPressed"
-        button.action = NSSelectorFromString(selectorString)
         button.target = viewController
+        button.action = NSSelectorFromString(selectorString)
 
         viewController.view.addSubview(button)
 
@@ -234,6 +211,18 @@ class ViewModel: NSObject {
         label.sizeToFit()
 
         return label
+    }
+
+    func addButtonConfiguration(button: NSButton, viewController: NSViewController, text: String) -> NSButton {
+        button.bordered = false
+        button.attributedTitle = TextAttributter.attributedStringForButtons(text, font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.alphaValue = 0.8
+        button.target = viewController
+
+        viewController.view.addSubview(button)
+
+        return button
     }
 
     func addBasicTextField(viewController: NSViewController, text: String) -> NSTextField {
