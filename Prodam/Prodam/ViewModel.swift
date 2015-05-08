@@ -128,7 +128,7 @@ class ViewModel: NSObject {
 
     func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
         var label = addBasicTextField(viewController, text: "TAKING A BREAK")
-        label = addBreakLabelConfiguration(label, size: 50, fontComplement: "-Semibold")
+        label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakHeaderTextField())
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, viewController.view.frame.height - label.frame.height - 25, label.frame.width, label.frame.height)
 
         return label
@@ -136,7 +136,7 @@ class ViewModel: NSObject {
 
     func breakLayoutEditableLabel(viewController: NSViewController) -> NSTextField {
         var label = addBasicTextField(viewController, text: "5")
-        label = addBreakLabelConfiguration(label, size: 225, fontComplement: "")
+        label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakTimerFont())
         label.alignment = NSTextAlignment.RightTextAlignment
         label.editable = true
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width*4.75)/2, (viewController.view.frame.height - label.frame.height)/2 + 75, label.frame.width * 3, label.frame.height)
@@ -146,7 +146,7 @@ class ViewModel: NSObject {
 
     func breakLayoutMinutesLabel(viewController: NSViewController, sideLabel: NSTextField) -> NSTextField {
         var label = addBasicTextField(viewController, text: "min")
-        label = addBreakLabelConfiguration(label, size: 30, fontComplement: "")
+        label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakMinutesFont())
         label.frame = NSMakeRect(sideLabel.frame.origin.x + sideLabel.frame.width + Constant.BreakLayout.MinutesLabelXPadding, sideLabel.frame.origin.y + Constant.BreakLayout.MinutesLabelYPadding, label.frame.width, label.frame.height)
 
         return label
@@ -181,7 +181,7 @@ class ViewModel: NSObject {
 
     func breakLayoutQuote(viewController: NSViewController, topButton: NSButton) -> NSTextField {
         var label = addBasicTextField(viewController, text: "Stay hungry, stay foolish...")
-        label = addBreakLabelConfiguration(label, size: 18, fontComplement: "-Italic")
+        label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakQuoteFont())
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, (topButton.frame.origin.y - label.frame.height)/2 + label.frame.height/2, label.frame.width, label.frame.height)
 
         return label
@@ -189,7 +189,7 @@ class ViewModel: NSObject {
 
     func breakLayoutAuthorQuote(viewController: NSViewController, authorLabel: NSTextField) -> NSTextField {
         var label = addBasicTextField(viewController, text: "Steve Jobs")
-        label = addBreakLabelConfiguration(label, size: 16, fontComplement: "Light-Italic")
+        label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakAuthorFont())
         label.frame = NSMakeRect(authorLabel.frame.origin.x + authorLabel.frame.width - label.frame.width, authorLabel.frame.origin.y - label.frame.height, label.frame.width, label.frame.height)
 
         return label
@@ -207,13 +207,13 @@ class ViewModel: NSObject {
         return button
     }
 
-    func addBreakLabelConfiguration(label: NSTextField, size: CGFloat, fontComplement: String) -> NSTextField {
+    func addBreakLabelConfiguration(label: NSTextField, font: NSFont) -> NSTextField {
         label.editable = false
         label.selectable = false
         label.textColor = NSColor_Prodam.colorBreakLabels()
         label.alphaValue = Constant.BreakLayout.AlphaValueTextFields
-        label.font = NSFont(name: "OpenSans\(fontComplement)", size: size)
         label.focusRingType = NSFocusRingType.None
+        label.font = font
         label.alignment = NSTextAlignment.CenterTextAlignment
         label.sizeToFit()
 
