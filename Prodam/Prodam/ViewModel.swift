@@ -13,6 +13,18 @@ struct Constant {
         static let WidthMainButton = Constant.Window.Width - (2 * Constant.WindowLayout.MinimumPaddingButton)
         static let HalfScreenPadding = Constant.WindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2
     }
+
+    struct BreakLayout {
+        static let HeightMainButton = 55 as CGFloat
+        static let WidthMainButton = 265 as CGFloat
+        static let PaddingXButton = 25 as CGFloat
+        static let PaddingYButton = 125 as CGFloat
+        static let SizeCloseButton = 17 as CGFloat
+        static let AlphaValueTextFields = 0.6 as CGFloat
+        static let AlphaValueButtons = 0.8 as CGFloat
+        static let MinutesLabelXPadding = 15 as CGFloat
+        static let MinutesLabelYPadding = 55 as CGFloat
+    }
 }
 
 class ViewModel: NSObject {
@@ -135,13 +147,13 @@ class ViewModel: NSObject {
     func breakLayoutMinutesLabel(viewController: NSViewController, sideLabel: NSTextField) -> NSTextField {
         var label = addBasicTextField(viewController, text: "min")
         label = addBreakLabelConfiguration(label, size: 30, fontComplement: "")
-        label.frame = NSMakeRect(sideLabel.frame.origin.x + sideLabel.frame.width + 15, sideLabel.frame.origin.y + 55, label.frame.width, label.frame.height)
+        label.frame = NSMakeRect(sideLabel.frame.origin.x + sideLabel.frame.width + Constant.BreakLayout.MinutesLabelXPadding, sideLabel.frame.origin.y + Constant.BreakLayout.MinutesLabelYPadding, label.frame.width, label.frame.height)
 
         return label
     }
 
     func breakLayoutWorkAgainButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
-        var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) - 290, sideLabel.frame.origin.y - 125, 265, 55))
+        var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) - (Constant.BreakLayout.PaddingXButton + Constant.BreakLayout.WidthMainButton), sideLabel.frame.origin.y - Constant.BreakLayout.PaddingYButton, Constant.BreakLayout.WidthMainButton, Constant.BreakLayout.HeightMainButton))
         button.image = NSImage(named: "background-break-button")
         button = addButtonConfiguration(button, viewController: viewController, text: "WORK AGAIN", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         button.action = "onWorkAgainButtonPressed"
@@ -150,7 +162,7 @@ class ViewModel: NSObject {
     }
 
     func breakLayoutStartBreakButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
-        var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) + 25, sideLabel.frame.origin.y - 125, 265, 55))
+        var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) + Constant.BreakLayout.PaddingXButton, sideLabel.frame.origin.y - Constant.BreakLayout.PaddingYButton, Constant.BreakLayout.WidthMainButton, Constant.BreakLayout.HeightMainButton))
         button.image = NSImage(named: "background-break-button")
         button = addButtonConfiguration(button, viewController: viewController, text: "START BREAK", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         button.action = "onStartBreakButtonPressed"
@@ -159,7 +171,7 @@ class ViewModel: NSObject {
     }
 
     func breakLayoutCloseButton(viewController: NSViewController) -> NSButton {
-        var button = NSButton(frame: NSMakeRect(17, viewController.view.frame.height - 34, 17, 17))
+        var button = NSButton(frame: NSMakeRect(Constant.BreakLayout.SizeCloseButton, viewController.view.frame.height - (Constant.BreakLayout.SizeCloseButton * 2), Constant.BreakLayout.SizeCloseButton, Constant.BreakLayout.SizeCloseButton))
         button = addButtonConfiguration(button, viewController: viewController, text: "", color: NSColor.whiteColor())
         button.image = NSImage(named: "close-break-button")
         button.action = "onCloseButtonPressed"
@@ -199,7 +211,7 @@ class ViewModel: NSObject {
         label.editable = false
         label.selectable = false
         label.textColor = NSColor.whiteColor()
-        label.alphaValue = 0.6
+        label.alphaValue = Constant.BreakLayout.AlphaValueTextFields
         label.font = NSFont(name: "OpenSans\(fontComplement)", size: size)
         label.focusRingType = NSFocusRingType.None
         label.alignment = NSTextAlignment.CenterTextAlignment
@@ -212,7 +224,7 @@ class ViewModel: NSObject {
         button.bordered = false
         button.attributedTitle = TextAttributter.attributedStringForButtons(text, font: "AvenirNext-DemiBold", color: color)
         button.setButtonType(NSButtonType.MomentaryChangeButton)
-        button.alphaValue = 0.8
+        button.alphaValue = Constant.BreakLayout.AlphaValueButtons
         button.target = viewController
 
         viewController.view.addSubview(button)
