@@ -115,30 +115,20 @@ class ViewModel: NSObject {
     // MARK: Break view layout
 
     func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
-        let label = NSTextField()
-        label.bordered = false
-        label.bezeled = false
+        let label = addBasicTextField(viewController, text: "TAKING A BREAK")
         label.editable = false
         label.selectable = false
-        label.drawsBackground = false
-        label.stringValue = "TAKING A BREAK"
         label.textColor = NSColor.whiteColor()
         label.alphaValue = 0.6
         label.font = NSFont(name: "OpenSans-Semibold", size: 40)
         label.sizeToFit()
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, viewController.view.frame.height - label.frame.height - 25, label.frame.width, label.frame.height)
 
-        viewController.view.addSubview(label)
-
         return label
     }
 
     func breakLayoutEditableLabel(viewController: NSViewController) -> NSTextField {
-        let label = NSTextField()
-        label.bordered = false
-        label.bezeled = false
-        label.drawsBackground = false
-        label.stringValue = "5"
+        let label = addBasicTextField(viewController, text: "5")
         label.textColor = NSColor.whiteColor()
         label.alphaValue = 0.6
         label.font = NSFont(name: "OpenSans", size: 225)
@@ -147,26 +137,18 @@ class ViewModel: NSObject {
         label.sizeToFit()
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width*4.75)/2, (viewController.view.frame.height - label.frame.height)/2 + 75, label.frame.width * 3, label.frame.height)
 
-        viewController.view.addSubview(label)
-
         return label
     }
 
     func breakLayoutMinutesLabel(viewController: NSViewController, sideLabel: NSTextField) -> NSTextField {
-        let label = NSTextField()
-        label.bordered = false
-        label.bezeled = false
+        let label = addBasicTextField(viewController, text: "min")
         label.editable = false
         label.selectable = false
-        label.drawsBackground = false
-        label.stringValue = "min"
         label.textColor = NSColor.whiteColor()
         label.alphaValue = 0.6
         label.font = NSFont(name: "OpenSans", size: 30)
         label.sizeToFit()
         label.frame = NSMakeRect(sideLabel.frame.origin.x + sideLabel.frame.width + 15, sideLabel.frame.origin.y + 55, label.frame.width, label.frame.height)
-
-        viewController.view.addSubview(label)
 
         return label
     }
@@ -216,39 +198,27 @@ class ViewModel: NSObject {
     }
 
     func breakLayoutQuote(viewController: NSViewController, topButton: NSButton) -> NSTextField {
-        let label = NSTextField()
-        label.bordered = false
-        label.bezeled = false
+        let label = addBasicTextField(viewController, text: "Stay hungry, stay foolish...")
         label.editable = false
         label.selectable = false
-        label.drawsBackground = false
-        label.stringValue = "Stay hungry, stay foolish..."
         label.textColor = NSColor.whiteColor()
         label.alphaValue = 0.6
         label.font = NSFont(name: "OpenSansLight-Italic", size: 18)
         label.sizeToFit()
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, (topButton.frame.origin.y - label.frame.height)/2 + label.frame.height/2, label.frame.width, label.frame.height)
 
-        viewController.view.addSubview(label)
-
         return label
     }
 
     func breakLayoutAuthorQuote(viewController: NSViewController, authorLabel: NSTextField) -> NSTextField {
-        let label = NSTextField()
-        label.bordered = false
-        label.bezeled = false
+        let label = addBasicTextField(viewController, text: "Steve Jobs")
         label.editable = false
         label.selectable = false
-        label.drawsBackground = false
-        label.stringValue = "Steve Jobs"
         label.textColor = NSColor.whiteColor()
         label.alphaValue = 0.6
         label.font = NSFont(name: "OpenSansLight-Italic", size: 16)
         label.sizeToFit()
         label.frame = NSMakeRect(authorLabel.frame.origin.x + authorLabel.frame.width - label.frame.width, authorLabel.frame.origin.y - label.frame.height, label.frame.width, label.frame.height)
-
-        viewController.view.addSubview(label)
 
         return label
     }
@@ -256,9 +226,7 @@ class ViewModel: NSObject {
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
-        let button = NSButton()
-
-        button.frame = NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton)
+        let button = NSButton(frame: NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton))
         button.image = NSImage(named: "background-\(text)-button")
         button.bordered = false
         button.setButtonType(NSButtonType.MomentaryChangeButton)
@@ -277,7 +245,7 @@ class ViewModel: NSObject {
         let textField = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
         textField.bezeled = false
         textField.bordered = false
-        textField.backgroundColor = NSColor.clearColor()
+        textField.drawsBackground = false
         textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
         textField.alignment = NSTextAlignment.CenterTextAlignment
         textField.stringValue = text
