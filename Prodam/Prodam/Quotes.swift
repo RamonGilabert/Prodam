@@ -1,6 +1,6 @@
 import Foundation
 
-struct Quotes {
+struct Quote {
     static let One: [String: String] = ["quote": "Stay hungry, stay foolish...", "author": "Steve Jobs"]
 
     static let Two: [String: String] = ["quote": "There is beauty when something works and it works intuitively.", "author": "Jonathan Ive"]
@@ -30,4 +30,6 @@ struct Quotes {
     static let Fourteen: [String: String] = ["quote": "Fail often so you can succeed sooner.", "author": "Tom Kelley"]
 
     static let Fifteen: [String: String] = ["quote": "Good is the enemy of great.", "author": "Jim Collins"]
+
+    static let ArrayOfQuotes = [Quote.One, Quote.Two, Quote.Three, Quote.Four, Quote.Five, Quote.Six, Quote.Seven, Quote.Eight, Quote.Nine, Quote.Ten, Quote.Eleven, Quote.Twelve, Quote.Thirteen, Quote.Fourteen, Quote.Fifteen]
 }
