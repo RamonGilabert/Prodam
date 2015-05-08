@@ -142,8 +142,8 @@ class ViewModel: NSObject {
 
     func breakLayoutWorkAgainButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
         var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) - 290, sideLabel.frame.origin.y - 125, 265, 55))
-        button = addButtonConfiguration(button, viewController: viewController, text: "WORK AGAIN")
         button.image = NSImage(named: "background-break-button")
+        button = addButtonConfiguration(button, viewController: viewController, text: "WORK AGAIN", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         button.action = "onWorkAgainButtonPressed"
 
         return button
@@ -151,8 +151,8 @@ class ViewModel: NSObject {
 
     func breakLayoutStartBreakButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
         var button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) + 25, sideLabel.frame.origin.y - 125, 265, 55))
-        button = addButtonConfiguration(button, viewController: viewController, text: "START BREAK")
         button.image = NSImage(named: "background-break-button")
+        button = addButtonConfiguration(button, viewController: viewController, text: "START BREAK", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
         button.action = "onStartBreakButtonPressed"
 
         return button
@@ -160,7 +160,7 @@ class ViewModel: NSObject {
 
     func breakLayoutCloseButton(viewController: NSViewController) -> NSButton {
         var button = NSButton(frame: NSMakeRect(17, viewController.view.frame.height - 34, 17, 17))
-        button = addButtonConfiguration(button, viewController: viewController, text: "")
+        button = addButtonConfiguration(button, viewController: viewController, text: "", color: NSColor.whiteColor())
         button.image = NSImage(named: "close-break-button")
         button.action = "onCloseButtonPressed"
 
@@ -187,15 +187,10 @@ class ViewModel: NSObject {
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
         var button = NSButton(frame: NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton))
-        button = addButtonConfiguration(button)
         button.image = NSImage(named: "background-\(text)-button")
-        button.attributedTitle = TextAttributter.attributedStringForButtons(text.uppercaseString, font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
+        button = addButtonConfiguration(button, viewController: viewController, text: text.uppercaseString, color: NSColor.whiteColor())
         button.alphaValue = alpha
-        let selectorString = "on\(text.capitalizedString)ButtonPressed"
-        button.target = viewController
-        button.action = NSSelectorFromString(selectorString)
-
-        viewController.view.addSubview(button)
+        button.action = NSSelectorFromString("on\(text.capitalizedString)ButtonPressed")
 
         return button
     }
@@ -213,9 +208,9 @@ class ViewModel: NSObject {
         return label
     }
 
-    func addButtonConfiguration(button: NSButton, viewController: NSViewController, text: String) -> NSButton {
+    func addButtonConfiguration(button: NSButton, viewController: NSViewController, text: String, color: NSColor) -> NSButton {
         button.bordered = false
-        button.attributedTitle = TextAttributter.attributedStringForButtons(text, font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        button.attributedTitle = TextAttributter.attributedStringForButtons(text, font: "AvenirNext-DemiBold", color: color)
         button.setButtonType(NSButtonType.MomentaryChangeButton)
         button.alphaValue = 0.8
         button.target = viewController
