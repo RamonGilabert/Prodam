@@ -179,16 +179,16 @@ class ViewModel: NSObject {
         return button
     }
 
-    func breakLayoutQuote(viewController: NSViewController, topButton: NSButton) -> NSTextField {
-        var label = addBasicTextField(viewController, text: "Stay hungry, stay foolish...")
+    func breakLayoutQuote(viewController: NSViewController, topButton: NSButton, randomNumber: Int) -> NSTextField {
+        var label = addBasicTextField(viewController, text: Quote.ArrayOfQuotes[randomNumber]["quote"]!)
         label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakQuoteFont())
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, (topButton.frame.origin.y - label.frame.height)/2 + label.frame.height/2, label.frame.width, label.frame.height)
 
         return label
     }
 
-    func breakLayoutAuthorQuote(viewController: NSViewController, authorLabel: NSTextField) -> NSTextField {
-        var label = addBasicTextField(viewController, text: "Steve Jobs")
+    func breakLayoutAuthorQuote(viewController: NSViewController, authorLabel: NSTextField, randomNumber: Int) -> NSTextField {
+        var label = addBasicTextField(viewController, text: Quote.ArrayOfQuotes[randomNumber]["author"]!)
         label = addBreakLabelConfiguration(label, font: NSFont_Prodam.breakAuthorFont())
         label.frame = NSMakeRect(authorLabel.frame.origin.x + authorLabel.frame.width - label.frame.width, authorLabel.frame.origin.y - label.frame.height, label.frame.width, label.frame.height)
 

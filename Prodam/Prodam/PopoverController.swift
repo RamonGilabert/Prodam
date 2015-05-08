@@ -72,7 +72,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onTasksButtonPressed() {
         stopTimerAndLayoutViews()
-        // TODO: Delete from CoreData
     }
 
     func onSettingsButtonPressed() {
