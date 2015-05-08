@@ -112,6 +112,27 @@ class ViewModel: NSObject {
         return button
     }
 
+    // MARK: Break view layout
+
+    func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
+        let label = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
+        label.bordered = false
+        label.bezeled = false
+        label.editable = false
+        label.selectable = false
+        label.drawsBackground = false
+        label.stringValue = "TAKING A BREAK"
+        label.textColor = NSColor.whiteColor()
+        label.alphaValue = 0.6
+        label.font = NSFont(name: "OpenSans-Semibold", size: 40)
+        label.sizeToFit()
+        label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, viewController.view.frame.height - label.frame.height - 25, label.frame.width, label.frame.height)
+
+        viewController.view.addSubview(label)
+
+        return label
+    }
+
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
