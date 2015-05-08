@@ -116,8 +116,6 @@ class ViewModel: NSObject {
 
     func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
         let label = addBasicTextField(viewController, text: "TAKING A BREAK")
-        label.editable = false
-        label.selectable = false
         label.textColor = NSColor.whiteColor()
         label.alphaValue = 0.6
         label.font = NSFont(name: "OpenSans-Semibold", size: 40)
@@ -128,26 +126,18 @@ class ViewModel: NSObject {
     }
 
     func breakLayoutEditableLabel(viewController: NSViewController) -> NSTextField {
-        let label = addBasicTextField(viewController, text: "5")
-        label.textColor = NSColor.whiteColor()
-        label.alphaValue = 0.6
-        label.font = NSFont(name: "OpenSans", size: 225)
-        label.focusRingType = NSFocusRingType.None
+        var label = addBasicTextField(viewController, text: "5")
+        label = addBreakLabelConfiguration(label, size: 225, fontComplement: "")
         label.alignment = NSTextAlignment.RightTextAlignment
-        label.sizeToFit()
+        label.editable = true
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width*4.75)/2, (viewController.view.frame.height - label.frame.height)/2 + 75, label.frame.width * 3, label.frame.height)
 
         return label
     }
 
     func breakLayoutMinutesLabel(viewController: NSViewController, sideLabel: NSTextField) -> NSTextField {
-        let label = addBasicTextField(viewController, text: "min")
-        label.editable = false
-        label.selectable = false
-        label.textColor = NSColor.whiteColor()
-        label.alphaValue = 0.6
-        label.font = NSFont(name: "OpenSans", size: 30)
-        label.sizeToFit()
+        var label = addBasicTextField(viewController, text: "min")
+        label = addBreakLabelConfiguration(label, size: 30, fontComplement: "")
         label.frame = NSMakeRect(sideLabel.frame.origin.x + sideLabel.frame.width + 15, sideLabel.frame.origin.y + 55, label.frame.width, label.frame.height)
 
         return label
@@ -198,26 +188,18 @@ class ViewModel: NSObject {
     }
 
     func breakLayoutQuote(viewController: NSViewController, topButton: NSButton) -> NSTextField {
-        let label = addBasicTextField(viewController, text: "Stay hungry, stay foolish...")
+        var label = addBasicTextField(viewController, text: "Stay hungry, stay foolish...")
         label.editable = false
         label.selectable = false
-        label.textColor = NSColor.whiteColor()
-        label.alphaValue = 0.6
-        label.font = NSFont(name: "OpenSansLight-Italic", size: 18)
-        label.sizeToFit()
+        label = addBreakLabelConfiguration(label, size: 18, fontComplement: "-Italic")
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, (topButton.frame.origin.y - label.frame.height)/2 + label.frame.height/2, label.frame.width, label.frame.height)
 
         return label
     }
 
     func breakLayoutAuthorQuote(viewController: NSViewController, authorLabel: NSTextField) -> NSTextField {
-        let label = addBasicTextField(viewController, text: "Steve Jobs")
-        label.editable = false
-        label.selectable = false
-        label.textColor = NSColor.whiteColor()
-        label.alphaValue = 0.6
-        label.font = NSFont(name: "OpenSansLight-Italic", size: 16)
-        label.sizeToFit()
+        var label = addBasicTextField(viewController, text: "Steve Jobs")
+        label = addBreakLabelConfiguration(label, size: 16, fontComplement: "Light-Italic")
         label.frame = NSMakeRect(authorLabel.frame.origin.x + authorLabel.frame.width - label.frame.width, authorLabel.frame.origin.y - label.frame.height, label.frame.width, label.frame.height)
 
         return label
@@ -239,6 +221,19 @@ class ViewModel: NSObject {
         viewController.view.addSubview(button)
 
         return button
+    }
+
+    func addBreakLabelConfiguration(label: NSTextField, size: CGFloat, fontComplement: String) -> NSTextField {
+        label.editable = false
+        label.selectable = false
+        label.textColor = NSColor.whiteColor()
+        label.alphaValue = 0.6
+        label.font = NSFont(name: "OpenSans\(fontComplement)", size: size)
+        label.focusRingType = NSFocusRingType.None
+        label.alignment = NSTextAlignment.CenterTextAlignment
+        label.sizeToFit()
+
+        return label
     }
 
     func addBasicTextField(viewController: NSViewController, text: String) -> NSTextField {
