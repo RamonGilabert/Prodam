@@ -54,7 +54,7 @@ class ViewModel: NSObject {
         let textField = addBasicTextField(viewController, text: "")
         textField.frame = NSMakeRect(50, Constant.Window.Height - 32, Constant.Window.Width - 100, 24)
         textField.placeholderString = "Enter your new task..."
-        textField.font = NSFont(name: "HelveticaNeue-Light", size: 18)
+        textField.font = NSFont_Prodam.textFieldNormalField()
         textField.focusRingType = NSFocusRingType.None
         textField.allowsEditingTextAttributes = true
         textField.delegate = fieldDelegate
@@ -68,7 +68,7 @@ class ViewModel: NSObject {
         let textField = addBasicTextField(viewController, text: "15:00")
         textField.editable = false
         textField.selectable = false
-        textField.font = NSFont(name: "AvenirNextCondensed-DemiBold", size: 75)
+        textField.font = NSFont_Prodam.mainTimer()
         textField.sizeToFit()
         textField.frame = NSMakeRect((Constant.Window.Width - (textField.frame.width + 100))/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width + 100, textField.frame.height)
         textField.alphaValue = 0.0
@@ -79,7 +79,7 @@ class ViewModel: NSObject {
     func layoutEditableTextFieldMainView(viewController: NSViewController) -> NSTextField {
         let textField = addBasicTextField(viewController, text: "15")
         textField.alignment = NSTextAlignment.RightTextAlignment
-        textField.font = NSFont(name: "HelveticaNeue-Bold", size: 70)
+        textField.font = NSFont_Prodam.mainTimerEditable()
         textField.sizeToFit()
         textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 100, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 100, textField.frame.height)
         textField.becomeFirstResponder()
@@ -210,7 +210,7 @@ class ViewModel: NSObject {
     func addBreakLabelConfiguration(label: NSTextField, size: CGFloat, fontComplement: String) -> NSTextField {
         label.editable = false
         label.selectable = false
-        label.textColor = NSColor.whiteColor()
+        label.textColor = NSColor_Prodam.colorBreakLabels()
         label.alphaValue = Constant.BreakLayout.AlphaValueTextFields
         label.font = NSFont(name: "OpenSans\(fontComplement)", size: size)
         label.focusRingType = NSFocusRingType.None
@@ -237,7 +237,7 @@ class ViewModel: NSObject {
         textField.bezeled = false
         textField.bordered = false
         textField.drawsBackground = false
-        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.2, alpha:1)
+        textField.textColor = NSColor_Prodam.almostBlackColor()
         textField.alignment = NSTextAlignment.CenterTextAlignment
         textField.stringValue = text
 
