@@ -20,20 +20,7 @@ class BreakViewController: NSViewController {
         self.view.frame = NSMakeRect(0, 0, 1200, 700)
 
         self.headerLabel = self.viewModel.breakLayoutHeaderLabel(self)
-
-        self.editableTextField.frame = NSMakeRect(0, 0, 0, 0)
-        self.editableTextField.bordered = false
-        self.editableTextField.bezeled = false
-        self.editableTextField.drawsBackground = false
-        self.editableTextField.stringValue = "5"
-        self.editableTextField.textColor = NSColor.whiteColor()
-        self.editableTextField.alphaValue = 0.6
-        self.editableTextField.font = NSFont(name: "OpenSans", size: 225)
-        self.editableTextField.focusRingType = NSFocusRingType.None
-        self.editableTextField.alignment = NSTextAlignment.RightTextAlignment
-        self.editableTextField.sizeToFit()
-        self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width*4.75)/2, (self.view.frame.height - self.editableTextField.frame.height)/2 + 75, self.editableTextField.frame.width * 3, self.editableTextField.frame.height)
-        self.view.addSubview(self.editableTextField)
+        self.editableTextField = self.viewModel.breakLayoutEditableLabel(self)
 
         self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
         self.minutesLabel.bordered = false

@@ -115,7 +115,7 @@ class ViewModel: NSObject {
     // MARK: Break view layout
 
     func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
-        let label = NSTextField(frame: NSMakeRect(0, 0, 0, 0))
+        let label = NSTextField()
         label.bordered = false
         label.bezeled = false
         label.editable = false
@@ -127,6 +127,25 @@ class ViewModel: NSObject {
         label.font = NSFont(name: "OpenSans-Semibold", size: 40)
         label.sizeToFit()
         label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width)/2, viewController.view.frame.height - label.frame.height - 25, label.frame.width, label.frame.height)
+
+        viewController.view.addSubview(label)
+
+        return label
+    }
+
+    func breakLayoutEditableLabel(viewController: NSViewController) -> NSTextField {
+        let label = NSTextField()
+        label.bordered = false
+        label.bezeled = false
+        label.drawsBackground = false
+        label.stringValue = "5"
+        label.textColor = NSColor.whiteColor()
+        label.alphaValue = 0.6
+        label.font = NSFont(name: "OpenSans", size: 225)
+        label.focusRingType = NSFocusRingType.None
+        label.alignment = NSTextAlignment.RightTextAlignment
+        label.sizeToFit()
+        label.frame = NSMakeRect((viewController.view.frame.width - label.frame.width*4.75)/2, (viewController.view.frame.height - label.frame.height)/2 + 75, label.frame.width * 3, label.frame.height)
 
         viewController.view.addSubview(label)
 
