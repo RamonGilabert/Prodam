@@ -23,7 +23,7 @@ class BreakViewController: NSViewController {
         self.editableTextField = self.viewModel.breakLayoutEditableLabel(self)
         self.minutesLabel = self.viewModel.breakLayoutMinutesLabel(self, sideLabel: self.editableTextField)
         self.workAgainButton = self.viewModel.breakLayoutWorkAgainButton(self, sideLabel: self.editableTextField)
-        self.startBreakButton = self.viewModel.breakLayoutWorkAgainButton(self, sideLabel: self.editableTextField)
+        self.startBreakButton = self.viewModel.breakLayoutStartBreakButton(self, sideLabel: self.editableTextField)
         self.closeWindowButton = self.viewModel.breakLayoutCloseButton(self)
         self.quoteLabel = self.viewModel.breakLayoutQuote(self, topButton: self.workAgainButton)
         self.authorLabel = self.viewModel.breakLayoutAuthorQuote(self, authorLabel: self.quoteLabel)
@@ -55,6 +55,7 @@ class BreakViewController: NSViewController {
     // MARK: Action handlers
 
     func onWorkAgainButtonPressed() {
+        self.breakTimer.invalidate()
         self.view.window?.close()
     }
 
