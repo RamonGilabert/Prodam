@@ -152,6 +152,55 @@ class ViewModel: NSObject {
         return label
     }
 
+    func breakLayoutMinutesLabel(viewController: NSViewController, sideLabel: NSTextField) -> NSTextField {
+        let label = NSTextField()
+        label.bordered = false
+        label.bezeled = false
+        label.editable = false
+        label.selectable = false
+        label.drawsBackground = false
+        label.stringValue = "min"
+        label.textColor = NSColor.whiteColor()
+        label.alphaValue = 0.6
+        label.font = NSFont(name: "OpenSans", size: 30)
+        label.sizeToFit()
+        label.frame = NSMakeRect(sideLabel.frame.origin.x + sideLabel.frame.width + 15, sideLabel.frame.origin.y + 55, label.frame.width, label.frame.height)
+
+        viewController.view.addSubview(label)
+
+        return label
+    }
+
+    func breakLayoutWorkAgainButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
+        let button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) - 290, sideLabel.frame.origin.y - 125, 265, 55))
+        button.bordered = false
+        button.image = NSImage(named: "background-break-button")
+        button.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.alphaValue = 0.8
+        button.target = self
+        button.action = "onWorkAgainButtonPressed"
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
+    func breakLayoutStartBreakButton(viewController: NSViewController, sideLabel: NSTextField) -> NSButton {
+        let button = NSButton(frame: NSMakeRect((viewController.view.frame.width / 2) + 25, sideLabel.frame.origin.y - 125, 265, 55))
+        button.bordered = false
+        button.image = NSImage(named: "background-break-button")
+        button.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.alphaValue = 0.8
+        button.target = self
+        button.action = "onStartBreakButtonPressed"
+
+        viewController.view.addSubview(button)
+
+        return button
+    }
+
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {

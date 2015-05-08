@@ -21,30 +21,8 @@ class BreakViewController: NSViewController {
 
         self.headerLabel = self.viewModel.breakLayoutHeaderLabel(self)
         self.editableTextField = self.viewModel.breakLayoutEditableLabel(self)
-
-        self.minutesLabel.frame = NSMakeRect(0, 0, 0, 0)
-        self.minutesLabel.bordered = false
-        self.minutesLabel.bezeled = false
-        self.minutesLabel.editable = false
-        self.minutesLabel.selectable = false
-        self.minutesLabel.drawsBackground = false
-        self.minutesLabel.stringValue = "min"
-        self.minutesLabel.textColor = NSColor.whiteColor()
-        self.minutesLabel.alphaValue = 0.6
-        self.minutesLabel.font = NSFont(name: "OpenSans", size: 30)
-        self.minutesLabel.sizeToFit()
-        self.minutesLabel.frame = NSMakeRect(self.editableTextField.frame.origin.x + self.editableTextField.frame.width + 15, self.editableTextField.frame.origin.y + 55, self.minutesLabel.frame.width, self.minutesLabel.frame.height)
-        self.view.addSubview(self.minutesLabel)
-
-        self.workAgainButton.frame = NSMakeRect((self.view.frame.width / 2) - 290, self.editableTextField.frame.origin.y - 125, 265, 55)
-        self.workAgainButton.bordered = false
-        self.workAgainButton.image = NSImage(named: "background-break-button")
-        self.workAgainButton.attributedTitle = TextAttributter.attributedStringForButtons("WORK AGAIN", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
-        self.workAgainButton.setButtonType(NSButtonType.MomentaryChangeButton)
-        self.workAgainButton.alphaValue = 0.8
-        self.workAgainButton.target = self
-        self.workAgainButton.action = "onWorkAgainButtonPressed"
-        self.view.addSubview(self.workAgainButton)
+        self.minutesLabel = self.viewModel.breakLayoutMinutesLabel(self, sideLabel: self.editableTextField)
+        self.workAgainButton = self.viewModel.breakLayoutWorkAgainButton(self, sideLabel: self.editableTextField)
 
         self.startBreakButton.frame = NSMakeRect((self.view.frame.width / 2) + 25, self.editableTextField.frame.origin.y - 125, 265, 55)
         self.startBreakButton.bordered = false
