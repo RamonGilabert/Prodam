@@ -26,6 +26,7 @@
 		F6E2262F1AF3FF4900125CA4 /* ProdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */; };
 		F6E398DE1AFCC4DC00E3C0BE /* NSFont+Prodam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E398DD1AFCC4DC00E3C0BE /* NSFont+Prodam.swift */; };
 		F6E398E01AFCC4F100E3C0BE /* NSColor+Prodam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E398DF1AFCC4F100E3C0BE /* NSColor+Prodam.swift */; };
+		F6E398E21AFCCB2C00E3C0BE /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E398E11AFCCB2C00E3C0BE /* Quotes.swift */; };
 		F6F537B61AFA8F670096566B /* BreakWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B51AFA8F670096566B /* BreakWindowController.swift */; };
 		F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F537B71AFA93BD0096566B /* BreakWindow.swift */; };
 		F6F78A311AFA9BF70055FC5D /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F78A301AFA9BF70055FC5D /* RoundedCornerView.swift */; };
@@ -65,6 +66,7 @@
 		F6E2262E1AF3FF4900125CA4 /* ProdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdamTests.swift; sourceTree = "<group>"; };
 		F6E398DD1AFCC4DC00E3C0BE /* NSFont+Prodam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Prodam.swift"; sourceTree = "<group>"; };
 		F6E398DF1AFCC4F100E3C0BE /* NSColor+Prodam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+Prodam.swift"; sourceTree = "<group>"; };
+		F6E398E11AFCCB2C00E3C0BE /* Quotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
 		F6F537B51AFA8F670096566B /* BreakWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindowController.swift; sourceTree = "<group>"; };
 		F6F537B71AFA93BD0096566B /* BreakWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakWindow.swift; sourceTree = "<group>"; };
 		F6F78A301AFA9BF70055FC5D /* RoundedCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				F6CEED451AFA1EA200868F19 /* DateFormatting.swift */,
 				F6CEED431AFA19F700868F19 /* TextAttributter.swift */,
 				F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */,
+				F6E398E11AFCCB2C00E3C0BE /* Quotes.swift */,
 			);
 			name = "Helper classes";
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				F6CD5A191AFB58EF00CB1F41 /* BreakViewController.swift in Sources */,
 				F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */,
 				F6E398E01AFCC4F100E3C0BE /* NSColor+Prodam.swift in Sources */,
+				F6E398E21AFCCB2C00E3C0BE /* Quotes.swift in Sources */,
 				F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */,
 				F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */,
 			);
