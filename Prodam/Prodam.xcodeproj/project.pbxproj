@@ -187,7 +187,7 @@
 		F6E2261A1AF3FF4900125CA4 /* Prodam */ = {
 			isa = PBXGroup;
 			children = (
-				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
+				F6E398E31AFCD11C00E3C0BE /* App delegate */,
 				F680B3D81AF755A500841DE3 /* Managers */,
 				F6F537B41AFA8F520096566B /* View controller */,
 				F680B3D31AF6853600841DE3 /* Window controllers */,
@@ -224,6 +224,14 @@
 				F6E2262D1AF3FF4900125CA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6E398E31AFCD11C00E3C0BE /* App delegate */ = {
+			isa = PBXGroup;
+			children = (
+				F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */,
+			);
+			name = "App delegate";
 			sourceTree = "<group>";
 		};
 		F6F537B41AFA8F520096566B /* View controller */ = {
