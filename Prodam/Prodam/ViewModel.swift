@@ -74,7 +74,7 @@ class ViewModel: NSObject {
         textField.selectable = false
         textField.font = NSFont_Prodam.mainTimer()
         textField.sizeToFit()
-        textField.frame = NSMakeRect((Constant.Window.Width - (textField.frame.width + 100))/2, (Constant.Window.Height - textField.frame.height)/2 + 25, textField.frame.width + 100, textField.frame.height)
+        textField.frame = NSMakeRect((Constant.Window.Width - (textField.frame.width + 100))/2, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 100, textField.frame.height)
         textField.alphaValue = 0.0
 
         return textField

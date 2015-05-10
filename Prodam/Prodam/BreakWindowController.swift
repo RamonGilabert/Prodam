@@ -18,6 +18,7 @@ class BreakWindowController: NSWindowController {
         NSApp.activateIgnoringOtherApps(true)
         self.window?.makeKeyAndOrderFront(true)
         self.breakViewController.popoverManager = self.popoverManager
+        self.popoverManager?.breakController = self
         
         (self.window?.contentView as! RoundedCornerView).visualEffectView.addSubview(self.breakViewController.view)
     }

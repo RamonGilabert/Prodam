@@ -14,7 +14,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     let menuPopover = NSMenu()
     let iconMenu = NSImage(named: "menu-logo")
     var popoverController = PopoverWindowController()
-    var breakController = BreakWindowController()
+    var breakController: BreakWindowController?
     var popoverIsActive = false
     var delegate: PopoverManagerDelegate?
 
@@ -35,6 +35,18 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
         self.popoverController.loadWindow()
         self.delegate = self
 
+        let firstItemMenu = NSMenuItem(title: "Get back to work", action: "onGetBackToWorkButtonPressed", keyEquivalent: "first")
+        let secondItemMenu = NSMenuItem(title: "Preferences", action: "onPreferencesButtonPressed", keyEquivalent: "second")
+        let thirdItemMenu = NSMenuItem(title: "Quit", action: "onQuitMenuButtonPressed", keyEquivalent: "third")
+        firstItemMenu.target = self
+        secondItemMenu.target = self
+        thirdItemMenu.target = self
+
+        self.menuPopover.addItem(firstItemMenu)
+        self.menuPopover.addItem(NSMenuItem.separatorItem())
+        self.menuPopover.addItem(secondItemMenu)
+        self.menuPopover.addItem(thirdItemMenu)
+
         self.statusItem.view = self.popoverView
         openThatPopover()
     }
@@ -52,15 +64,17 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     // MARK: Action methods
 
     func onGetBackToWorkButtonPressed() {
-
+        self.breakController?.window?.close()
+        configureThatView()
+        openThatPopover()
     }
 
     func onPreferencesButtonPressed() {
-
+        // TODO: Show preferences here
     }
 
     func onQuitMenuButtonPressed() {
-
+        NSApplication.sharedApplication().terminate(self)
     }
 
     // MARK: Delegate methods
@@ -88,14 +102,6 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     }
 
     func configureThatMenu() {
-        let firstItemMenu = NSMenuItem(title: "Get back to work", action: "onGetBackToWorkButtonPressed", keyEquivalent: "first")
-        let secondItemMenu = NSMenuItem(title: "Preferences", action: "onPreferencesButtonPressed", keyEquivalent: "second")
-        let thirdItemMenu = NSMenuItem(title: "Quit", action: "onQuitMenuButtonPressed", keyEquivalent: "third")
-
-        self.menuPopover.addItem(firstItemMenu)
-        self.menuPopover.addItem(secondItemMenu)
-        self.menuPopover.addItem(thirdItemMenu)
-
         self.statusItem.menu = self.menuPopover
         self.statusItem.view = nil
         self.statusItem.image = self.iconMenu
