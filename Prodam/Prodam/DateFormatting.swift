@@ -37,6 +37,32 @@ class DateFormatting: NSObject {
         }
     }
 
+    class func getTextWithoutBiggerThanMinutes(textField: NSTextField) -> String {
+        let numberFormatter = NSNumberFormatter()
+
+        if let numberMinutes = numberFormatter.numberFromString(textField.stringValue) {
+            if numberMinutes.integerValue > 60 {
+                textField.stringValue = "59:59"
+            } else if numberMinutes.integerValue < 1 {
+                let numberSeconds = Int(numberMinutes.floatValue * 60)
+
+                if numberSeconds < 10 {
+                    return "00:0\(numberSeconds)"
+                } else {
+                    return "00:\(numberSeconds)"
+                }
+            } else {
+                if numberMinutes.integerValue < 10 {
+                    return "0\(numberMinutes.integerValue):00"
+                } else {
+                    return "\(numberMinutes.integerValue):00"
+                }
+            }
+        }
+
+        return textField.stringValue
+    }
+
     class func getStringFormattedWithDate(textField: NSTextField) -> String {
         let dateFormatter = NSDateFormatter()
 

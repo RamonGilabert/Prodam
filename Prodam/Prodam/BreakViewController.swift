@@ -70,31 +70,9 @@ class BreakViewController: NSViewController {
             self.view.window?.makeFirstResponder(nil)
             self.editableTextField.editable = false
             self.editableTextField.selectable = false
-
-            let numberFormatter = NSNumberFormatter()
-
-            if let numberMinutes = numberFormatter.numberFromString(self.editableTextField.stringValue) {
-                if numberMinutes.integerValue > 60 {
-                    self.editableTextField.stringValue = "59:59"
-                } else if numberMinutes.integerValue < 1 {
-                    let numberSeconds = Int(numberMinutes.floatValue * 60)
-
-                    if numberSeconds < 10 {
-                        self.editableTextField.stringValue = "00:0\(numberSeconds)"
-                    } else {
-                        self.editableTextField.stringValue = "00:\(numberSeconds)"
-                    }
-                } else {
-                    if numberMinutes.integerValue < 10 {
-                        self.editableTextField.stringValue = "0\(numberMinutes.integerValue):00"
-                    } else {
-                        self.editableTextField.stringValue = "\(numberMinutes.integerValue):00"
-                    }
-                }
-
-                self.editableTextField.sizeToFit()
-                self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
-            }
+            self.editableTextField.stringValue = DateFormatting.getTextWithoutBiggerThanMinutes(self.editableTextField)
+            self.editableTextField.sizeToFit()
+            self.editableTextField.frame = NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
 
             self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
 
