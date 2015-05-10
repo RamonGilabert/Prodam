@@ -13,6 +13,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     let popoverView = PopoverView()
     let menuPopover = NSMenu()
     let iconMenu = NSImage(named: "menu-logo")
+    let preferencesWindowController = PreferencesWindowController()
     var popoverController = PopoverWindowController()
     var breakController: BreakWindowController?
     var popoverIsActive = false
@@ -70,7 +71,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     }
 
     func onPreferencesButtonPressed() {
-        // TODO: Show preferences here
+        self.preferencesWindowController.loadWindow()
     }
 
     func onQuitMenuButtonPressed() {
