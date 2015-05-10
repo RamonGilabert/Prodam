@@ -20,6 +20,7 @@
 		F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D851AF6129800EA9BB2 /* PopoverController.swift */; };
 		F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D891AF6236800EA9BB2 /* PopoverView.swift */; };
 		F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D8F1AF63A0F00EA9BB2 /* PopoverWindowController.swift */; };
+		F6D5B8021AFF6F7D00A76043 /* Done.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6D5B8011AFF6F7D00A76043 /* Done.wav */; };
 		F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */; };
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
@@ -56,6 +57,7 @@
 		F6D10D851AF6129800EA9BB2 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
 		F6D10D891AF6236800EA9BB2 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		F6D10D8F1AF63A0F00EA9BB2 /* PopoverWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverWindowController.swift; sourceTree = "<group>"; };
+		F6D5B8011AFF6F7D00A76043 /* Done.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Done.wav; sourceTree = "<group>"; };
 		F6E226181AF3FF4900125CA4 /* Prodam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prodam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2261C1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				F6CD5A1E1AFB633C00CB1F41 /* Fonts */,
 				F6CD5A1A1AFB633000CB1F41 /* Images */,
+				F6D5B8031AFF6F8000A76043 /* Sounds */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -164,6 +167,14 @@
 				F6E398E11AFCCB2C00E3C0BE /* Quotes.swift */,
 			);
 			name = "Helper classes";
+			sourceTree = "<group>";
+		};
+		F6D5B8031AFF6F8000A76043 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F6D5B8011AFF6F7D00A76043 /* Done.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		F6E2260F1AF3FF4900125CA4 = {
@@ -327,6 +338,7 @@
 				F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */,
 				F6CD5A201AFB634600CB1F41 /* OpenSans-Regular.ttf in Resources */,
 				F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */,
+				F6D5B8021AFF6F7D00A76043 /* Done.wav in Resources */,
 				F6CD5A211AFB634900CB1F41 /* OpenSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
