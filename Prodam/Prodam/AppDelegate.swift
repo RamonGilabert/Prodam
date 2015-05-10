@@ -8,7 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.mainPopoverController = PopoverManager()
-        self.breakWindowController.loadWindow()
+        //self.breakWindowController.loadWindow()
     }
 }
 

@@ -26,17 +26,14 @@ class PopoverManager: NSObject, ViewClicked {
         self.popoverController.popoverManager = self
 
         self.statusItem.view = self.popoverView
+        openThatPopover()
     }
 
     // MARK: Icon clicked handlers
 
     func buttonClicked() {
         if self.popoverIsActive == false {
-            self.popoverIsActive = true
-            self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
-            NSApp.activateIgnoringOtherApps(true)
-            self.popoverController.window?.makeMainWindow()
-            self.popoverController.popoverController.view.window?.makeFirstResponder(self.popoverController.popoverController.editableTimerTextField)
+            openThatPopover()
         } else if self.popoverIsActive == true {
             self.popoverIsActive = false
             self.popoverController.window?.resignMainWindow()
@@ -44,5 +41,15 @@ class PopoverManager: NSObject, ViewClicked {
             self.popoverController.window?.makeFirstResponder(nil)
             self.popoverController.popover.close()
         }
+    }
+
+    // MARK: Helper methods
+
+    func openThatPopover() {
+        self.popoverIsActive = true
+        self.popoverController.popover.showRelativeToRect(NSMakeRect(self.popoverView.frame.origin.x, self.popoverView.frame.origin.y - 5, self.popoverView.frame.width, self.popoverView.frame.height), ofView: self.popoverView, preferredEdge: NSMaxYEdge)
+        NSApp.activateIgnoringOtherApps(true)
+        self.popoverController.window?.makeMainWindow()
+        self.popoverController.popoverController.view.window?.makeFirstResponder(self.popoverController.popoverController.editableTimerTextField)
     }
 }
