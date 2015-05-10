@@ -16,8 +16,10 @@ struct Constant {
     }
 
     struct BreakLayout {
-        static let HeightMainButton = 55 as CGFloat
+        static let WidthMainView = 1200 as CGFloat
+        static let HeightMainView = 700 as CGFloat
         static let WidthMainButton = 265 as CGFloat
+        static let HeightMainButton = 55 as CGFloat
         static let TopEditableYPadding = 65 as CGFloat
         static let PaddingXButton = 25 as CGFloat
         static let PaddingYButton = 115 as CGFloat
