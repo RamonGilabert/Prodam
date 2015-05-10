@@ -3,6 +3,7 @@ import Cocoa
 class BreakWindowController: NSWindowController {
 
     let breakViewController = BreakViewController()
+    var popoverManager: PopoverManager?
 
     // MARK: View lifecycle
 
@@ -16,7 +17,8 @@ class BreakWindowController: NSWindowController {
         self.window?.makeMainWindow()
         NSApp.activateIgnoringOtherApps(true)
         self.window?.makeKeyAndOrderFront(true)
-
+        self.breakViewController.popoverManager = self.popoverManager
+        
         (self.window?.contentView as! RoundedCornerView).visualEffectView.addSubview(self.breakViewController.view)
     }
 }

@@ -28,8 +28,8 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
         imageView.image = iconMenu
         self.popoverView.addSubview(imageView)
 
-        self.popoverController.loadWindow()
         self.popoverController.popoverManager = self
+        self.popoverController.loadWindow()
         self.delegate = self
 
         self.statusItem.view = self.popoverView

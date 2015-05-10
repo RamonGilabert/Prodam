@@ -20,6 +20,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var delegate: Resignator?
     var timerUpdateLabel = NSTimer()
     var breakWindowController: BreakWindowController?
+    var popoverManager: PopoverManager?
 
     // MARK: View lifecycle
 
@@ -87,6 +88,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onRealTimerFired() {
         stopTimerAndLayoutViews()
+        self.breakWindowController!.popoverManager = self.popoverManager
         self.breakWindowController!.loadWindow()
     }
 
