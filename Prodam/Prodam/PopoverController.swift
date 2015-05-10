@@ -50,8 +50,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
         }
 
-        self.userDefaults.setValue(self.taskTextField.attributedStringValue, forKey: "taskTitle")
+        self.userDefaults.setValue(self.taskTextField.stringValue, forKey: "taskTitle")
         self.userDefaults.setValue(self.editableTimerTextField.stringValue, forKey: "taskDuration")
+        self.userDefaults.setValue("5", forKey: "taskBreak")
         self.userDefaults.synchronize()
 
         self.taskTextField.resignFirstResponder()
@@ -83,7 +84,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.editable = true
         self.taskTextField.selectable = true
         self.userDefaults.setValue(nil, forKey: "taskTitle")
+        self.userDefaults.setValue(nil, forKey: "taskDuration")
+        self.userDefaults.setValue(nil, forKey: "taskBreak")
         self.userDefaults.synchronize()
+        self.taskTextField.stringValue = ""
         self.editableTimerTextField.stringValue = "50"
     }
 
@@ -159,7 +163,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         startingOrStoppingMethods(0.0)
         self.view.addSubview(self.editableTimerTextField)
         self.delegate?.makeResponder(self.editableTimerTextField)
-        self.taskTextField.stringValue = ""
+        self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!)
         self.view.addSubview(self.addTaskButton)
 
         self.timerUpdateLabel.invalidate()

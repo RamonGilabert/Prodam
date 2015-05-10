@@ -61,6 +61,7 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
     func onStartBreakButtonPressed() {
         if self.startBreakButton.attributedTitle == "START BREAK" || self.startBreakButton.title == "START BREAK" {
             onTimerDidFinishOrNot(false)
+            self.userDefaults.setValue(self.editableTextField.stringValue, forKey: "taskBreak")
         } else {
             self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
             self.breakTimer.invalidate()
@@ -69,7 +70,11 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     func onCloseButtonPressed() {
         self.view.window?.close()
-        // TODO: NSUserDefaults to nil.
+        self.userDefaults.setValue(nil, forKey: "taskTitle")
+        self.userDefaults.setValue(nil, forKey: "taskDuration")
+        self.userDefaults.setValue(nil, forKey: "taskBreak")
+        self.userDefaults.synchronize()
+
     }
 
     // MARK: Mouse events
