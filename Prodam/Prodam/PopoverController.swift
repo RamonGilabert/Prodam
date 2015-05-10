@@ -1,4 +1,5 @@
 import Cocoa
+import AVFoundation
 
 protocol Resignator {
     func makeResponder(textField: NSTextField)
@@ -9,6 +10,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     let popover = NSPopover()
     let viewModel = ViewModel()
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    let audioPlayer = AVAudioPlayer(contentsOfURL: Sound.DoneSound!, error: nil)
     var addTaskButton = NSButton()
     var doneTaskButton = NSButton()
     var pauseTaskButton = NSButton()
@@ -107,6 +109,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         stopTimerAndLayoutViews()
         self.breakWindowController!.popoverManager = self.popoverManager
         self.breakWindowController!.loadWindow()
+        self.audioPlayer.play()
     }
 
     func onLabelShouldChange() {

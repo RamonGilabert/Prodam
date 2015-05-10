@@ -1,9 +1,11 @@
 import Cocoa
+import AVFoundation
 
 class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     let viewModel = ViewModel()
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    let audioPlayer = AVAudioPlayer(contentsOfURL: Sound.DoneSound!, error: nil)
     var headerLabel = NSTextField()
     var minutesLabel = NSTextField()
     var editableTextField = NSTextField()
@@ -49,6 +51,7 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
             self.view.window?.makeMainWindow()
             NSApp.activateIgnoringOtherApps(true)
             self.view.window?.makeKeyAndOrderFront(true)
+            self.audioPlayer.play()
         } else {
             self.editableTextField.stringValue = DateFormatting.getStringFormattedWithDate(self.editableTextField)
         }
