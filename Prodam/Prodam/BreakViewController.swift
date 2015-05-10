@@ -74,10 +74,6 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     func onCloseButtonPressed() {
         self.view.window?.close()
-        self.userDefaults.setValue(nil, forKey: "taskTitle")
-        self.userDefaults.setValue(nil, forKey: "taskDuration")
-        self.userDefaults.setValue(nil, forKey: "taskBreak")
-        self.userDefaults.synchronize()
     }
 
     // MARK: Mouse events

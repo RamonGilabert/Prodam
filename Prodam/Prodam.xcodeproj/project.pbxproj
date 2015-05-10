@@ -21,6 +21,7 @@
 		F6D10D8A1AF6236800EA9BB2 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D891AF6236800EA9BB2 /* PopoverView.swift */; };
 		F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D10D8F1AF63A0F00EA9BB2 /* PopoverWindowController.swift */; };
 		F6D5B8021AFF6F7D00A76043 /* Done.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6D5B8011AFF6F7D00A76043 /* Done.wav */; };
+		F6D5B8051AFF741B00A76043 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8041AFF741B00A76043 /* Sound.swift */; };
 		F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */; };
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
@@ -58,6 +59,7 @@
 		F6D10D891AF6236800EA9BB2 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		F6D10D8F1AF63A0F00EA9BB2 /* PopoverWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverWindowController.swift; sourceTree = "<group>"; };
 		F6D5B8011AFF6F7D00A76043 /* Done.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Done.wav; sourceTree = "<group>"; };
+		F6D5B8041AFF741B00A76043 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		F6E226181AF3FF4900125CA4 /* Prodam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prodam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2261C1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				F6CEED431AFA19F700868F19 /* TextAttributter.swift */,
 				F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */,
 				F6E398E11AFCCB2C00E3C0BE /* Quotes.swift */,
+				F6D5B8041AFF741B00A76043 /* Sound.swift */,
 			);
 			name = "Helper classes";
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				F6E398E21AFCCB2C00E3C0BE /* Quotes.swift in Sources */,
 				F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */,
 				F680B3DA1AF755B400841DE3 /* ViewModel.swift in Sources */,
+				F6D5B8051AFF741B00A76043 /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
