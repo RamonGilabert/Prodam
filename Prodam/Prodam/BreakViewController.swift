@@ -94,4 +94,26 @@ class BreakViewController: NSViewController {
     override func mouseDown(theEvent: NSEvent) {
         self.view.window?.makeFirstResponder(nil)
     }
+
+    // MARK: Helper methods
+
+    func onTimerDidFinishOrNot(bool: Bool) {
+        self.minutesLabel.hidden = Bool(1 - Int(bool))
+        self.editableTextField.editable = bool
+        self.editableTextField.selectable = bool
+        self.editableTextField.stringValue = bool ? "1" : DateFormatting.getTextWithoutBiggerThanMinutes(self.editableTextField)
+        self.editableTextField.sizeToFit()
+        self.editableTextField.frame = bool ? self.initialFrameMinutes : NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
+        self.view.window?.makeFirstResponder(bool ? self.editableTextField : nil)
+        self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons(bool ? "START BREAK" : "PAUSE BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+
+        if bool == true {
+            self.headerLabel.stringValue = "TAKE ANOTHER BREAK"
+            self.headerLabel.sizeToFit()
+            self.headerLabel.frame = NSMakeRect((self.view.frame.width - self.headerLabel.frame.width)/2, self.headerLabel.frame.origin.y, self.headerLabel.frame.width, self.headerLabel.frame.height)
+            self.breakTimer.invalidate()
+        } else {
+            self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+        }
+    }
 }
