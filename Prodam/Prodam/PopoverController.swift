@@ -89,6 +89,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.userDefaults.synchronize()
         self.taskTextField.stringValue = ""
         self.editableTimerTextField.stringValue = "50"
+        self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
+        self.pauseTaskButton.image = NSImage(named: "background-pause-button")
     }
 
     func onSettingsButtonPressed() {
@@ -126,6 +128,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.taskButton.enabled = true
             self.taskTextField.editable = false
             self.taskTextField.selectable = false
+            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!)
             self.editableTimerTextField.stringValue = self.userDefaults.stringForKey("taskDuration")!
         } else {
             self.taskButton.enabled = false
@@ -163,6 +166,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.taskTextField.selectable = (self.userDefaults.valueForKey("taskTitle") != nil) ? false : true
         self.doneTaskButton.alphaValue = value
         self.pauseTaskButton.alphaValue = value
+        self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
+        self.pauseTaskButton.image = NSImage(named: "background-pause-button")
     }
 
     func stopTimerAndLayoutViews() {

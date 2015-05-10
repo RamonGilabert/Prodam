@@ -64,8 +64,8 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     func onStartBreakButtonPressed() {
         if self.startBreakButton.attributedTitle == "START BREAK" || self.startBreakButton.title == "START BREAK" {
-            onTimerDidFinishOrNot(false)
             self.userDefaults.setValue(self.editableTextField.stringValue, forKey: "taskBreak")
+            onTimerDidFinishOrNot(false)
         } else {
             self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
             self.breakTimer.invalidate()
