@@ -44,6 +44,9 @@ class BreakViewController: NSViewController {
 
     func onLabelShouldChange() {
         if self.editableTextField.stringValue == "00:00" {
+            self.headerLabel.stringValue = "TAKE ANOTHER BREAK"
+            self.headerLabel.sizeToFit()
+            self.headerLabel.frame = NSMakeRect((self.view.frame.width - self.headerLabel.frame.width)/2, self.headerLabel.frame.origin.y, self.headerLabel.frame.width, self.headerLabel.frame.height)
             self.breakTimer.invalidate()
             self.editableTextField.editable = true
             self.editableTextField.selectable = true
@@ -64,7 +67,6 @@ class BreakViewController: NSViewController {
     }
 
     func onStartBreakButtonPressed() {
-        // TODO: Some refactor here
         if self.startBreakButton.attributedTitle == "START BREAK" || self.startBreakButton.title == "START BREAK" {
             self.minutesLabel.hidden = true
             self.view.window?.makeFirstResponder(nil)
