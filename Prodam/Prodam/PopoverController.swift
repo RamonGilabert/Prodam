@@ -11,6 +11,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     let viewModel = ViewModel()
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let audioPlayer = AVAudioPlayer(contentsOfURL: Sound.DoneSound!, error: nil)
+    var preferencesWindowController: PreferencesWindowController?
     var addTaskButton = NSButton()
     var doneTaskButton = NSButton()
     var pauseTaskButton = NSButton()
@@ -96,7 +97,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onSettingsButtonPressed() {
-        // TODO: Show preferences
+        self.popoverManager?.delegate?.configureThatMenu!()
+        self.preferencesWindowController!.loadWindow()
     }
 
     override func controlTextDidChange(obj: NSNotification) {

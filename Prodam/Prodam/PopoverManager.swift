@@ -50,6 +50,8 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
         self.statusItem.view = self.popoverView
         openThatPopover()
+
+        self.popoverController.popoverController.preferencesWindowController = self.preferencesWindowController
     }
 
     // MARK: Icon clicked handlers
@@ -66,11 +68,13 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
     func onGetBackToWorkButtonPressed() {
         self.breakController?.window?.close()
+        self.preferencesWindowController.window?.close()
         configureThatView()
         openThatPopover()
     }
 
     func onPreferencesButtonPressed() {
+        configureThatMenu()
         self.preferencesWindowController.loadWindow()
     }
 
