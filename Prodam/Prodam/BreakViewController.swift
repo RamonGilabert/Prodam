@@ -45,6 +45,10 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
     func onLabelShouldChange() {
         if self.editableTextField.stringValue == "00:00" {
             onTimerDidFinishOrNot(true)
+            self.view.window?.makeKeyWindow()
+            self.view.window?.makeMainWindow()
+            NSApp.activateIgnoringOtherApps(true)
+            self.view.window?.makeKeyAndOrderFront(true)
         } else {
             self.editableTextField.stringValue = DateFormatting.getStringFormattedWithDate(self.editableTextField)
         }
@@ -74,7 +78,6 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
         self.userDefaults.setValue(nil, forKey: "taskDuration")
         self.userDefaults.setValue(nil, forKey: "taskBreak")
         self.userDefaults.synchronize()
-
     }
 
     // MARK: Mouse events
@@ -102,7 +105,7 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
         self.minutesLabel.hidden = Bool(1 - Int(bool))
         self.editableTextField.editable = bool
         self.editableTextField.selectable = bool
-        self.editableTextField.stringValue = bool ? "1" : DateFormatting.getTextWithoutBiggerThanMinutes(self.editableTextField)
+        self.editableTextField.stringValue = bool ? self.userDefaults.stringForKey("taskBreak")! : DateFormatting.getTextWithoutBiggerThanMinutes(self.editableTextField)
         self.editableTextField.sizeToFit()
         self.editableTextField.frame = bool ? self.initialFrameMinutes : NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
         self.view.window?.makeFirstResponder(bool ? self.editableTextField : nil)

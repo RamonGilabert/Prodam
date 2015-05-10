@@ -127,6 +127,12 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.taskTextField.editable = false
             self.taskTextField.selectable = false
             self.editableTimerTextField.stringValue = self.userDefaults.stringForKey("taskDuration")!
+        } else {
+            self.taskButton.enabled = false
+            self.taskTextField.editable = true
+            self.taskTextField.selectable = true
+            self.taskTextField.stringValue = ""
+            self.editableTimerTextField.stringValue = "50"
         }
     }
 
