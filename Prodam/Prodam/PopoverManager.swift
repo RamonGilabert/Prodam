@@ -3,12 +3,16 @@ import Cocoa
 @objc protocol PopoverManagerDelegate {
     optional func openThatPopover()
     optional func closeThatPopover()
+    optional func configureThatView()
+    optional func configureThatMenu()
 }
 
 class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let popoverView = PopoverView()
+    let menuPopover = NSMenu()
+    let iconMenu = NSImage(named: "menu-logo")
     var popoverController = PopoverWindowController()
     var breakController = BreakWindowController()
     var popoverIsActive = false
@@ -19,13 +23,12 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     override init() {
         super.init()
 
-        let iconMenu = NSImage(named: "menu-logo")
-        iconMenu?.setTemplate(true)
+        self.iconMenu?.setTemplate(true)
 
         self.popoverView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness + 3, NSStatusBar.systemStatusBar().thickness)
         self.popoverView.delegate = self
         let imageView = NSImageView(frame: NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness))
-        imageView.image = iconMenu
+        imageView.image = self.iconMenu
         self.popoverView.addSubview(imageView)
 
         self.popoverController.popoverManager = self
@@ -46,6 +49,20 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
         }
     }
 
+    // MARK: Action methods
+
+    func onGetBackToWorkButtonPressed() {
+
+    }
+
+    func onPreferencesButtonPressed() {
+
+    }
+
+    func onQuitMenuButtonPressed() {
+
+    }
+
     // MARK: Delegate methods
 
     func openThatPopover() {
@@ -62,5 +79,24 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
         self.popoverController.window?.resignKeyWindow()
         self.popoverController.window?.makeFirstResponder(nil)
         self.popoverController.popover.close()
+    }
+
+    func configureThatView() {
+        self.statusItem.menu = nil
+        self.statusItem.image = nil
+        self.statusItem.view = self.popoverView
+    }
+
+    func configureThatMenu() {
+        self.statusItem.view = nil
+        let firstItemMenu = NSMenuItem(title: "Get back to work", action: "onGetBackToWorkButtonPressed", keyEquivalent: "first")
+        let secondItemMenu = NSMenuItem(title: "Preferences", action: "onPreferencesButtonPressed", keyEquivalent: "second")
+        let thirdItemMenu = NSMenuItem(title: "Quit", action: "onQuitMenuButtonPressed", keyEquivalent: "third")
+        self.menuPopover.addItem(firstItemMenu)
+        self.menuPopover.addItem(secondItemMenu)
+        self.menuPopover.addItem(thirdItemMenu)
+
+        self.statusItem.menu = self.menuPopover
+        self.statusItem.image = self.iconMenu
     }
 }
