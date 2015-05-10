@@ -45,6 +45,7 @@ class BreakViewController: NSViewController {
     func onWorkAgainButtonPressed() {
         self.breakTimer.invalidate()
         self.view.window?.close()
+        // TODO: Show the popover again.
     }
 
     func onStartBreakButtonPressed() {
@@ -58,6 +59,8 @@ class BreakViewController: NSViewController {
 
     func onCloseButtonPressed() {
         self.view.window?.close()
+        // TODO: NSUserDefaults to nil.
+        // TODO: Don't show the popover as a window now, but refresh it.
     }
 
     // MARK: Mouse events

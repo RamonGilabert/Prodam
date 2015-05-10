@@ -1,12 +1,18 @@
 import Cocoa
 
-class PopoverManager: NSObject, ViewClicked {
+@objc protocol PopoverManagerDelegate {
+    optional func openThatPopover()
+    optional func closeThatPopover()
+}
+
+class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let popoverView = PopoverView()
     var popoverController = PopoverWindowController()
     var breakController = BreakWindowController()
     var popoverIsActive = false
+    var delegate: PopoverManagerDelegate?
 
     // MARK: View lifecycle
 
@@ -24,6 +30,7 @@ class PopoverManager: NSObject, ViewClicked {
 
         self.popoverController.loadWindow()
         self.popoverController.popoverManager = self
+        self.delegate = self
 
         self.statusItem.view = self.popoverView
         openThatPopover()
@@ -35,15 +42,11 @@ class PopoverManager: NSObject, ViewClicked {
         if self.popoverIsActive == false {
             openThatPopover()
         } else if self.popoverIsActive == true {
-            self.popoverIsActive = false
-            self.popoverController.window?.resignMainWindow()
-            self.popoverController.window?.resignKeyWindow()
-            self.popoverController.window?.makeFirstResponder(nil)
-            self.popoverController.popover.close()
+            closeThatPopover()
         }
     }
 
-    // MARK: Helper methods
+    // MARK: Delegate methods
 
     func openThatPopover() {
         self.popoverIsActive = true
@@ -51,5 +54,13 @@ class PopoverManager: NSObject, ViewClicked {
         NSApp.activateIgnoringOtherApps(true)
         self.popoverController.window?.makeMainWindow()
         self.popoverController.popoverController.view.window?.makeFirstResponder(self.popoverController.popoverController.editableTimerTextField)
+    }
+
+    func closeThatPopover() {
+        self.popoverIsActive = false
+        self.popoverController.window?.resignMainWindow()
+        self.popoverController.window?.resignKeyWindow()
+        self.popoverController.window?.makeFirstResponder(nil)
+        self.popoverController.popover.close()
     }
 }
