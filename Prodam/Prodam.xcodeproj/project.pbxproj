@@ -24,6 +24,7 @@
 		F6D5B8051AFF741B00A76043 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8041AFF741B00A76043 /* Sound.swift */; };
 		F6D5B8071AFFC55000A76043 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8061AFFC55000A76043 /* PreferencesWindowController.swift */; };
 		F6D5B8091AFFD38100A76043 /* RoundedPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8081AFFD38100A76043 /* RoundedPreferencesView.swift */; };
+		F6D5B80B1AFFDA1200A76043 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B80A1AFFDA1200A76043 /* PreferencesViewController.swift */; };
 		F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */; };
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
@@ -64,6 +65,7 @@
 		F6D5B8041AFF741B00A76043 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		F6D5B8061AFFC55000A76043 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		F6D5B8081AFFD38100A76043 /* RoundedPreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedPreferencesView.swift; sourceTree = "<group>"; };
+		F6D5B80A1AFFDA1200A76043 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferencesViewController.swift; path = ../PreferencesViewController.swift; sourceTree = "<group>"; };
 		F6E226181AF3FF4900125CA4 /* Prodam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prodam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2261C1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -209,7 +211,7 @@
 			children = (
 				F6E398E31AFCD11C00E3C0BE /* App delegate */,
 				F680B3D81AF755A500841DE3 /* Managers */,
-				F6F537B41AFA8F520096566B /* View controller */,
+				F6F537B41AFA8F520096566B /* View controllers */,
 				F680B3D31AF6853600841DE3 /* Window controllers */,
 				F6CE7B4F1AF946DE004EB930 /* Helper classes */,
 				F680B3DB1AF7560100841DE3 /* Custom views */,
@@ -254,13 +256,14 @@
 			name = "App delegate";
 			sourceTree = "<group>";
 		};
-		F6F537B41AFA8F520096566B /* View controller */ = {
+		F6F537B41AFA8F520096566B /* View controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F6D5B80A1AFFDA1200A76043 /* PreferencesViewController.swift */,
 				F6CD5A181AFB58EF00CB1F41 /* BreakViewController.swift */,
 				F6D10D851AF6129800EA9BB2 /* PopoverController.swift */,
 			);
-			name = "View controller";
+			name = "View controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +374,7 @@
 				F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */,
 				F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */,
 				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
+				F6D5B80B1AFFDA1200A76043 /* PreferencesViewController.swift in Sources */,
 				F6F78A311AFA9BF70055FC5D /* RoundedCornerView.swift in Sources */,
 				F6D5B8071AFFC55000A76043 /* PreferencesWindowController.swift in Sources */,
 				F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */,

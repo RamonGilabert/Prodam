@@ -2,6 +2,7 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController {
 
+    let preferencesViewController = PreferencesViewController()
     var popoverManager: PopoverManager?
     var popoverController: PopoverController?
 
@@ -11,6 +12,9 @@ class PreferencesWindowController: NSWindowController {
         self.window?.center()
         self.window?.animationBehavior = NSWindowAnimationBehavior.DocumentWindow
         self.window?.makeKeyAndOrderFront(true)
+        self.window?.hasShadow = true
         self.popoverController?.preferencesWindowController = self
+
+        (self.window?.contentView as! RoundedPreferencesView).visualEffectView.addSubview(self.preferencesViewController.view)
     }
 }
