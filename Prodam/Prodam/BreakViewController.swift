@@ -39,6 +39,7 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.popoverManager?.delegate?.configureThatMenu!()
         self.view.window?.makeFirstResponder(self.editableTextField)
     }
 
@@ -60,6 +61,7 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
     // MARK: Action handlers
 
     func onWorkAgainButtonPressed() {
+        self.popoverManager?.delegate?.configureThatView!()
         self.breakTimer.invalidate()
         self.view.window?.close()
         self.popoverManager?.delegate!.openThatPopover!()
@@ -76,6 +78,7 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
     }
 
     func onCloseButtonPressed() {
+        self.popoverManager?.delegate?.configureThatView!()
         self.view.window?.close()
     }
 

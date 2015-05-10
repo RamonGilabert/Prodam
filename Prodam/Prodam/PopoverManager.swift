@@ -25,7 +25,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
         self.iconMenu?.setTemplate(true)
 
-        self.popoverView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness + 3, NSStatusBar.systemStatusBar().thickness)
+        self.popoverView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness + 2, NSStatusBar.systemStatusBar().thickness)
         self.popoverView.delegate = self
         let imageView = NSImageView(frame: NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness))
         imageView.image = self.iconMenu
@@ -82,21 +82,24 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     }
 
     func configureThatView() {
+        self.statusItem.view = self.popoverView
         self.statusItem.menu = nil
         self.statusItem.image = nil
-        self.statusItem.view = self.popoverView
     }
 
     func configureThatMenu() {
-        self.statusItem.view = nil
         let firstItemMenu = NSMenuItem(title: "Get back to work", action: "onGetBackToWorkButtonPressed", keyEquivalent: "first")
         let secondItemMenu = NSMenuItem(title: "Preferences", action: "onPreferencesButtonPressed", keyEquivalent: "second")
         let thirdItemMenu = NSMenuItem(title: "Quit", action: "onQuitMenuButtonPressed", keyEquivalent: "third")
+
         self.menuPopover.addItem(firstItemMenu)
         self.menuPopover.addItem(secondItemMenu)
         self.menuPopover.addItem(thirdItemMenu)
 
         self.statusItem.menu = self.menuPopover
+        self.statusItem.view = nil
         self.statusItem.image = self.iconMenu
+
+
     }
 }
