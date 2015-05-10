@@ -3,6 +3,7 @@ import Cocoa
 class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     let viewModel = ViewModel()
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     var headerLabel = NSTextField()
     var minutesLabel = NSTextField()
     var editableTextField = NSTextField()
@@ -25,6 +26,13 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
         layoutSubviews()
 
         self.initialFrameMinutes = self.editableTextField.frame
+    }
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        if self.userDefaults.valueForKey("taskTitle") != nil {
+            self.editableTextField.stringValue = self.userDefaults.stringForKey("taskBreak")!
+        }
     }
 
     override func viewDidAppear() {
@@ -62,7 +70,6 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
     func onCloseButtonPressed() {
         self.view.window?.close()
         // TODO: NSUserDefaults to nil.
-        // TODO: Don't show the popover as a window now, but refresh it.
     }
 
     // MARK: Mouse events

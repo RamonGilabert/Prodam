@@ -8,6 +8,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     let popover = NSPopover()
     let viewModel = ViewModel()
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     var addTaskButton = NSButton()
     var doneTaskButton = NSButton()
     var pauseTaskButton = NSButton()
@@ -49,6 +50,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
         }
 
+        self.userDefaults.setValue(self.taskTextField.attributedStringValue, forKey: "taskTitle")
+        self.userDefaults.setValue(self.editableTimerTextField.stringValue, forKey: "taskDuration")
+        self.userDefaults.synchronize()
+
         self.taskTextField.resignFirstResponder()
         self.view.addSubview(self.taskTextField)
         self.addTaskButton.removeFromSuperview()
@@ -74,6 +79,12 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onTasksButtonPressed() {
         stopTimerAndLayoutViews()
+        self.taskButton.enabled = false
+        self.taskTextField.editable = true
+        self.taskTextField.selectable = true
+        self.userDefaults.setValue(nil, forKey: "taskTitle")
+        self.userDefaults.synchronize()
+        self.editableTimerTextField.stringValue = "50"
     }
 
     func onSettingsButtonPressed() {
@@ -104,6 +115,17 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         }
     }
 
+    // MARK: Popover delegate methods
+
+    func popoverWillShow(notification: NSNotification) {
+        if self.userDefaults.valueForKey("taskTitle") != nil {
+            self.taskButton.enabled = true
+            self.taskTextField.editable = false
+            self.taskTextField.selectable = false
+            self.editableTimerTextField.stringValue = self.userDefaults.stringForKey("taskDuration")!
+        }
+    }
+
     // MARK: Mouse events
 
     override func mouseDown(theEvent: NSEvent) {
@@ -127,8 +149,8 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     func startingOrStoppingMethods(value: CGFloat) {
         self.minutesLabel.alphaValue = 1.0 - value
         self.timerTextField.alphaValue = value
-        self.taskTextField.editable = Bool(1.0 - value)
-        self.taskTextField.selectable = Bool(1.0 - value)
+        self.taskTextField.editable = (self.userDefaults.valueForKey("taskTitle") != nil) ? false : true
+        self.taskTextField.selectable = (self.userDefaults.valueForKey("taskTitle") != nil) ? false : true
         self.doneTaskButton.alphaValue = value
         self.pauseTaskButton.alphaValue = value
     }
@@ -139,7 +161,6 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.delegate?.makeResponder(self.editableTimerTextField)
         self.taskTextField.stringValue = ""
         self.view.addSubview(self.addTaskButton)
-        self.taskButton.enabled = false
 
         self.timerUpdateLabel.invalidate()
     }

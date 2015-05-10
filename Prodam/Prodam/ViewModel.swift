@@ -69,7 +69,7 @@ class ViewModel: NSObject {
     }
 
     func layoutTimerTextFieldMainView(viewController: NSViewController) -> NSTextField {
-        let textField = addBasicTextField(viewController, text: "15:00")
+        let textField = addBasicTextField(viewController, text: "50:00")
         textField.editable = false
         textField.selectable = false
         textField.font = NSFont_Prodam.mainTimer()
@@ -81,7 +81,7 @@ class ViewModel: NSObject {
     }
 
     func layoutEditableTextFieldMainView(viewController: NSViewController) -> NSTextField {
-        let textField = addBasicTextField(viewController, text: "15")
+        let textField = addBasicTextField(viewController, text: "50")
         textField.alignment = NSTextAlignment.RightTextAlignment
         textField.font = NSFont_Prodam.mainTimerEditable()
         textField.sizeToFit()
