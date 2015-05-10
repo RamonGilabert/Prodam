@@ -23,6 +23,7 @@
 		F6D5B8021AFF6F7D00A76043 /* Done.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6D5B8011AFF6F7D00A76043 /* Done.wav */; };
 		F6D5B8051AFF741B00A76043 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8041AFF741B00A76043 /* Sound.swift */; };
 		F6D5B8071AFFC55000A76043 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8061AFFC55000A76043 /* PreferencesWindowController.swift */; };
+		F6D5B8091AFFD38100A76043 /* RoundedPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5B8081AFFD38100A76043 /* RoundedPreferencesView.swift */; };
 		F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */; };
 		F6E226201AF3FF4900125CA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2261F1AF3FF4900125CA4 /* Images.xcassets */; };
 		F6E226231AF3FF4900125CA4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E226211AF3FF4900125CA4 /* MainMenu.xib */; };
@@ -62,6 +63,7 @@
 		F6D5B8011AFF6F7D00A76043 /* Done.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Done.wav; sourceTree = "<group>"; };
 		F6D5B8041AFF741B00A76043 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		F6D5B8061AFFC55000A76043 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		F6D5B8081AFFD38100A76043 /* RoundedPreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedPreferencesView.swift; sourceTree = "<group>"; };
 		F6E226181AF3FF4900125CA4 /* Prodam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prodam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2261C1AF3FF4900125CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6E2261D1AF3FF4900125CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				F6E398DD1AFCC4DC00E3C0BE /* NSFont+Prodam.swift */,
 				F6E398DF1AFCC4F100E3C0BE /* NSColor+Prodam.swift */,
 				F6F78A301AFA9BF70055FC5D /* RoundedCornerView.swift */,
+				F6D5B8081AFFD38100A76043 /* RoundedPreferencesView.swift */,
 				F680B3D51AF688FF00841DE3 /* NSWindow+Popover.swift */,
 			);
 			name = Overrides;
@@ -376,6 +379,7 @@
 				F6E398DE1AFCC4DC00E3C0BE /* NSFont+Prodam.swift in Sources */,
 				F6E2261E1AF3FF4900125CA4 /* AppDelegate.swift in Sources */,
 				F6CD5A191AFB58EF00CB1F41 /* BreakViewController.swift in Sources */,
+				F6D5B8091AFFD38100A76043 /* RoundedPreferencesView.swift in Sources */,
 				F6F537B81AFA93BD0096566B /* BreakWindow.swift in Sources */,
 				F6E398E01AFCC4F100E3C0BE /* NSColor+Prodam.swift in Sources */,
 				F6E398E21AFCCB2C00E3C0BE /* Quotes.swift in Sources */,
