@@ -1,6 +1,6 @@
 import Cocoa
 
-class BreakViewController: NSViewController {
+class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     let viewModel = ViewModel()
     var headerLabel = NSTextField()
@@ -14,11 +14,13 @@ class BreakViewController: NSViewController {
     var closeWindowButton = NSButton()
     var initialFrameMinutes = NSRect()
     var breakTimer = NSTimer()
+    var popoverManager: PopoverManager?
 
     // MARK: View lifecycle
 
     override func loadView() {
         self.view = NSView(frame: NSMakeRect(0, 0, Constant.BreakLayout.WidthMainView, Constant.BreakLayout.HeightMainView))
+        self.popoverManager?.delegate = self
 
         layoutSubviews()
 
@@ -45,7 +47,7 @@ class BreakViewController: NSViewController {
     func onWorkAgainButtonPressed() {
         self.breakTimer.invalidate()
         self.view.window?.close()
-        // TODO: Show the popover again.
+        self.popoverManager?.delegate!.openThatPopover!()
     }
 
     func onStartBreakButtonPressed() {

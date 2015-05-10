@@ -6,7 +6,6 @@ protocol Resignator {
 
 class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate, Resignator {
 
-    let breakWindowController = BreakWindowController()
     let popover = NSPopover()
     let viewModel = ViewModel()
     var addTaskButton = NSButton()
@@ -20,6 +19,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var minutesLabel = NSTextField()
     var delegate: Resignator?
     var timerUpdateLabel = NSTimer()
+    var breakWindowController: BreakWindowController?
 
     // MARK: View lifecycle
 
@@ -87,7 +87,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onRealTimerFired() {
         stopTimerAndLayoutViews()
-        self.breakWindowController.loadWindow()
+        self.breakWindowController!.loadWindow()
     }
 
     func onLabelShouldChange() {

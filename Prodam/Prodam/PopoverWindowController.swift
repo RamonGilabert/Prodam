@@ -1,6 +1,6 @@
 import Cocoa
 
-class PopoverWindowController: NSWindowController, Resignator {
+class PopoverWindowController: NSWindowController, Resignator, PopoverManagerDelegate {
 
     let popoverController = PopoverController()
     var popoverManager: PopoverManager?
@@ -13,6 +13,9 @@ class PopoverWindowController: NSWindowController, Resignator {
         self.popoverController.loadView()
         self.popover = self.popoverController.popover
         self.popoverController.delegate = self
+        self.popoverManager?.delegate = self
+        self.popoverController.breakWindowController = BreakWindowController()
+        self.popoverController.breakWindowController?.breakViewController.popoverManager?.delegate = self.popoverManager
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowNeedsToClose", name: NSWindowDidResignMainNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowNeedsToClose", name: NSWindowDidResignKeyNotification, object: nil)
