@@ -3,12 +3,12 @@ import Cocoa
 struct Constant {
     struct Window {
         static let Width = 300 as CGFloat
-        static let Height = 200 as CGFloat
+        static let Height = 190 as CGFloat
     }
 
     struct WindowLayout {
         static let MinimumPaddingButton = 6 as CGFloat
-        static let HeightOfButton = Constant.Window.Height / 3.5
+        static let HeightOfButton = Constant.Window.Height / 4
         static let WidthDonePauseButtons = Constant.Window.Width/2 - (1.5 * Constant.WindowLayout.MinimumPaddingButton)
         static let WidthMainButton = Constant.Window.Width - (2 * Constant.WindowLayout.MinimumPaddingButton)
         static let HalfScreenPadding = Constant.WindowLayout.MinimumPaddingButton/2 + Constant.Window.Width/2
@@ -85,7 +85,7 @@ class ViewModel: NSObject {
         textField.alignment = NSTextAlignment.RightTextAlignment
         textField.font = NSFont_Prodam.mainTimerEditable()
         textField.sizeToFit()
-        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 100, (Constant.Window.Height - textField.frame.height)/2 + 20, textField.frame.width + 100, textField.frame.height)
+        textField.frame = NSMakeRect((Constant.Window.Width - textField.frame.width)/2 - 100, (Constant.Window.Height - textField.frame.height)/2 + 10, textField.frame.width + 100, textField.frame.height)
         textField.becomeFirstResponder()
         textField.focusRingType = NSFocusRingType.None
 
@@ -98,7 +98,7 @@ class ViewModel: NSObject {
         textField.selectable = false
         textField.font = NSFont_Prodam.mainMinutesTextField()
         textField.sizeToFit()
-        textField.frame = NSMakeRect(editableTextField.frame.origin.x + editableTextField.frame.width, editableTextField.frame.origin.y + 10, textField.frame.width, textField.frame.height)
+        textField.frame = NSMakeRect(editableTextField.frame.origin.x + editableTextField.frame.width, editableTextField.frame.origin.y + 5, textField.frame.width, textField.frame.height)
 
         return textField
     }
@@ -202,7 +202,7 @@ class ViewModel: NSObject {
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
-        var button = NSButton(frame: NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton/1.5, width, Constant.WindowLayout.HeightOfButton))
+        var button = NSButton(frame: NSMakeRect(xPosition, Constant.WindowLayout.MinimumPaddingButton, width, Constant.WindowLayout.HeightOfButton))
         button.image = NSImage(named: "background-\(text)-button")
         button = addButtonConfiguration(button, viewController: viewController, text: text.uppercaseString, color: NSColor.whiteColor())
         button.alphaValue = alpha
