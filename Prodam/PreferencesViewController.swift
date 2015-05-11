@@ -99,11 +99,29 @@ class PreferencesViewController: NSViewController {
         labelName.frame = NSMakeRect((self.view.frame.width - labelName.frame.width)/2, bottomSeparator.frame.origin.y - labelName.frame.height - 25, labelName.frame.width, labelName.frame.height)
         self.view.addSubview(labelName)
 
-        let buttonTwitter = NSButton()
+        let buttonTwitter = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 - 100, labelName.frame.origin.y - 90, 64, 66))
+        buttonTwitter.image = NSImage(named: "twitter-icon-social")
+        buttonTwitter.bordered = false
+        buttonTwitter.setButtonType(NSButtonType.MomentaryChangeButton)
+        buttonTwitter.target = self
+        buttonTwitter.action = "onTwitterButtonPressed"
+        self.view.addSubview(buttonTwitter)
 
-        let buttonWebsite = NSButton()
+        let buttonWebsite = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 + 100, labelName.frame.origin.y - 90, 64, 66))
+        buttonWebsite.image = NSImage(named: "dribbble-icon-social")
+        buttonWebsite.bordered = false
+        buttonWebsite.setButtonType(NSButtonType.MomentaryChangeButton)
+        buttonWebsite.target = self
+        buttonWebsite.action = "onDribbbleButtonPressed"
+        self.view.addSubview(buttonWebsite)
 
-        let buttonEmail = NSButton()
+        let buttonEmail = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2, labelName.frame.origin.y - 90, 64, 66))
+        buttonEmail.image = NSImage(named: "email-icon-social")
+        buttonEmail.bordered = false
+        buttonEmail.setButtonType(NSButtonType.MomentaryChangeButton)
+        buttonEmail.target = self
+        buttonEmail.action = "onEmailButtonPressed"
+        self.view.addSubview(buttonEmail)
 
     }
 
@@ -115,5 +133,17 @@ class PreferencesViewController: NSViewController {
 
     func onQuitAppButtonPressed() {
         NSApplication.sharedApplication().terminate(self)
+    }
+
+    func onTwitterButtonPressed() {
+
+    }
+
+    func onDribbbleButtonPressed() {
+
+    }
+
+    func onEmailButtonPressed() {
+
     }
 }
