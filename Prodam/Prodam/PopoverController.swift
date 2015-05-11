@@ -98,6 +98,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onSettingsButtonPressed() {
         self.popoverManager?.delegate?.configureThatMenu!()
+        self.preferencesWindowController?.popoverManager = self.popoverManager
         self.preferencesWindowController!.loadWindow()
     }
 

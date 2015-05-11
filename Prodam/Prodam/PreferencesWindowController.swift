@@ -15,6 +15,8 @@ class PreferencesWindowController: NSWindowController {
         self.popoverController?.preferencesWindowController = self
         self.window?.hasShadow = true
 
+        self.preferencesViewController.popoverManager = self.popoverManager
+
         (self.window?.contentView as! RoundedPreferencesView).visualEffectView.addSubview(self.preferencesViewController.view)
     }
 }

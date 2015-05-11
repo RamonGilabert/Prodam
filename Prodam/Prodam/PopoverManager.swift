@@ -75,6 +75,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
     func onPreferencesButtonPressed() {
         configureThatMenu()
+        self.preferencesWindowController.popoverManager = self
         self.preferencesWindowController.loadWindow()
     }
 

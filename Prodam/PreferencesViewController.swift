@@ -3,6 +3,7 @@ import Cocoa
 class PreferencesViewController: NSViewController {
 
     let viewModel = ViewModel()
+    var popoverManager: PopoverManager?
 
     override func loadView() {
         self.view = NSView(frame: NSMakeRect(0, 0, 460, 320))
@@ -144,7 +145,9 @@ class PreferencesViewController: NSViewController {
     // MARK: Action handlers
 
     func onClosePreferencesButtonPressed() {
-
+        self.popoverManager?.delegate?.configureThatView!()
+        self.view.window?.close()
+        self.popoverManager?.delegate!.openThatPopover!()
     }
 
     func onQuitAppButtonPressed() {
