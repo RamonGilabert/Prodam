@@ -52,7 +52,7 @@ class PreferencesViewController: NSViewController {
         labelGeneral.font = NSFont(name: "Helvetica Neue", size: 15)
         labelGeneral.alignment = NSTextAlignment.CenterTextAlignment
         labelGeneral.sizeToFit()
-        labelGeneral.frame = NSMakeRect(100, topSeparator.frame.origin.y - 50, labelGeneral.frame.width, labelGeneral.frame.height)
+        labelGeneral.frame = NSMakeRect(100, topSeparator.frame.origin.y - 40, labelGeneral.frame.width, labelGeneral.frame.height)
         self.view.addSubview(labelGeneral)
 
         let labelLaunchLogin = NSTextField()
@@ -66,8 +66,16 @@ class PreferencesViewController: NSViewController {
         labelLaunchLogin.font = NSFont(name: "Helvetica Neue", size: 15)
         labelLaunchLogin.alignment = NSTextAlignment.CenterTextAlignment
         labelLaunchLogin.sizeToFit()
-        labelLaunchLogin.frame = NSMakeRect(150 + labelGeneral.frame.width, topSeparator.frame.origin.y - 50, labelLaunchLogin.frame.width, labelLaunchLogin.frame.height)
+        labelLaunchLogin.frame = NSMakeRect(150 + labelGeneral.frame.width, topSeparator.frame.origin.y - 40, labelLaunchLogin.frame.width, labelLaunchLogin.frame.height)
         self.view.addSubview(labelLaunchLogin)
+
+        let switchLaunchLoginButton = NSButton(frame: NSMakeRect(labelLaunchLogin.frame.origin.x - 17.5, labelLaunchLogin.frame.origin.y, 18, 18))
+        switchLaunchLoginButton.bordered = false
+        switchLaunchLoginButton.setButtonType(NSButtonType.SwitchButton)
+        switchLaunchLoginButton.title = ""
+        switchLaunchLoginButton.target = self
+        switchLaunchLoginButton.action = "onSwitchLaunchLoginButtonPressed:"
+        self.view.addSubview(switchLaunchLoginButton)
 
         let labelSoundWhenDone = NSTextField()
         labelSoundWhenDone.bordered = false
@@ -80,10 +88,18 @@ class PreferencesViewController: NSViewController {
         labelSoundWhenDone.font = NSFont(name: "Helvetica Neue", size: 15)
         labelSoundWhenDone.alignment = NSTextAlignment.CenterTextAlignment
         labelSoundWhenDone.sizeToFit()
-        labelSoundWhenDone.frame = NSMakeRect(150 + labelGeneral.frame.width, topSeparator.frame.origin.y - 90, labelSoundWhenDone.frame.width, labelSoundWhenDone.frame.height)
+        labelSoundWhenDone.frame = NSMakeRect(150 + labelGeneral.frame.width, topSeparator.frame.origin.y - 80, labelSoundWhenDone.frame.width, labelSoundWhenDone.frame.height)
         self.view.addSubview(labelSoundWhenDone)
 
-        let bottomSeparator = NSView(frame: NSMakeRect(0, labelSoundWhenDone.frame.origin.y - 40, self.view.frame.width, 1))
+        let switchPlaySoundButton = NSButton(frame: NSMakeRect(labelSoundWhenDone.frame.origin.x - 17.5, labelSoundWhenDone.frame.origin.y, 18, 18))
+        switchPlaySoundButton.bordered = false
+        switchPlaySoundButton.setButtonType(NSButtonType.SwitchButton)
+        switchPlaySoundButton.title = ""
+        switchPlaySoundButton.target = self
+        switchPlaySoundButton.action = "onSwitchPlaySoundButtonPressed:"
+        self.view.addSubview(switchPlaySoundButton)
+
+        let bottomSeparator = NSView(frame: NSMakeRect(0, labelSoundWhenDone.frame.origin.y - 30, self.view.frame.width, 1))
         bottomSeparator.wantsLayer = true
         bottomSeparator.layer?.backgroundColor = NSColor.lightGrayColor().CGColor
         self.view.addSubview(bottomSeparator)
@@ -99,7 +115,7 @@ class PreferencesViewController: NSViewController {
         labelName.frame = NSMakeRect((self.view.frame.width - labelName.frame.width)/2, bottomSeparator.frame.origin.y - labelName.frame.height - 25, labelName.frame.width, labelName.frame.height)
         self.view.addSubview(labelName)
 
-        let buttonTwitter = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 - 100, labelName.frame.origin.y - 90, 64, 66))
+        let buttonTwitter = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 - 100, labelName.frame.origin.y - 83, 64, 66))
         buttonTwitter.image = NSImage(named: "twitter-icon-social")
         buttonTwitter.bordered = false
         buttonTwitter.setButtonType(NSButtonType.MomentaryChangeButton)
@@ -107,7 +123,7 @@ class PreferencesViewController: NSViewController {
         buttonTwitter.action = "onTwitterButtonPressed"
         self.view.addSubview(buttonTwitter)
 
-        let buttonWebsite = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 + 100, labelName.frame.origin.y - 90, 64, 66))
+        let buttonWebsite = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 + 100, labelName.frame.origin.y - 83, 64, 66))
         buttonWebsite.image = NSImage(named: "dribbble-icon-social")
         buttonWebsite.bordered = false
         buttonWebsite.setButtonType(NSButtonType.MomentaryChangeButton)
@@ -115,7 +131,7 @@ class PreferencesViewController: NSViewController {
         buttonWebsite.action = "onDribbbleButtonPressed"
         self.view.addSubview(buttonWebsite)
 
-        let buttonEmail = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2, labelName.frame.origin.y - 90, 64, 66))
+        let buttonEmail = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2, labelName.frame.origin.y - 83, 64, 66))
         buttonEmail.image = NSImage(named: "email-icon-social")
         buttonEmail.bordered = false
         buttonEmail.setButtonType(NSButtonType.MomentaryChangeButton)
@@ -133,6 +149,14 @@ class PreferencesViewController: NSViewController {
 
     func onQuitAppButtonPressed() {
         NSApplication.sharedApplication().terminate(self)
+    }
+
+    func onSwitchLaunchLoginButtonPressed(sender: NSButton) {
+
+    }
+
+    func onSwitchPlaySoundButtonPressed(sender: NSButton) {
+
     }
 
     func onTwitterButtonPressed() {
