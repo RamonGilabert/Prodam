@@ -14,6 +14,7 @@ class PreferencesViewController: NSViewController {
         titlePreferences.editable = false
         titlePreferences.selectable = false
         titlePreferences.drawsBackground = false
+        titlePreferences.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.16, alpha:1)
         titlePreferences.stringValue = "Preferences"
         titlePreferences.font = NSFont(name: "Helvetica Neue", size: 18)
         titlePreferences.alignment = NSTextAlignment.CenterTextAlignment
@@ -163,14 +164,19 @@ class PreferencesViewController: NSViewController {
     }
 
     func onTwitterButtonPressed() {
-
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.twitter.com/RamonGilabert")!)
     }
 
     func onDribbbleButtonPressed() {
-
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://dribbble.com/RamonGilabert")!)
     }
 
     func onEmailButtonPressed() {
-
+        let emailAddress = "contact@ramongilabert.com"
+        let emailSubject = "Hey! :)"
+        let emailBody = "Just wanted to say hello: "
+        let emailString = "mailto:\(emailAddress)?Subject=\(emailSubject)&body=\(emailBody)"
+        let realEmailString = emailString.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: nil, range: nil)
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: realEmailString)!)
     }
 }
