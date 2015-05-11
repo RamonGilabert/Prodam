@@ -7,13 +7,13 @@ class PreferencesWindowController: NSWindowController {
     var popoverController: PopoverController?
 
     override func loadWindow() {
-        self.window = BreakWindow(contentRect: NSMakeRect(0, 0, 500, 360), styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
+        self.window = BreakWindow(contentRect: NSMakeRect(0, 0, 460, 320), styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
         self.window?.contentView = RoundedPreferencesView(frame: self.window!.frame)
         self.window?.center()
         self.window?.animationBehavior = NSWindowAnimationBehavior.DocumentWindow
         self.window?.makeKeyAndOrderFront(true)
-        self.window?.hasShadow = true
         self.popoverController?.preferencesWindowController = self
+        self.window?.hasShadow = true
 
         (self.window?.contentView as! RoundedPreferencesView).visualEffectView.addSubview(self.preferencesViewController.view)
     }

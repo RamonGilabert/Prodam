@@ -50,7 +50,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.timerTextField.stringValue = DateFormatting.getTextFromNumberOfMinutes(self.editableTimerTextField)
 
         if self.taskTextField.stringValue == "" {
-            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard")
+            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard", fontSize: 18)
         }
 
         self.userDefaults.setValue(self.taskTextField.stringValue, forKey: "taskTitle")
@@ -102,7 +102,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     override func controlTextDidChange(obj: NSNotification) {
-        self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.taskTextField.stringValue)
+        self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.taskTextField.stringValue, fontSize: 18)
     }
 
     // MARK: Timer methods
@@ -133,7 +133,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.taskButton.enabled = true
             self.taskTextField.editable = false
             self.taskTextField.selectable = false
-            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!)
+            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!, fontSize: 18)
             self.editableTimerTextField.stringValue = self.userDefaults.stringForKey("taskDuration")!
         } else {
             self.taskButton.enabled = false
@@ -179,7 +179,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         startingOrStoppingMethods(0.0)
         self.view.addSubview(self.editableTimerTextField)
         self.delegate?.makeResponder(self.editableTimerTextField)
-        self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!)
+        self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!, fontSize: 18)
         self.view.addSubview(self.addTaskButton)
 
         self.timerUpdateLabel.invalidate()
