@@ -3,6 +3,7 @@ import Cocoa
 class PreferencesViewController: NSViewController {
 
     let viewModel = ViewModel()
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     var popoverManager: PopoverManager?
 
     override func loadView() {
@@ -156,7 +157,7 @@ class PreferencesViewController: NSViewController {
     }
 
     func onSwitchLaunchLoginButtonPressed(sender: NSButton) {
-
+        println(sender.integerValue)
     }
 
     func onSwitchPlaySoundButtonPressed(sender: NSButton) {
