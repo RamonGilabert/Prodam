@@ -19,7 +19,7 @@ class BreakWindow: NSWindow {
             let view = _view as! NSView
             view.wantsLayer = true
             view.layer!.frame = view.frame
-            view.layer!.cornerRadius = 10
+            view.layer!.cornerRadius = 7
             view.layer!.masksToBounds = true
 
             super.contentView = view
