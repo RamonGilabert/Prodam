@@ -78,6 +78,7 @@ class PreferencesViewController: NSViewController {
         switchLaunchLoginButton.title = ""
         switchLaunchLoginButton.target = self
         switchLaunchLoginButton.action = "onSwitchLaunchLoginButtonPressed:"
+        switchLaunchLoginButton.integerValue = Int(self.userDefaults.boolForKey("startLaunch"))
         self.view.addSubview(switchLaunchLoginButton)
 
         let labelSoundWhenDone = NSTextField()
@@ -100,6 +101,7 @@ class PreferencesViewController: NSViewController {
         switchPlaySoundButton.title = ""
         switchPlaySoundButton.target = self
         switchPlaySoundButton.action = "onSwitchPlaySoundButtonPressed:"
+        switchPlaySoundButton.integerValue = Int(self.userDefaults.boolForKey("soundDone"))
         self.view.addSubview(switchPlaySoundButton)
 
         let bottomSeparator = NSView(frame: NSMakeRect(0, labelSoundWhenDone.frame.origin.y - 30, self.view.frame.width, 1))
@@ -157,11 +159,13 @@ class PreferencesViewController: NSViewController {
     }
 
     func onSwitchLaunchLoginButtonPressed(sender: NSButton) {
-        println(sender.integerValue)
+        self.userDefaults.setBool(Bool(sender.integerValue), forKey: "startLaunch")
+        self.userDefaults.synchronize()
     }
 
     func onSwitchPlaySoundButtonPressed(sender: NSButton) {
-
+        self.userDefaults.setBool(Bool(sender.integerValue), forKey: "soundDone")
+        self.userDefaults.synchronize()
     }
 
     func onTwitterButtonPressed() {
