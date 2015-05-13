@@ -52,7 +52,9 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
             self.view.window?.makeMainWindow()
             NSApp.activateIgnoringOtherApps(true)
             self.view.window?.makeKeyAndOrderFront(true)
-            self.audioPlayer.play()
+            if self.userDefaults.boolForKey("soundDone") == true {
+                self.audioPlayer.play()
+            }
         } else {
             self.editableTextField.stringValue = DateFormatting.getStringFormattedWithDate(self.editableTextField)
         }

@@ -112,7 +112,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         stopTimerAndLayoutViews()
         self.breakWindowController!.popoverManager = self.popoverManager
         self.breakWindowController!.loadWindow()
-        self.audioPlayer.play()
+        if self.userDefaults.boolForKey("soundDone") == true {
+            self.audioPlayer.play()
+        }
     }
 
     func onLabelShouldChange() {
