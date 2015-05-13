@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>116FE29B-43F4-4A3C-B17F-0171B6100D50</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Prodam</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>58627F64ED89CD30BAC9924EB1EB1B4CBB95E6F2</key>
 		<string>https://github.com/RamonGilabert/Pomodoro.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Prodam/Prodam.xcodeproj</string>
+	<string>Prodam/Prodam.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>58627F64ED89CD30BAC9924EB1EB1B4CBB95E6F2</key>
