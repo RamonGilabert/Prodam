@@ -192,30 +192,32 @@ class PreferencesViewController: NSViewController {
     }
 
     func itemReferencesInLoginItems() -> (existingReference: LSSharedFileListItemRef?, lastReference: LSSharedFileListItemRef?) {
-        if let appUrl : NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
-            let loginItemsRef = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue() as LSSharedFileListRef?
-            if loginItemsRef != nil {
+        if let appURL : NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
+            if let loginItemsRef = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue() as LSSharedFileListRef? {
+
                 let loginItems: NSArray = LSSharedFileListCopySnapshot(loginItemsRef, nil).takeRetainedValue() as NSArray
                 let lastItemRef: LSSharedFileListItemRef = loginItems.lastObject as! LSSharedFileListItemRef
+
                 for var i = 0; i < loginItems.count; ++i {
                     let currentItemRef: LSSharedFileListItemRef = loginItems.objectAtIndex(i) as! LSSharedFileListItemRef
                     if let itemURL = LSSharedFileListItemCopyResolvedURL(currentItemRef, 0, nil) {
-                        if (itemURL.takeRetainedValue() as NSURL).isEqual(appUrl) {
+                        if (itemURL.takeRetainedValue() as NSURL).isEqual(appURL) {
                             return (currentItemRef, lastItemRef)
                         }
                     }
                 }
+
                 return (nil, lastItemRef)
             }
         }
+
         return (nil, nil)
     }
 
     func toggleLaunchAtStartup() {
         let itemReferences = itemReferencesInLoginItems()
         let shouldBeToggled = (itemReferences.existingReference == nil)
-        let loginItemsRef = LSSharedFileListCreate( nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue() as LSSharedFileListRef?
-        if loginItemsRef != nil {
+        if let loginItemsRef = LSSharedFileListCreate( nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue() as LSSharedFileListRef? {
             if shouldBeToggled {
                 if let appUrl : CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
                     LSSharedFileListInsertItemURL(loginItemsRef, itemReferences.lastReference, nil, nil, appUrl, nil, nil)
