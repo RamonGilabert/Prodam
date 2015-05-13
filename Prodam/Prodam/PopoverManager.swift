@@ -77,6 +77,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
         configureThatMenu()
         self.preferencesWindowController.popoverManager = self
         self.preferencesWindowController.loadWindow()
+        NSApp.activateIgnoringOtherApps(true)
     }
 
     func onQuitMenuButtonPressed() {
