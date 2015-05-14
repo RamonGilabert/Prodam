@@ -33,6 +33,8 @@ struct Constant {
 
 class ViewModel: NSObject {
 
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+
     // MARK: Main View Controller: Layout
 
     func layoutFunctionalButtonsMainView(viewController: NSViewController) -> NSButton {
@@ -205,12 +207,13 @@ class ViewModel: NSObject {
         layoutPreferencesLabel("Preferences", view: view)
         let separatorView = layoutSeparatorView(view, frame: NSMakeRect(0, view.frame.height - 42.5, view.frame.width, 1))
         let generalLabel = layoutGeneralLabelPreferences("General", view: view, separatorView: separatorView)
-        layoutLaunchLogin("Launch at login", view: view, separatorView: separatorView, anotherTextField: generalLabel)
-        let soundDoneLabel = layoutSoundWhenDonePreferences("Play notification sound", view: view, separatorView: separatorView, labelGeneral: generalLabel)
+        layoutLaunchLogin("Launch at login", view: view, separatorView: separatorView, anotherTextField: generalLabel, viewController: viewController)
+        let soundDoneLabel = layoutSoundWhenDonePreferences("Play notification sound", view: view, separatorView: separatorView, labelGeneral: generalLabel, viewController: viewController)
         let separatorViewBottom = layoutSeparatorView(view, frame: NSMakeRect(0, soundDoneLabel.frame.origin.y - 30, view.frame.width, 1))
         layoutFirstButtonPreferences(view, viewController: viewController)
         layoutSecondButtonPreferences(view, viewController: viewController)
         let labelName = layoutNameLabel(view, bottomSeparator: separatorViewBottom)
+        layoutSocialButtons(view, viewController: viewController, labelName: labelName)
     }
 
     func layoutPreferencesLabel(text: String, view: NSView) -> NSTextField {
@@ -247,7 +250,7 @@ class ViewModel: NSObject {
         return textField
     }
 
-    func layoutLaunchLogin(text: String, view: NSView, separatorView: NSView, anotherTextField: NSTextField) {
+    func layoutLaunchLogin(text: String, view: NSView, separatorView: NSView, anotherTextField: NSTextField, viewController: NSViewController) {
         let textField = layoutBasicTextField()
         textField.stringValue = text
         textField.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
@@ -256,9 +259,14 @@ class ViewModel: NSObject {
         textField.sizeToFit()
         textField.frame = NSMakeRect(150 + anotherTextField.frame.width, separatorView.frame.origin.y - 40, textField.frame.width, textField.frame.height)
         view.addSubview(textField)
+
+        let switcher = layoutBasicSwitcher(NSMakeRect(textField.frame.origin.x - 17.5, textField.frame.origin.y, 18, 18), viewController: viewController)
+        switcher.action = "onSwitchLaunchLoginButtonPressed:"
+        switcher.integerValue = Int(self.userDefaults.boolForKey("startLaunch"))
+        view.addSubview(switcher)
     }
 
-    func layoutSoundWhenDonePreferences(text: String, view: NSView, separatorView: NSView, labelGeneral: NSTextField) -> NSTextField {
+    func layoutSoundWhenDonePreferences(text: String, view: NSView, separatorView: NSView, labelGeneral: NSTextField, viewController: NSViewController) -> NSTextField {
         let textField = layoutBasicTextField()
         textField.stringValue = text
         textField.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
@@ -267,6 +275,11 @@ class ViewModel: NSObject {
         textField.sizeToFit()
         textField.frame = NSMakeRect(150 + labelGeneral.frame.width, separatorView.frame.origin.y - 80, textField.frame.width, textField.frame.height)
         view.addSubview(textField)
+
+        let switcher = layoutBasicSwitcher(NSMakeRect(textField.frame.origin.x - 17.5, textField.frame.origin.y, 18, 18), viewController: viewController)
+        switcher.action = "onSwitchPlaySoundButtonPressed:"
+        switcher.integerValue = Int(self.userDefaults.boolForKey("soundDone"))
+        view.addSubview(switcher)
 
         return textField
     }
@@ -325,6 +338,16 @@ class ViewModel: NSObject {
         let button = NSButton(frame: frame)
         button.bordered = false
         button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.target = viewController
+
+        return button
+    }
+
+    func layoutBasicSwitcher(frame: NSRect, viewController: NSViewController) -> NSButton {
+        let button = NSButton(frame: frame)
+        button.bordered = false
+        button.setButtonType(NSButtonType.SwitchButton)
+        button.title = ""
         button.target = viewController
 
         return button

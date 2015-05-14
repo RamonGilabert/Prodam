@@ -9,23 +9,6 @@ class PreferencesViewController: NSViewController {
     override func loadView() {
         self.view = NSView(frame: NSMakeRect(0, 0, 460, 320))
 
-        let switchLaunchLoginButton = NSButton(frame: NSMakeRect(labelLaunchLogin.frame.origin.x - 17.5, labelLaunchLogin.frame.origin.y, 18, 18))
-        switchLaunchLoginButton.bordered = false
-        switchLaunchLoginButton.setButtonType(NSButtonType.SwitchButton)
-        switchLaunchLoginButton.title = ""
-        switchLaunchLoginButton.target = self
-        switchLaunchLoginButton.action = "onSwitchLaunchLoginButtonPressed:"
-        switchLaunchLoginButton.integerValue = Int(self.userDefaults.boolForKey("startLaunch"))
-        self.view.addSubview(switchLaunchLoginButton)
-
-        let switchPlaySoundButton = NSButton(frame: NSMakeRect(labelSoundWhenDone.frame.origin.x - 17.5, labelSoundWhenDone.frame.origin.y, 18, 18))
-        switchPlaySoundButton.bordered = false
-        switchPlaySoundButton.setButtonType(NSButtonType.SwitchButton)
-        switchPlaySoundButton.title = ""
-        switchPlaySoundButton.target = self
-        switchPlaySoundButton.action = "onSwitchPlaySoundButtonPressed:"
-        switchPlaySoundButton.integerValue = Int(self.userDefaults.boolForKey("soundDone"))
-        self.view.addSubview(switchPlaySoundButton)
     }
 
     // MARK: Action handlers
