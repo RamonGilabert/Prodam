@@ -136,12 +136,13 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onIconShouldChange() {
-        self.popoverManager?.imageView.image = NSImage(named: "logo-\(29 - self.numberOfImagesLeft)")
-        self.popoverManager?.imageView.image?.setTemplate(true)
-        self.numberOfImagesLeft = self.numberOfImagesLeft - 1
         if self.timerTextField.stringValue == "00:00" {
             onRealTimerFired()
         }
+        
+        self.popoverManager?.imageView.image = NSImage(named: "logo-\(29 - self.numberOfImagesLeft)")
+        self.popoverManager?.imageView.image?.setTemplate(true)
+        self.numberOfImagesLeft = self.numberOfImagesLeft - 1
     }
 
     // MARK: Popover delegate methods
