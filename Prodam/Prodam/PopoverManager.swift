@@ -12,7 +12,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let popoverView = PopoverView()
     let menuPopover = NSMenu()
-    let iconMenu = NSImage(named: "menu-logo")
+    let iconMenu = NSImage(named: "logo-0")
     let preferencesWindowController = PreferencesWindowController()
     var popoverController = PopoverWindowController()
     var breakController: BreakWindowController?

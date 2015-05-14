@@ -23,6 +23,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var minutesLabel = NSTextField()
     var delegate: Resignator?
     var timerUpdateLabel = NSTimer()
+    var timerUpdateIcon = NSTimer()
     var breakWindowController: BreakWindowController?
     var popoverManager: PopoverManager?
 
@@ -63,6 +64,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.addTaskButton.removeFromSuperview()
 
         self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+        self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
     }
 
     func onStopButtonPressed() {
@@ -78,6 +80,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
             self.pauseTaskButton.image = NSImage(named: "background-pause-button")
             self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+            self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
         }
     }
 
@@ -126,6 +129,13 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             if self.timerTextField.stringValue == "00:00" {
                 onRealTimerFired()
             }
+        }
+    }
+
+    func onIconShouldChange() {
+        // TODO: Update image.
+        if self.timerTextField.stringValue == "00:00" {
+            onRealTimerFired()
         }
     }
 
@@ -184,8 +194,10 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.delegate?.makeResponder(self.editableTimerTextField)
         self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!, fontSize: 18)
         self.view.addSubview(self.addTaskButton)
+        // TODO: Update image.
 
         self.timerUpdateLabel.invalidate()
+        self.timerUpdateIcon.invalidate()
     }
 
     func makeResponder(textField: NSTextField) { }
