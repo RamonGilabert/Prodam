@@ -77,4 +77,23 @@ class DateFormatting: NSObject {
         
         return dateFormatter.stringFromDate(realDateNow)
     }
+
+    class func getNumberFromDate(textField: NSTextField) -> Int {
+        let dateFormatter = NSDateFormatter()
+        var stringDate = ""
+
+        if textField.stringValue.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 6 {
+            dateFormatter.dateFormat = "hh:mm:ss"
+            stringDate = "00:00:00"
+        } else {
+            dateFormatter.dateFormat = "mm:ss"
+            stringDate = "00:00"
+        }
+
+        let actualDate = dateFormatter.dateFromString(textField.stringValue)
+        let finalDate = dateFormatter.dateFromString(stringDate)
+        let components = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.components(NSCalendarUnit.CalendarUnitSecond, fromDate: finalDate!, toDate: actualDate!, options: NSCalendarOptions.allZeros)
+
+        return components.second
+    }
 }

@@ -64,7 +64,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.addTaskButton.removeFromSuperview()
 
         self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
-        self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
+        self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(DateFormatting.getNumberFromDate(self.timerTextField) / 29), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
     }
 
     func onStopButtonPressed() {
@@ -80,7 +80,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
             self.pauseTaskButton.image = NSImage(named: "background-pause-button")
             self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
-            self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
+            self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(DateFormatting.getNumberFromDate(self.timerTextField) / 29), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
         }
     }
 
