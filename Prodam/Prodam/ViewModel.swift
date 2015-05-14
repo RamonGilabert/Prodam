@@ -337,6 +337,7 @@ class ViewModel: NSObject {
     func layoutBasicButton(frame: NSRect, image: String, viewController: NSViewController) -> NSButton {
         let button = NSButton(frame: frame)
         button.bordered = false
+        button.image = NSImage(named: image)
         button.setButtonType(NSButtonType.MomentaryChangeButton)
         button.target = viewController
 

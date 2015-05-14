@@ -9,6 +9,7 @@ class PreferencesViewController: NSViewController {
     override func loadView() {
         self.view = NSView(frame: NSMakeRect(0, 0, 460, 320))
 
+        self.viewModel.layoutPreferencesView(self.view, viewController: self)
     }
 
     // MARK: Action handlers
