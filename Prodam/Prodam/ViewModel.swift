@@ -128,7 +128,7 @@ class ViewModel: NSObject {
         return button
     }
 
-    // MARK: Break view layout
+    // MARK: Break View Controller: Layout
 
     func breakLayoutHeaderLabel(viewController: NSViewController) -> NSTextField {
         var label = addBasicTextField(viewController, text: "TAKING A BREAK")
@@ -198,6 +198,8 @@ class ViewModel: NSObject {
 
         return label
     }
+
+    // MARK: Preferences View Controller: Layout
 
     // MARK: Main View Controller: Helper methods
 

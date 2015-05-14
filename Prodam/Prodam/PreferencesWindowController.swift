@@ -7,7 +7,7 @@ class PreferencesWindowController: NSWindowController {
     var popoverController: PopoverController?
 
     override func loadWindow() {
-        self.window = BreakWindow(contentRect: NSMakeRect(0, 0, 460, 320), styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
+        self.window = BreakWindow(contentRect: self.preferencesViewController.view.frame, styleMask: NSBorderlessWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
         self.window?.contentView = RoundedPreferencesView(frame: self.window!.frame)
         self.window?.center()
         self.window?.animationBehavior = NSWindowAnimationBehavior.DocumentWindow
