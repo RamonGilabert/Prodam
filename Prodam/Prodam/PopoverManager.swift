@@ -14,6 +14,7 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
     let menuPopover = NSMenu()
     let iconMenu = NSImage(named: "logo-0")
     let preferencesWindowController = PreferencesWindowController()
+    let imageView = NSImageView()
     var popoverController = PopoverWindowController()
     var breakController: BreakWindowController?
     var popoverIsActive = false
@@ -28,8 +29,8 @@ class PopoverManager: NSObject, ViewClicked, PopoverManagerDelegate {
 
         self.popoverView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness + 2, NSStatusBar.systemStatusBar().thickness)
         self.popoverView.delegate = self
-        let imageView = NSImageView(frame: NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness))
-        imageView.image = self.iconMenu
+        self.imageView.frame = NSMakeRect(0, 0, NSStatusBar.systemStatusBar().thickness, NSStatusBar.systemStatusBar().thickness)
+        self.imageView.image = self.iconMenu
         self.popoverView.addSubview(imageView)
 
         self.popoverController.popoverManager = self

@@ -26,6 +26,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     var timerUpdateIcon = NSTimer()
     var breakWindowController: BreakWindowController?
     var popoverManager: PopoverManager?
+    var numberOfImagesLeft = 28
 
     // MARK: View lifecycle
 
@@ -44,6 +45,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
 
     func onStartButtonPressed() {
         startingOrStoppingMethods(1.0)
+        self.numberOfImagesLeft = 28
         self.taskTextField.removeFromSuperview()
         self.editableTimerTextField.removeFromSuperview()
         self.taskButton.enabled = true
@@ -64,7 +66,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.addTaskButton.removeFromSuperview()
 
         self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
-        self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(DateFormatting.getNumberFromDate(self.timerTextField) / 29), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
+        self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(Float(DateFormatting.getNumberFromDate(self.timerTextField)) / Float(self.numberOfImagesLeft)), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
     }
 
     func onStopButtonPressed() {
@@ -80,7 +82,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
             self.pauseTaskButton.attributedTitle = TextAttributter.attributedStringForButtons("PAUSE", font: "AvenirNext-DemiBold", color: NSColor.whiteColor())
             self.pauseTaskButton.image = NSImage(named: "background-pause-button")
             self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
-            self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(DateFormatting.getNumberFromDate(self.timerTextField) / 29), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
+            self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(Float(DateFormatting.getNumberFromDate(self.timerTextField)) / Float(self.numberOfImagesLeft)), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
         }
     }
 
@@ -115,6 +117,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         stopTimerAndLayoutViews()
         self.breakWindowController!.popoverManager = self.popoverManager
         self.breakWindowController!.loadWindow()
+        self.numberOfImagesLeft = 28
         if self.userDefaults.boolForKey("soundDone") == true {
             self.audioPlayer.play()
         }
@@ -133,7 +136,9 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     }
 
     func onIconShouldChange() {
-        // TODO: Update image.
+        self.popoverManager?.imageView.image = NSImage(named: "logo-\(29 - self.numberOfImagesLeft)")
+        self.popoverManager?.imageView.image?.setTemplate(true)
+        self.numberOfImagesLeft = self.numberOfImagesLeft - 1
         if self.timerTextField.stringValue == "00:00" {
             onRealTimerFired()
         }
@@ -194,7 +199,7 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
         self.delegate?.makeResponder(self.editableTimerTextField)
         self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField(self.userDefaults.stringForKey("taskTitle")!, fontSize: 18)
         self.view.addSubview(self.addTaskButton)
-        // TODO: Update image.
+        self.popoverManager?.imageView.image = NSImage(named: "logo-0")
 
         self.timerUpdateLabel.invalidate()
         self.timerUpdateIcon.invalidate()
