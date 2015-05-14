@@ -26,41 +26,6 @@ class PreferencesViewController: NSViewController {
         switchPlaySoundButton.action = "onSwitchPlaySoundButtonPressed:"
         switchPlaySoundButton.integerValue = Int(self.userDefaults.boolForKey("soundDone"))
         self.view.addSubview(switchPlaySoundButton)
-
-        let labelName = NSTextField()
-        labelName.bezeled = false
-        labelName.bordered = false
-        labelName.editable = false
-        labelName.selectable = false
-        labelName.drawsBackground = false
-        labelName.attributedStringValue = TextSplitter.checkNewStringForTextField("Ramon Gilabert", fontSize: 25)
-        labelName.sizeToFit()
-        labelName.frame = NSMakeRect((self.view.frame.width - labelName.frame.width)/2, bottomSeparator.frame.origin.y - labelName.frame.height - 25, labelName.frame.width, labelName.frame.height)
-        self.view.addSubview(labelName)
-
-        let buttonTwitter = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 - 100, labelName.frame.origin.y - 83, 64, 66))
-        buttonTwitter.image = NSImage(named: "twitter-icon-social")
-        buttonTwitter.bordered = false
-        buttonTwitter.setButtonType(NSButtonType.MomentaryChangeButton)
-        buttonTwitter.target = self
-        buttonTwitter.action = "onTwitterButtonPressed"
-        self.view.addSubview(buttonTwitter)
-
-        let buttonWebsite = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2 + 100, labelName.frame.origin.y - 83, 64, 66))
-        buttonWebsite.image = NSImage(named: "dribbble-icon-social")
-        buttonWebsite.bordered = false
-        buttonWebsite.setButtonType(NSButtonType.MomentaryChangeButton)
-        buttonWebsite.target = self
-        buttonWebsite.action = "onDribbbleButtonPressed"
-        self.view.addSubview(buttonWebsite)
-
-        let buttonEmail = NSButton(frame: NSMakeRect((self.view.frame.width - 64)/2, labelName.frame.origin.y - 83, 64, 66))
-        buttonEmail.image = NSImage(named: "email-icon-social")
-        buttonEmail.bordered = false
-        buttonEmail.setButtonType(NSButtonType.MomentaryChangeButton)
-        buttonEmail.target = self
-        buttonEmail.action = "onEmailButtonPressed"
-        self.view.addSubview(buttonEmail)
     }
 
     // MARK: Action handlers

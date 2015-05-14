@@ -208,6 +208,9 @@ class ViewModel: NSObject {
         layoutLaunchLogin("Launch at login", view: view, separatorView: separatorView, anotherTextField: generalLabel)
         let soundDoneLabel = layoutSoundWhenDonePreferences("Play notification sound", view: view, separatorView: separatorView, labelGeneral: generalLabel)
         let separatorViewBottom = layoutSeparatorView(view, frame: NSMakeRect(0, soundDoneLabel.frame.origin.y - 30, view.frame.width, 1))
+        layoutFirstButtonPreferences(view, viewController: viewController)
+        layoutSecondButtonPreferences(view, viewController: viewController)
+        let labelName = layoutNameLabel(view, bottomSeparator: separatorViewBottom)
     }
 
     func layoutPreferencesLabel(text: String, view: NSView) -> NSTextField {
@@ -268,6 +271,16 @@ class ViewModel: NSObject {
         return textField
     }
 
+    func layoutNameLabel(view: NSView, bottomSeparator: NSView) -> NSTextField {
+        let textField = layoutBasicTextField()
+        textField.attributedStringValue = TextSplitter.checkNewStringForTextField("Ramon Gilabert", fontSize: 25)
+        textField.sizeToFit()
+        textField.frame = NSMakeRect((view.frame.width - textField.frame.width)/2, bottomSeparator.frame.origin.y - textField.frame.height - 25, textField.frame.width, textField.frame.height)
+        view.addSubview(textField)
+
+        return textField
+    }
+
     func layoutFirstButtonPreferences(view: NSView, viewController: NSViewController) {
         let button = layoutBasicButton(NSMakeRect(12, view.frame.height - 28, 16, 16), image: "button-close-preferences", viewController: viewController)
         button.action = "onClosePreferencesButtonPressed"
@@ -278,6 +291,20 @@ class ViewModel: NSObject {
         let button = layoutBasicButton(NSMakeRect(view.frame.width - 29, view.frame.height - 28, 17, 18), image: "button-quit-preferences", viewController: viewController)
         button.action = "onQuitAppButtonPressed"
         view.addSubview(button)
+    }
+
+    func layoutSocialButtons(view: NSView, viewController: NSViewController, labelName: NSTextField) {
+        let buttonTwitter = layoutBasicButton(NSMakeRect((view.frame.width - 64)/2 - 100, labelName.frame.origin.y - 83, 64, 66), image: "twitter-icon-social", viewController: viewController)
+        buttonTwitter.action = "onTwitterButtonPressed"
+        view.addSubview(buttonTwitter)
+
+        let buttonWebsite = layoutBasicButton(NSMakeRect((view.frame.width - 64)/2 + 100, labelName.frame.origin.y - 83, 64, 66), image: "dribbble-icon-social", viewController: viewController)
+        buttonWebsite.action = "onDribbbleButtonPressed"
+        view.addSubview(buttonWebsite)
+
+        let buttonEmail = layoutBasicButton(NSMakeRect((view.frame.width - 64)/2, labelName.frame.origin.y - 83, 64, 66), image: "email-icon-social", viewController: viewController)
+        buttonEmail.action = "onEmailButtonPressed"
+        view.addSubview(buttonEmail)
     }
 
     // MARK: Preferences View Controller: Helper methods
