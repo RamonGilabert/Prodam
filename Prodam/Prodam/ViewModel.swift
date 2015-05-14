@@ -206,6 +206,7 @@ class ViewModel: NSObject {
         let separatorView = layoutSeparatorView(view, frame: NSMakeRect(0, view.frame.height - 42.5, view.frame.width, 1))
         let generalLabel = layoutGeneralLabelPreferences("General", view: view, separatorView: separatorView)
         layoutLaunchLogin("Launch at login", view: view, separatorView: separatorView, anotherTextField: generalLabel)
+        let soundDoneLabel = layoutSoundWhenDonePreferences("Play notification sound", view: view, separatorView: separatorView, labelGeneral: generalLabel)
     }
 
     func layoutPreferencesLabel(text: String, view: NSView) -> NSTextField {
@@ -253,15 +254,17 @@ class ViewModel: NSObject {
         view.addSubview(textField)
     }
 
-    func layoutSoundWhenDonePreferences(text: String, view: NSView, separatorView: NSView, labelGeneral: NSTextField) {
+    func layoutSoundWhenDonePreferences(text: String, view: NSView, separatorView: NSView, labelGeneral: NSTextField) -> NSTextField {
         let textField = layoutBasicTextField()
-        textField.stringValue = "Play notification sound"
+        textField.stringValue = text
         textField.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
         textField.font = NSFont(name: "Helvetica Neue", size: 15)
         textField.alignment = NSTextAlignment.CenterTextAlignment
         textField.sizeToFit()
         textField.frame = NSMakeRect(150 + labelGeneral.frame.width, separatorView.frame.origin.y - 80, textField.frame.width, textField.frame.height)
         view.addSubview(textField)
+
+        return textField
     }
 
     // MARK: Preferences View Controller: Helper methods

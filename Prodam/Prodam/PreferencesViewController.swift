@@ -34,20 +34,6 @@ class PreferencesViewController: NSViewController {
         switchLaunchLoginButton.integerValue = Int(self.userDefaults.boolForKey("startLaunch"))
         self.view.addSubview(switchLaunchLoginButton)
 
-        let labelSoundWhenDone = NSTextField()
-        labelSoundWhenDone.bordered = false
-        labelSoundWhenDone.bezeled = false
-        labelSoundWhenDone.editable = false
-        labelSoundWhenDone.selectable = false
-        labelSoundWhenDone.drawsBackground = false
-        labelSoundWhenDone.stringValue = "Play notification sound"
-        labelSoundWhenDone.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
-        labelSoundWhenDone.font = NSFont(name: "Helvetica Neue", size: 15)
-        labelSoundWhenDone.alignment = NSTextAlignment.CenterTextAlignment
-        labelSoundWhenDone.sizeToFit()
-        labelSoundWhenDone.frame = NSMakeRect(150 + labelGeneral.frame.width, topSeparator.frame.origin.y - 80, labelSoundWhenDone.frame.width, labelSoundWhenDone.frame.height)
-        self.view.addSubview(labelSoundWhenDone)
-
         let switchPlaySoundButton = NSButton(frame: NSMakeRect(labelSoundWhenDone.frame.origin.x - 17.5, labelSoundWhenDone.frame.origin.y, 18, 18))
         switchPlaySoundButton.bordered = false
         switchPlaySoundButton.setButtonType(NSButtonType.SwitchButton)
