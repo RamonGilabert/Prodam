@@ -201,12 +201,13 @@ class ViewModel: NSObject {
 
     // MARK: Preferences View Controller: Layout
 
-    func layoutPreferencesView(view: NSView) {
+    func layoutPreferencesView(view: NSView, viewController: NSViewController) {
         layoutPreferencesLabel("Preferences", view: view)
         let separatorView = layoutSeparatorView(view, frame: NSMakeRect(0, view.frame.height - 42.5, view.frame.width, 1))
         let generalLabel = layoutGeneralLabelPreferences("General", view: view, separatorView: separatorView)
         layoutLaunchLogin("Launch at login", view: view, separatorView: separatorView, anotherTextField: generalLabel)
         let soundDoneLabel = layoutSoundWhenDonePreferences("Play notification sound", view: view, separatorView: separatorView, labelGeneral: generalLabel)
+        let separatorViewBottom = layoutSeparatorView(view, frame: NSMakeRect(0, soundDoneLabel.frame.origin.y - 30, view.frame.width, 1))
     }
 
     func layoutPreferencesLabel(text: String, view: NSView) -> NSTextField {
@@ -267,6 +268,18 @@ class ViewModel: NSObject {
         return textField
     }
 
+    func layoutFirstButtonPreferences(view: NSView, viewController: NSViewController) {
+        let button = layoutBasicButton(NSMakeRect(12, view.frame.height - 28, 16, 16), image: "button-close-preferences", viewController: viewController)
+        button.action = "onClosePreferencesButtonPressed"
+        view.addSubview(button)
+    }
+
+    func layoutSecondButtonPreferences(view: NSView, viewController: NSViewController) {
+        let button = layoutBasicButton(NSMakeRect(view.frame.width - 29, view.frame.height - 28, 17, 18), image: "button-quit-preferences", viewController: viewController)
+        button.action = "onQuitAppButtonPressed"
+        view.addSubview(button)
+    }
+
     // MARK: Preferences View Controller: Helper methods
 
     func layoutBasicTextField() -> NSTextField {
@@ -279,6 +292,15 @@ class ViewModel: NSObject {
         textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.16, alpha:1)
 
         return textField
+    }
+
+    func layoutBasicButton(frame: NSRect, image: String, viewController: NSViewController) -> NSButton {
+        let button = NSButton(frame: frame)
+        button.bordered = false
+        button.setButtonType(NSButtonType.MomentaryChangeButton)
+        button.target = viewController
+
+        return button
     }
 
     // MARK: Main View Controller: Helper methods

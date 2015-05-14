@@ -9,22 +9,6 @@ class PreferencesViewController: NSViewController {
     override func loadView() {
         self.view = NSView(frame: NSMakeRect(0, 0, 460, 320))
 
-        let buttonClosePreferences = NSButton(frame: NSMakeRect(12, self.view.frame.height - 28, 16, 16))
-        buttonClosePreferences.bordered = false
-        buttonClosePreferences.setButtonType(NSButtonType.MomentaryChangeButton)
-        buttonClosePreferences.image = NSImage(named: "button-close-preferences")
-        buttonClosePreferences.target = self
-        buttonClosePreferences.action = "onClosePreferencesButtonPressed"
-        self.view.addSubview(buttonClosePreferences)
-
-        let buttonQuitLogin = NSButton(frame: NSMakeRect(self.view.frame.width - 29, self.view.frame.height - 28, 17, 18))
-        buttonQuitLogin.bordered = false
-        buttonQuitLogin.setButtonType(NSButtonType.MomentaryChangeButton)
-        buttonQuitLogin.image = NSImage(named: "button-quit-preferences")
-        buttonQuitLogin.target = self
-        buttonQuitLogin.action = "onQuitAppButtonPressed"
-        self.view.addSubview(buttonQuitLogin)
-
         let switchLaunchLoginButton = NSButton(frame: NSMakeRect(labelLaunchLogin.frame.origin.x - 17.5, labelLaunchLogin.frame.origin.y, 18, 18))
         switchLaunchLoginButton.bordered = false
         switchLaunchLoginButton.setButtonType(NSButtonType.SwitchButton)
@@ -42,11 +26,6 @@ class PreferencesViewController: NSViewController {
         switchPlaySoundButton.action = "onSwitchPlaySoundButtonPressed:"
         switchPlaySoundButton.integerValue = Int(self.userDefaults.boolForKey("soundDone"))
         self.view.addSubview(switchPlaySoundButton)
-
-        let bottomSeparator = NSView(frame: NSMakeRect(0, labelSoundWhenDone.frame.origin.y - 30, self.view.frame.width, 1))
-        bottomSeparator.wantsLayer = true
-        bottomSeparator.layer?.backgroundColor = NSColor.lightGrayColor().CGColor
-        self.view.addSubview(bottomSeparator)
 
         let labelName = NSTextField()
         labelName.bezeled = false
