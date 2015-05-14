@@ -9,20 +9,6 @@ class PreferencesViewController: NSViewController {
     override func loadView() {
         self.view = NSView(frame: NSMakeRect(0, 0, 460, 320))
 
-        let titlePreferences = NSTextField()
-        titlePreferences.bordered = false
-        titlePreferences.bezeled = false
-        titlePreferences.editable = false
-        titlePreferences.selectable = false
-        titlePreferences.drawsBackground = false
-        titlePreferences.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.16, alpha:1)
-        titlePreferences.stringValue = "Preferences"
-        titlePreferences.font = NSFont(name: "Helvetica Neue", size: 18)
-        titlePreferences.alignment = NSTextAlignment.CenterTextAlignment
-        titlePreferences.sizeToFit()
-        titlePreferences.frame = NSMakeRect((self.view.frame.width - titlePreferences.frame.width)/2, self.view.frame.height - titlePreferences.frame.height - 10, titlePreferences.frame.width, titlePreferences.frame.height)
-        self.view.addSubview(titlePreferences)
-
         let buttonClosePreferences = NSButton(frame: NSMakeRect(12, self.view.frame.height - 28, 16, 16))
         buttonClosePreferences.bordered = false
         buttonClosePreferences.setButtonType(NSButtonType.MomentaryChangeButton)
@@ -38,39 +24,6 @@ class PreferencesViewController: NSViewController {
         buttonQuitLogin.target = self
         buttonQuitLogin.action = "onQuitAppButtonPressed"
         self.view.addSubview(buttonQuitLogin)
-
-        let topSeparator = NSView(frame: NSMakeRect(0, self.view.frame.height - 42.5, self.view.frame.width, 1))
-        topSeparator.wantsLayer = true
-        topSeparator.layer?.backgroundColor = NSColor.lightGrayColor().CGColor
-        self.view.addSubview(topSeparator)
-
-        let labelGeneral = NSTextField()
-        labelGeneral.bordered = false
-        labelGeneral.bezeled = false
-        labelGeneral.editable = false
-        labelGeneral.selectable = false
-        labelGeneral.drawsBackground = false
-        labelGeneral.stringValue = "General"
-        labelGeneral.textColor = NSColor(calibratedHue:0.67, saturation:0.06, brightness:0.49, alpha:1)
-        labelGeneral.font = NSFont(name: "Helvetica Neue", size: 15)
-        labelGeneral.alignment = NSTextAlignment.CenterTextAlignment
-        labelGeneral.sizeToFit()
-        labelGeneral.frame = NSMakeRect(100, topSeparator.frame.origin.y - 40, labelGeneral.frame.width, labelGeneral.frame.height)
-        self.view.addSubview(labelGeneral)
-
-        let labelLaunchLogin = NSTextField()
-        labelLaunchLogin.bordered = false
-        labelLaunchLogin.bezeled = false
-        labelLaunchLogin.editable = false
-        labelLaunchLogin.selectable = false
-        labelLaunchLogin.drawsBackground = false
-        labelLaunchLogin.stringValue = "Launch at login"
-        labelLaunchLogin.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
-        labelLaunchLogin.font = NSFont(name: "Helvetica Neue", size: 15)
-        labelLaunchLogin.alignment = NSTextAlignment.CenterTextAlignment
-        labelLaunchLogin.sizeToFit()
-        labelLaunchLogin.frame = NSMakeRect(150 + labelGeneral.frame.width, topSeparator.frame.origin.y - 40, labelLaunchLogin.frame.width, labelLaunchLogin.frame.height)
-        self.view.addSubview(labelLaunchLogin)
 
         let switchLaunchLoginButton = NSButton(frame: NSMakeRect(labelLaunchLogin.frame.origin.x - 17.5, labelLaunchLogin.frame.origin.y, 18, 18))
         switchLaunchLoginButton.bordered = false

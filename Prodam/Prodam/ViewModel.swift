@@ -201,6 +201,83 @@ class ViewModel: NSObject {
 
     // MARK: Preferences View Controller: Layout
 
+    func layoutPreferencesView(view: NSView) {
+        layoutPreferencesLabel("Preferences", view: view)
+        let separatorView = layoutSeparatorView(view, frame: NSMakeRect(0, view.frame.height - 42.5, view.frame.width, 1))
+        let generalLabel = layoutGeneralLabelPreferences("General", view: view, separatorView: separatorView)
+        layoutLaunchLogin("Launch at login", view: view, separatorView: separatorView, anotherTextField: generalLabel)
+    }
+
+    func layoutPreferencesLabel(text: String, view: NSView) -> NSTextField {
+        let textField = layoutBasicTextField()
+        textField.stringValue = text
+        textField.font = NSFont(name: "Helvetica Neue", size: 18)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.sizeToFit()
+        textField.frame = NSMakeRect((view.frame.width - textField.frame.width)/2, view.frame.height - textField.frame.height - 10, textField.frame.width, textField.frame.height)
+        view.addSubview(textField)
+
+        return textField
+    }
+
+    func layoutSeparatorView(view: NSView, frame: NSRect) -> NSView {
+        let separatorView = NSView(frame: frame)
+        separatorView.wantsLayer = true
+        separatorView.layer?.backgroundColor = NSColor.lightGrayColor().CGColor
+        view.addSubview(separatorView)
+
+        return separatorView
+    }
+
+    func layoutGeneralLabelPreferences(text: String, view: NSView, separatorView: NSView) -> NSTextField {
+        let textField = layoutBasicTextField()
+        textField.stringValue = text
+        textField.textColor = NSColor(calibratedHue:0.67, saturation:0.06, brightness:0.49, alpha:1)
+        textField.font = NSFont(name: "Helvetica Neue", size: 15)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.sizeToFit()
+        textField.frame = NSMakeRect(100, separatorView.frame.origin.y - 40, textField.frame.width, textField.frame.height)
+        view.addSubview(textField)
+
+        return textField
+    }
+
+    func layoutLaunchLogin(text: String, view: NSView, separatorView: NSView, anotherTextField: NSTextField) {
+        let textField = layoutBasicTextField()
+        textField.stringValue = text
+        textField.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
+        textField.font = NSFont(name: "Helvetica Neue", size: 15)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.sizeToFit()
+        textField.frame = NSMakeRect(150 + anotherTextField.frame.width, separatorView.frame.origin.y - 40, textField.frame.width, textField.frame.height)
+        view.addSubview(textField)
+    }
+
+    func layoutSoundWhenDonePreferences(text: String, view: NSView, separatorView: NSView, labelGeneral: NSTextField) {
+        let textField = layoutBasicTextField()
+        textField.stringValue = "Play notification sound"
+        textField.textColor = NSColor(calibratedHue:1, saturation:0.04, brightness:0.19, alpha:1)
+        textField.font = NSFont(name: "Helvetica Neue", size: 15)
+        textField.alignment = NSTextAlignment.CenterTextAlignment
+        textField.sizeToFit()
+        textField.frame = NSMakeRect(150 + labelGeneral.frame.width, separatorView.frame.origin.y - 80, textField.frame.width, textField.frame.height)
+        view.addSubview(textField)
+    }
+
+    // MARK: Preferences View Controller: Helper methods
+
+    func layoutBasicTextField() -> NSTextField {
+        let textField = NSTextField()
+        textField.bordered = false
+        textField.bezeled = false
+        textField.editable = false
+        textField.selectable = false
+        textField.drawsBackground = false
+        textField.textColor = NSColor(calibratedHue:0, saturation:0, brightness:0.16, alpha:1)
+
+        return textField
+    }
+
     // MARK: Main View Controller: Helper methods
 
     func addButtonMainView(xPosition: CGFloat, width: CGFloat, alpha: CGFloat, text: NSString, viewController: NSViewController) -> NSButton {
