@@ -14,6 +14,7 @@
 		F6CD5A1F1AFB634400CB1F41 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CD5A1B1AFB633800CB1F41 /* OpenSans-Semibold.ttf */; };
 		F6CD5A201AFB634600CB1F41 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CD5A1C1AFB633800CB1F41 /* OpenSans-Regular.ttf */; };
 		F6CD5A211AFB634900CB1F41 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CD5A1D1AFB633800CB1F41 /* OpenSans-LightItalic.ttf */; };
+		F6CDF9AE1B0498C8002CA4E7 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CDF9AD1B0498C8002CA4E7 /* LaunchStarter.swift */; };
 		F6CE7B4E1AF946DB004EB930 /* TextSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */; };
 		F6CEED441AFA19F700868F19 /* TextAttributter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED431AFA19F700868F19 /* TextAttributter.swift */; };
 		F6CEED461AFA1EA200868F19 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CEED451AFA1EA200868F19 /* DateFormatting.swift */; };
@@ -55,6 +56,7 @@
 		F6CD5A1B1AFB633800CB1F41 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		F6CD5A1C1AFB633800CB1F41 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F6CD5A1D1AFB633800CB1F41 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		F6CDF9AD1B0498C8002CA4E7 /* LaunchStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchStarter.swift; sourceTree = "<group>"; };
 		F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSplitter.swift; sourceTree = "<group>"; };
 		F6CEED431AFA19F700868F19 /* TextAttributter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributter.swift; sourceTree = "<group>"; };
 		F6CEED451AFA1EA200868F19 /* DateFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				F6CEED451AFA1EA200868F19 /* DateFormatting.swift */,
 				F6CEED431AFA19F700868F19 /* TextAttributter.swift */,
+				F6CDF9AD1B0498C8002CA4E7 /* LaunchStarter.swift */,
 				F6CE7B4D1AF946DB004EB930 /* TextSplitter.swift */,
 				F6E398E11AFCCB2C00E3C0BE /* Quotes.swift */,
 				F6D5B8041AFF741B00A76043 /* Sound.swift */,
@@ -373,6 +376,7 @@
 				F6CE7B4E1AF946DB004EB930 /* TextSplitter.swift in Sources */,
 				F6D10D901AF63A0F00EA9BB2 /* PopoverWindowController.swift in Sources */,
 				F680B3D61AF688FF00841DE3 /* NSWindow+Popover.swift in Sources */,
+				F6CDF9AE1B0498C8002CA4E7 /* LaunchStarter.swift in Sources */,
 				F6D10D861AF6129800EA9BB2 /* PopoverController.swift in Sources */,
 				F6F78A311AFA9BF70055FC5D /* RoundedCornerView.swift in Sources */,
 				F6D5B8071AFFC55000A76043 /* PreferencesWindowController.swift in Sources */,
