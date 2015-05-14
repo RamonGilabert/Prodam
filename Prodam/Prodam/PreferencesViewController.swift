@@ -26,7 +26,7 @@ class PreferencesViewController: NSViewController {
 
     func onSwitchLaunchLoginButtonPressed(sender: NSButton) {
         self.userDefaults.setBool(Bool(sender.integerValue), forKey: "startLaunch")
-        toggleLaunchAtStartup()
+        LaunchStarter.toggleLaunchAtStartup()
         self.userDefaults.synchronize()
     }
 
@@ -50,50 +50,5 @@ class PreferencesViewController: NSViewController {
         let emailString = "mailto:\(emailAddress)?Subject=\(emailSubject)&body=\(emailBody)"
         let realEmailString = emailString.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: nil, range: nil)
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: realEmailString)!)
-    }
-
-    // MARK: Launch at startup
-
-    func applicationIsInStartUpItems() -> Bool {
-        return (itemReferencesInLoginItems().existingReference != nil)
-    }
-
-    func itemReferencesInLoginItems() -> (existingReference: LSSharedFileListItemRef?, lastReference: LSSharedFileListItemRef?) {
-        if let appURL : NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
-            if let loginItemsRef = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue() as LSSharedFileListRef? {
-
-                let loginItems: NSArray = LSSharedFileListCopySnapshot(loginItemsRef, nil).takeRetainedValue() as NSArray
-                let lastItemRef: LSSharedFileListItemRef = loginItems.lastObject as! LSSharedFileListItemRef
-
-                for var i = 0; i < loginItems.count; ++i {
-                    let currentItemRef: LSSharedFileListItemRef = loginItems.objectAtIndex(i) as! LSSharedFileListItemRef
-                    if let itemURL = LSSharedFileListItemCopyResolvedURL(currentItemRef, 0, nil) {
-                        if (itemURL.takeRetainedValue() as NSURL).isEqual(appURL) {
-                            return (currentItemRef, lastItemRef)
-                        }
-                    }
-                }
-
-                return (nil, lastItemRef)
-            }
-        }
-
-        return (nil, nil)
-    }
-
-    func toggleLaunchAtStartup() {
-        let itemReferences = itemReferencesInLoginItems()
-        let shouldBeToggled = (itemReferences.existingReference == nil)
-        if let loginItemsRef = LSSharedFileListCreate( nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil).takeRetainedValue() as LSSharedFileListRef? {
-            if shouldBeToggled {
-                if let appUrl : CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
-                    LSSharedFileListInsertItemURL(loginItemsRef, itemReferences.lastReference, nil, nil, appUrl, nil, nil)
-                }
-            } else {
-                if let itemRef = itemReferences.existingReference {
-                    LSSharedFileListItemRemove(loginItemsRef,itemRef);
-                }
-            }
-        }
     }
 }
