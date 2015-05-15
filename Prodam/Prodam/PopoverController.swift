@@ -44,29 +44,33 @@ class PopoverController: NSViewController, NSPopoverDelegate, NSTextFieldDelegat
     // MARK: Action handlers
 
     func onStartButtonPressed() {
-        startingOrStoppingMethods(1.0)
-        self.numberOfImagesLeft = 28
-        self.taskTextField.removeFromSuperview()
-        self.editableTimerTextField.removeFromSuperview()
-        self.taskButton.enabled = true
+        if let numberOfMinutes = NSNumberFormatter().numberFromString(self.editableTimerTextField.stringValue) {
+            startingOrStoppingMethods(1.0)
+            self.numberOfImagesLeft = 28
+            self.taskTextField.removeFromSuperview()
+            self.editableTimerTextField.removeFromSuperview()
+            self.taskButton.enabled = true
 
-        self.timerTextField.stringValue = DateFormatting.getTextFromNumberOfMinutes(self.editableTimerTextField)
+            self.timerTextField.stringValue = DateFormatting.getTextFromNumberOfMinutes(self.editableTimerTextField)
 
-        if self.taskTextField.stringValue == "" {
-            self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard", fontSize: 18)
+            if self.taskTextField.stringValue == "" {
+                self.taskTextField.attributedStringValue = TextSplitter.checkNewStringForTextField("Working hard", fontSize: 18)
+            }
+
+            self.userDefaults.setValue(self.taskTextField.stringValue, forKey: "taskTitle")
+            self.userDefaults.setValue(self.editableTimerTextField.stringValue, forKey: "taskDuration")
+            self.userDefaults.setValue("5", forKey: "taskBreak")
+            self.userDefaults.synchronize()
+
+            self.taskTextField.resignFirstResponder()
+            self.view.addSubview(self.taskTextField)
+            self.addTaskButton.removeFromSuperview()
+
+            self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+            self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(Float(DateFormatting.getNumberFromDate(self.timerTextField)) / Float(self.numberOfImagesLeft)), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
+        } else {
+            NSBeep()
         }
-
-        self.userDefaults.setValue(self.taskTextField.stringValue, forKey: "taskTitle")
-        self.userDefaults.setValue(self.editableTimerTextField.stringValue, forKey: "taskDuration")
-        self.userDefaults.setValue("5", forKey: "taskBreak")
-        self.userDefaults.synchronize()
-
-        self.taskTextField.resignFirstResponder()
-        self.view.addSubview(self.taskTextField)
-        self.addTaskButton.removeFromSuperview()
-
-        self.timerUpdateLabel = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
-        self.timerUpdateIcon = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(Float(DateFormatting.getNumberFromDate(self.timerTextField)) / Float(self.numberOfImagesLeft)), target: self, selector: "onIconShouldChange", userInfo: nil, repeats: true)
     }
 
     func onStopButtonPressed() {
