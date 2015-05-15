@@ -1,6 +1,6 @@
 # Prodam
 
-![Header slide](/path/to/img.jpg)
+![Header slide](https://github.com/RamonGilabert/Pomodoro/blob/master/Resources/header-slide.png)
 
 ### Another pomodoro app, like never before.
 
@@ -14,7 +14,7 @@ Be more productive to be less busy. A subtile app that will tell you when to tak
 - Changing menu icon to display a subtile timer.
 - Amazing break view to relax and stand up for a moment.
 
-![Break slide](/path/to/img.jpg)
+![Break slide](https://github.com/RamonGilabert/Pomodoro/blob/master/Resources/header-slide.png)
 
 ### Done by
 
