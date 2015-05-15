@@ -71,7 +71,9 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
 
     func onStartBreakButtonPressed() {
         if self.startBreakButton.attributedTitle == "START BREAK" || self.startBreakButton.title == "START BREAK" {
-            self.userDefaults.setValue(self.editableTextField.stringValue, forKey: "taskBreak")
+            if self.editableTextField.stringValue.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 5 {
+                self.userDefaults.setValue(self.editableTextField.stringValue, forKey: "taskBreak")
+            }
             onTimerDidFinishOrNot(false)
         } else {
             self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons("START BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
@@ -106,22 +108,34 @@ class BreakViewController: NSViewController, PopoverManagerDelegate {
     }
 
     func onTimerDidFinishOrNot(bool: Bool) {
-        self.minutesLabel.hidden = Bool(1 - Int(bool))
-        self.editableTextField.editable = bool
-        self.editableTextField.selectable = bool
-        self.editableTextField.stringValue = bool ? self.userDefaults.stringForKey("taskBreak")! : DateFormatting.getTextWithoutBiggerThanMinutes(self.editableTextField)
-        self.editableTextField.sizeToFit()
-        self.editableTextField.frame = bool ? self.initialFrameMinutes : NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
-        self.view.window?.makeFirstResponder(bool ? self.editableTextField : nil)
-        self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons(bool ? "START BREAK" : "PAUSE BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+        let dateFormatter = NSDateFormatter()
 
-        if bool == true {
-            self.headerLabel.stringValue = "TAKE ANOTHER BREAK"
-            self.headerLabel.sizeToFit()
-            self.headerLabel.frame = NSMakeRect((self.view.frame.width - self.headerLabel.frame.width)/2, self.headerLabel.frame.origin.y, self.headerLabel.frame.width, self.headerLabel.frame.height)
-            self.breakTimer.invalidate()
+        if self.editableTextField.stringValue.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 5 {
+            dateFormatter.dateFormat = "hh:mm:ss"
         } else {
-            self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+            dateFormatter.dateFormat = "mm:ss"
+        }
+
+        if (NSNumberFormatter().numberFromString(self.editableTextField.stringValue) != nil) || (dateFormatter.dateFromString(self.editableTextField.stringValue) != nil) {
+            self.minutesLabel.hidden = Bool(1 - Int(bool))
+            self.editableTextField.editable = bool
+            self.editableTextField.selectable = bool
+            self.editableTextField.stringValue = bool ? self.userDefaults.stringForKey("taskBreak")! : DateFormatting.getTextWithoutBiggerThanMinutes(self.editableTextField)
+            self.editableTextField.sizeToFit()
+            self.editableTextField.frame = bool ? self.initialFrameMinutes : NSMakeRect((self.view.frame.width - self.editableTextField.frame.width)/2, self.initialFrameMinutes.origin.y, self.editableTextField.frame.width, self.editableTextField.frame.height)
+            self.view.window?.makeFirstResponder(bool ? self.editableTextField : nil)
+            self.startBreakButton.attributedTitle = TextAttributter.attributedStringForButtons(bool ? "START BREAK" : "PAUSE BREAK", font: "AvenirNext-DemiBold", color: NSColor(calibratedHue:0, saturation:0, brightness:0.22, alpha:1))
+
+            if bool == true {
+                self.headerLabel.stringValue = "TAKE ANOTHER BREAK"
+                self.headerLabel.sizeToFit()
+                self.headerLabel.frame = NSMakeRect((self.view.frame.width - self.headerLabel.frame.width)/2, self.headerLabel.frame.origin.y, self.headerLabel.frame.width, self.headerLabel.frame.height)
+                self.breakTimer.invalidate()
+            } else {
+                self.breakTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onLabelShouldChange", userInfo: nil, repeats: true)
+            }
+        } else {
+            NSBeep()
         }
     }
 }
