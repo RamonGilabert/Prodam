@@ -22,7 +22,7 @@ This app is under the MIT License and is brought to you by [Ramon Gilabert](http
 
 #### Get the app
 
-The app is not going to be in the store because it's a complete learning app. Feel free to download the Xcode project and PR if you thing something needs to be improved :).
+The app is not going to be in the store because it's a complete learning app. Feel free to download the Xcode project and PR if you think something needs to be improved :).
 
 In case you want to download it anyway, you can go to the following link: [Prodam](http://ramongilabert.com/prodam) and authorize the app, don't worry, it's safe! :)
 
